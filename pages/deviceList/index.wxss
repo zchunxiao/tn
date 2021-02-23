@@ -1,0 +1,114 @@
+/* pages/deviceList/index.wxss */
+page{
+  background:#F6F6F6;
+}
+button{
+  margin:0;
+  padding:0;
+  border:none;
+  height: 62rpx;
+}
+.bold{
+  font-weight: bold;
+}
+.device{
+  /* padding:28rpx 46rpx 0 56rpx; */
+
+ 
+}
+.device-saoma{
+  /* width:100%; */
+  height: 62rpx;
+  display: flex;
+  justify-content: space-between;
+  /* padding: 28rpx 46rpx 0 0; */
+  overflow: hidden;
+  box-sizing: content-box;
+  background:#fff;
+  padding:28rpx 46rpx 0 56rpx;
+}
+.devide-saoma-img{
+  width:62rpx;
+  height: 62rpx;
+}
+.device-bluetooth{
+  padding:26rpx 46rpx 0 56rpx;
+  color: rgba(16, 16, 16, 100);
+  font-size: 28rpx;
+  background:#fff;
+}
+.device-bluetooth-text{
+  margin-left: 4rpx;
+}
+.device-bluetooth-status{
+  display: flex;
+  justify-content: space-between;
+  height: 40rpx;
+  align-items: center;
+  padding:0 0 12rpx 0;
+  border-bottom:1rpx solid #ccc;
+  margin-left: 4rpx;
+}
+.device-name{
+  padding:22rpx 0 18rpx 0;
+  display:flex;
+  justify-content: space-between;
+  font-size: 32rpx;
+}
+.device-type{
+  color:#8D8D8D;
+  font-size: 28rpx;
+}
+.device-pair{
+  margin:18rpx 0 0 0;
+  background:#fff;
+  padding:0 42rpx 0 62rpx;
+}
+.device-title{
+  color: rgba(115, 115, 115, 100);
+  font-size: 28rpx;
+  color: rgba(115, 115, 115, 100);
+  padding:22rpx 0 50rpx 0;
+}
+.device-item{
+  /* display:flex;
+  justify-content: space-between; */
+  overflow: hidden;
+  height: 80rpx;
+  display:flex;
+  align-items: center;
+}
+.device-img{
+  width:60rpx;
+  height: 60rpx;
+  float: left;
+}
+.device-img-delete{
+  width:60rpx;
+  height: 60rpx;
+}
+.device-pair-item-detail{
+  width: 95%;
+  height: 65rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom:1px solid #ccc;
+}
+.device-available{
+  margin:18rpx 0 0 0;
+  background:#fff;
+  padding:0 42rpx 104rpx 62rpx;
+}
+.device-available-item-detail{
+  width: 90%;
+  height: 65rpx;
+  border-bottom:1px solid #ccc;
+  display: flex;
+  align-items: center;
+  padding-left: 15rpx;
+  overflow: hidden;
+  white-space:nowrap;
+  word-break: break-all;
+  text-overflow:ellipsis;
+}

@@ -1,0 +1,6 @@
+<!--pages/fastTest/index.wxml-->
+<view>
+  快速检测
+  <mp-loading type="circle" tips=""></mp-loading>
+  <canvas canvas-id="canvasColumn" id="canvasColumn" class="charts" bindtouchstart="touchColumn"></canvas>
+</view>

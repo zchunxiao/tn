@@ -1,0 +1,9 @@
+<!--pages/bind/index.wxml-->
+<view class="bind">
+  <button open-type="getPhoneNumber"  class="btn"
+          type="primary"
+          lang="zh_CN" 
+          bindgetphonenumber="bindGetPhoneNumber">
+          绑定手机号
+  </button>
+</view>

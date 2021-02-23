@@ -1,0 +1,69 @@
+/* pages/article/index.wxss */
+page{
+  background:#F6F6F6;
+}
+.article-box{
+ margin:0 20rpx;
+ color: rgba(16, 16, 16, 100);
+ font-size: 28rpx;
+}
+.article-video{
+   width:100%;
+}
+.article-video-main{
+  background:#fff;
+  padding:0 20rpx 68rpx;
+}
+.article-video-title{
+  padding:60rpx 0;
+  text-align: center; 
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.article-video-content{
+  font-size: 30rpx;
+  color: rgba(153, 153, 153, 100);
+}
+.article{
+  background:#fff;
+}
+.article-title{
+  text-align: center; 
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+  padding:40rpx 0;
+}
+.article-people-info{
+  display: flex;
+  font-size: 24rpx;
+  align-items: center;
+}
+.article-people-pic{
+  width:92rpx;
+  height: 92rpx;
+  border-radius: 50%;
+  margin:0 10rpx 10rpx 0;
+}
+.article-people{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+.article-people-name{
+  font-weight: bold;
+}
+.article-main{
+ line-height: 1.5;
+}
+.article-item-img{
+  width:100%;
+  margin-bottom: 20rpx;
+}
+.article-item{
+  margin-bottom: 20rpx;
+}
+.article-content{
+  text-indent: 60rpx;
+}

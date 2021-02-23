@@ -1,0 +1,57 @@
+/* pages/index/index.wxss */
+.hp{
+  margin:0 20rpx;
+  overflow: hidden;
+}
+.hp-image{
+  width:100%;
+}
+.hp-user{
+  display: flex;
+  justify-content: space-between;
+  margin:20rpx 24rpx 0 24rpx;
+  font-size: 36rpx;
+  color: rgba(51, 51, 51, 100);
+}
+.hp-nickname{
+  font-weight: bold;
+}
+.hp-swiper{
+  margin:36rpx 0 68rpx;
+}
+.hp-device{
+  font-size: 36rpx;
+  margin:0 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hp-device-add-icon{
+  width:30rpx;
+  height: 30rpx;
+}
+.hp-device-add{
+  width: 212rpx;
+  opacity: 0.41;
+}
+.hp-device-content{
+  margin:118rpx auto 38rpx;
+  text-align: center;
+}
+.hp-device-add-text{
+  opacity: 0.36;
+  font-size: 28rpx;
+  text-align: center;
+  display: inline-block;
+  width:100%;
+}
+.hp-device-text{
+  color:#333;
+  font-size: 28rpx;
+  display: inline-block;
+  width:100%;
+}
+.hp-device-pic{
+  width: 280rpx;
+  border-radius: 24rpx;
+}

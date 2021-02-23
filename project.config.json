@@ -1,0 +1,127 @@
+{
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.14.4",
+  "appid": "wx5aa8557a56d05b2f",
+  "projectname": "ITTest",
+  "cloudfunctionRoot": "functions/",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/deviceList/index",
+          "pathName": "pages/deviceList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/deviceDetail/index",
+          "pathName": "pages/deviceDetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/index",
+          "pathName": "pages/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/person/index",
+          "pathName": "pages/person/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/help/index",
+          "pathName": "pages/help/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/article/index",
+          "pathName": "pages/article/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/fastTest/index",
+          "pathName": "pages/fastTest/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/bind/index",
+          "pathName": "pages/bind/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/article/index",
+          "pathName": "pages/article/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/article/index",
+          "pathName": "pages/article/index",
+          "query": "articleId=1",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

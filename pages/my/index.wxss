@@ -1,0 +1,117 @@
+/* pages/my/index.wxss */
+.my-person-bg{
+  width:100%;
+  height: 180rpx;
+  background:#3B86F8;
+  overflow: hidden;
+}
+.my-person{
+  width: 662rpx;
+  height: 284rpx;
+  line-height: 40rpx;
+  border-radius: 24rpx;
+  text-align: center;
+  box-shadow: 0rpx 8rpx 24rpx 0rpx rgba(168, 168, 168, 10);
+  border: 2rpx solid rgba(255, 255, 255, 100);
+  background:#fff;
+  margin:-134rpx auto 0;
+}
+.my-person-info{
+  display: flex;
+  color:#F0D51A;
+  font-size: 24rpx;
+  margin:6rpx 0 0 0;
+}
+.my-person-img{
+  width:142rpx;
+  height:142rpx;
+  margin:0 24rpx 0 26rpx;
+  border-radius: 50%;
+}
+.my-person-start{
+  width:42rpx;
+  height: 42rpx;
+  margin:0 6rpx 0 0;
+}
+.my-person-nickname{
+  color:#333;
+  font-size: 32rpx;
+  margin:0 0 0 2rpx;
+}
+.my-person-icon{
+  margin:26rpx 0 0 0;
+  display: flex;
+  align-items: center;
+}
+.my-person-device-info{
+  display: flex;
+  margin:26rpx 26rpx 0 48rpx;
+  color: rgba(102, 102, 102, 100);
+  font-size: 24rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+.my-person-device-num{
+  color:#3B86F8;
+  font-size: 40rpx;
+  line-height: 56rpx;
+}
+.my-person-edit{
+  width: 148rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 24rpx;
+  background-color: rgba(59, 134, 248, 100);
+  text-align: center;
+  border: 2rpx solid rgba(255, 255, 255, 100);
+  color:#fff;
+  background:#3B86F8;
+  text-align: center;
+  font-size: 24rpx;
+  margin:0;
+  padding:0;
+}
+.my-person-device-box{
+  margin:26rpx 0 0 0;
+}
+.my-person-device-title{
+  color: rgba(51, 51, 51, 100);
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+  line-height: 50rpx;
+  margin-bottom: 18rpx;
+}
+.my-person-device-image{
+  width:260rpx;
+  margin:0 auto;
+}
+.my-person-device-operation{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  margin: 0 32rpx 0 56rpx;
+}
+.my-person-device-desc{
+  text-align: center;
+}
+.my-person-btn{
+  line-height: 50rpx;
+  border-radius: 24rpx;
+  background-color: rgba(77, 181, 6, 100);
+  text-align: center;
+  box-shadow: 0rpx 4rpx 12rpx 0rpx rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 100);
+  font-size: 24rpx;
+  margin:0;
+  padding:0;
+  width:148rpx;
+} 
+.my-person-help{
+ background:#4DB506;
+ margin-bottom: 58rpx;
+}
+.my-person-del{
+  background:#E60909;
+}
