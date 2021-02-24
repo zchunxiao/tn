@@ -154,11 +154,11 @@ Page({
       success: (res) => {
         const {code=""} = res;
         console.log("code:",code);
-        //return false;
+       // return false;
         wxLogin({code}).then(data=>{
           if(!data) return false;
           const {openid,session_key} = data;
-          // 存储openid sessin
+          // 存储openid session_key
           wx.setStorage({
             key:"openid",
             data:openid

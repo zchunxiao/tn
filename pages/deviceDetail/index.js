@@ -31,6 +31,7 @@ Page({
         snCode,
       })
     })
+  
     // 初始化蓝牙
     this.initBlue();
   }, 
@@ -45,7 +46,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.showLoading({
+      title:"连接中"
+    })
+   
   },
 
   /**
@@ -59,7 +63,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+   
   },
 
   /**
@@ -96,6 +100,8 @@ Page({
   },
   // 初始化蓝牙设备
   initBlue:function(){
+ 
+    
     var that = this;
     wx.openBluetoothAdapter({//调用微信小程序api 打开蓝牙适配器接口
       success: function (res) {
@@ -120,7 +126,7 @@ Page({
         _this.getBlue()
       },
       fail: function (res) {
-        wx.hideLoading()
+       // wx.hideLoading()
       }
 
     })
@@ -128,9 +134,7 @@ Page({
   // 获取搜索到的设备信息
   getBlue(){
     let id,i=0,_this = this;
-    wx.showLoading({
-      title: '加载中'
-    })
+
     wx.getStorage({
        key: 'deviceId',
        success:res=>{
@@ -168,6 +172,7 @@ Page({
       deviceId: deviceId,
       success (res) {
         console.log("蓝牙连接成功:",res)
+    
            // 获取特定设备的所有服务
         wx.getBLEDeviceServices({
             deviceId:deviceId,
@@ -210,7 +215,7 @@ Page({
                         
                         // 获取设备信息
                       _this.getDeviceInfo(str)
-                      wx.hideLoading();
+                    //  wx.hideLoading();
                       wx.closeBluetoothAdapter()
                         
                       })
@@ -295,6 +300,9 @@ Page({
           mac
         }
       })
-
+      setTimeout(() => {
+        wx.hideLoading();
+      }, 2000);
+     
   }
 })

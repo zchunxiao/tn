@@ -2,9 +2,9 @@
 <view class="device">
   <view  class="device-saoma">
     <view/>
-   <!-- <button bindtap="saoma">
+    <button bindtap="saoma">
       <image src="../../images/saoma.png" class="devide-saoma-img" />
-    </button>-->
+    </button>
   </view>
 
 

@@ -30,7 +30,7 @@ const getArticleList =  data=> fetch('articleApi/briefPage',{size:pageSize,...da
 const getArticleDetail =  data=> fetch(`article/${data}`,data)
 
 // 通过产品码（激光码）查询产品信息 get
-const getBlueInfoByProductCode = data=>fetch('/product/getByProductCode',data,{all:true})
+const getBlueInfoByProductCode = data=>fetch('/product/getByProductCode',data)
 
 module.exports= {
   getBannerList,
