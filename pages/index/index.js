@@ -153,6 +153,7 @@ Page({
     wx.login({
       success: (res) => {
         const {code=""} = res;
+        console.log("code:",code);
         //return false;
         wxLogin({code}).then(data=>{
           if(!data) return false;

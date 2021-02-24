@@ -2,16 +2,24 @@ import {getStorageByKey} from './index.js'
 const baseUrl ="https://lidian.etianneng.cn/bms"
 
 
-const fetch = (url="",data={},option={method:'get',all:false}) => {
+/**
+ * 
+ * @param {all} 响应体全部返回 
+ * @param {loading} 请求是否显示loading效果
+ */
+const fetch = (url="",data={},option={method:'get',all:false,loading:true}) => {
   if(!url) {
     wx.showToast({
       title: '请求地址不能为空',
     })
     return false;
   }
-  wx.showLoading({
-    title: '加载中'
-  });
+  if(option.loading){
+    wx.showLoading({
+      title: '加载中'
+    });
+  }
+  
 
   return new Promise((resolve,reject)=>{
     wx.request({
@@ -25,7 +33,7 @@ const fetch = (url="",data={},option={method:'get',all:false}) => {
       method:option.method,
       success:res=>{
        const {data:{code,msg,data}} =  res;
-       wx.hideLoading();
+       option.loading &&  wx.hideLoading();
        if(code != 0){
          wx.showToast({
            title: msg,
@@ -42,7 +50,7 @@ const fetch = (url="",data={},option={method:'get',all:false}) => {
        
       },
       fail:err=>{
-        wx.hideLoading();
+        option.loading &&  wx.hideLoading();
         reject(err)
       }
     })

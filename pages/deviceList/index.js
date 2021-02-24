@@ -108,9 +108,9 @@ Page({
   // 初始化蓝牙
  initBlue:function(){
   var that = this;
-  // wx.showLoading({
-  //    title: '加载中',
-  // })
+  wx.showLoading({
+     title: '加载中',
+  })
   wx.openBluetoothAdapter({
     success:(res)=>{
      // console.log('初始化蓝牙适配器成功')
@@ -147,7 +147,7 @@ Page({
         services: [],
         success: function (res) {
           // 获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
-          // 每隔1秒中搜索一次列表
+          // 每隔5秒中搜索一次列表
           setInterval(() => {
             wx.getBluetoothDevices({
               success:(res)=>{
@@ -156,7 +156,7 @@ Page({
                   return item.name.indexOf("TN") > -1
                 });
                 console.log("3333:",tnDeviceList)
-               // wx.hideLoading();
+                wx.hideLoading();
                 if(tnDeviceList.length == 0){
                   that.initBlue()
                 }else{
@@ -168,7 +168,7 @@ Page({
               }
             });
           
-          }, 1000);
+          }, 5000);
          
         }        
       })
@@ -196,44 +196,50 @@ Page({
       data: deviceId ,
       key: 'deviceId',
     })
+    wx.showLoading({
+      title: '绑定中',
+    })
 
     _this.connetBlue(deviceId)
     setTimeout(() => {
-      wx.getSetting({
-        success: function (res) {
-          // 没有授权地址
-          if (!res.authSetting['scope.userLocation']) {
-            wx.getLocation({
-              success: res=> {
-
-                if(!res) return false;
-                const { latitude,longitude} =  res;
-              
-                wx.setStorage({
-                  key:"location",
-                  data:res
-                })
-                // 绑定当前的设备
-                _this.bindBlueTooth(name,latitude,longitude);
-              
-              
-              },
-              fail:res=>{
-                wx.showToast({
-                  title:"绑定设备需先授权地理位置"
-                })
-              }
-            })
-           
-           
-          }else{
-            const location = getStorageByKey('location');
-               // 绑定当前的设备
-            _this.bindBlueTooth(name,location.latitude,location.longitude);
+      if (!getStorageByKey('location')){
+        wx.getSetting({
+          success: function (res) {
+            // 没有授权地址
+            if (!res.authSetting['scope.userLocation']) {
+              wx.getLocation({
+                success: res=> {
+  
+                  if(!res) return false;
+                  const { latitude,longitude} =  res;
+                
+                  wx.setStorage({
+                    key:"location",
+                    data:res
+                  })
+                  // 绑定当前的设备
+                  _this.bindBlueTooth(name,latitude,longitude);
+                
+                
+                },
+                fail:res=>{
+                  wx.showToast({
+                    title:"绑定设备需先授权地理位置"
+                  })
+                }
+              })
+             
+             
+            }else{
+              const location = getStorageByKey('location');
+                 // 绑定当前的设备
+              _this.bindBlueTooth(name,location.latitude,location.longitude);
+            }
           }
-        }
-      })
-    }, 0);
+        })
+      }
+    
+    }, 5000);
   
    
    
@@ -394,6 +400,7 @@ Page({
       handleBindPDevice(params).then(data=>{
         console.log("绑定蓝牙设备:",data)
         if(data && data == '操作成功'){
+          wx.hideLoading();
           wx.showToast({
             title:'绑定成功',
             duration:2000

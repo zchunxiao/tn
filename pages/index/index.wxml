@@ -15,7 +15,7 @@
   <!-- <image src="http://192.168.33.129:9000/dosp/74b50cd515884f5091e390dd8b593728.jpeg" mode="widthFix"  style="width:100%"/> -->
   <!-- 常用设备 -->
   <view class="hp-device">
-    <text>常用设备{{isAuth?"登录":"没有登录"}}</text>
+    <text>常用设备</text>
     <!-- 未授权先进行授权 -->
     <view wx:if="{{!isAuth}}">
       <button open-type="getUserInfo" 
