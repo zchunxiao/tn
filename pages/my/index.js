@@ -110,13 +110,13 @@ Page({
   // 编辑个人信息
   edit:function(){
     wx.navigateTo({
-      url: '/pages/person/index',
+      url: '/pagesOther/pages/person/index',
     })
   },
   // 帮助
   goHelp:function(){
     wx.navigateTo({
-      url: '/pages/help/index',
+      url: '/pagesOther/pages/help/index',
     })
   },
   // 删除设备

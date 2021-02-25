@@ -56,20 +56,32 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/deviceList/index",
-          "pathName": "pages/deviceList/index",
+          "name": "pagesOther/pages/deviceList/index",
+          "pathName": "pagesOther/pages/deviceList/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
+          "name": "pagesOther/pages/bind/index",
+          "pathName": "pagesOther/pages/bind/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/deviceDetail/index",
-          "pathName": "pages/deviceDetail/index",
+          "name": "pagesOther/pages/fastTest/index",
+          "pathName": "pagesOther/pages/fastTest/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesOther/pages/deviceList/index",
+          "pathName": "pagesOther/pages/deviceList/index",
+          "query": "articleId=1",
+          "scene": null
+        },
+        {
+          "name": "pagesOther/pages/fastTest/index",
+          "pathName": "pagesOther/pages/fastTest/index",
           "query": "",
           "scene": null
         },
@@ -80,45 +92,15 @@
           "scene": null
         },
         {
-          "name": "pages/person/index",
-          "pathName": "pages/person/index",
+          "name": "pagesOther/pages/person/index",
+          "pathName": "pagesOther/pages/person/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/help/index",
-          "pathName": "pages/help/index",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
           "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/article/index",
-          "pathName": "pages/article/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/fastTest/index",
-          "pathName": "pages/fastTest/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/bind/index",
-          "pathName": "pages/bind/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/article/index",
-          "pathName": "pages/article/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/article/index",
-          "pathName": "pages/article/index",
-          "query": "articleId=1",
           "scene": null
         }
       ]

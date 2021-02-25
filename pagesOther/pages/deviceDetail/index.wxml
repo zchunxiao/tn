@@ -1,0 +1,93 @@
+<!--pages/deviceDetail/index.wxml-->
+<view>
+  <loading  isLoading="{{visible}}" text="{{text}}"></loading>
+  <view class="device-detail">
+    <!-- 设备图片 -->
+    <view class="device-detail-image-box">
+      <image src="{{imgUrl}}" mode="widthFix" class="device-detail-image"/>
+      <text>S/N：{{snCode}}</text>
+    </view>
+    <!-- 设备状态 -->
+    <view class="device-detail-status-box">
+      <view class="device-detail-status-text" wx:if="{{connectStatus}}">已连接</view>
+      <view class="device-detail-status-text" wx:else>未连接</view>
+      <view>
+        <!-- <view class="device-detail-status-battery">剩余电量：50% </view> -->
+        <view  wx:if="{{connectStatus}}">状态：良好</view>
+        <view class="device-detail-status-blue" wx:else bindtap="initBlue">
+          <view>重新连接</view>
+          <image src="../../../images/md-bluetooth.svg" mode="widthFix" class="icon-small" />
+        </view>
+      </view>
+    </view>
+    <view  class="device-detail-date-empty-box"  wx:if="{{!connectStatus}}">
+      <view> 质保日期：-- -- </view>
+      <view> 出厂日期：-- --</view>
+    </view>
+    <!-- 电池基本信息： -->
+    <!-- <view class="device-detail-basic-box">
+      <view class="device-detail-basic-box-title">电池基本信息：</view>
+      <view>
+        <view class="device-detail-basic-box-info">电池：衡科技 4812</view>
+        <view class="device-detail-basic-box-info">S/N码：SCBN2264120164120Z30</view>
+        <view class="device-detail-basic-box-info">出厂日期：2021/11/11</view>
+        <view class="device-detail-basic-box-info">质保期限：XX月</view>
+        <view class="device-detail-basic-box-info">当前电量</view>
+      </view>
+    </view> -->
+    <!-- 日期 -->
+    <view class="device-detail-date-box" wx:else>
+      <view class="device-detail-date">
+      <text>质保日期：2022/11/11 </text>        
+      <text>出厂日期：2021/11/11</text>
+      </view>
+      <!-- <view>电池基本信息：</view> -->
+    </view>
+    <!-- 故障信息智能诊断 -->
+    <view class="device-detail-fault-box">
+      <view>故障信息智能诊断</view>
+      <image src="../../../images/md-cached.svg" mode="widthFix" class="icon-big"/>
+    </view>
+    <!-- BMS参数信息 -->
+    <view class="device-detail-bms-box" wx:if="{{connectStatus}}">
+        <view class="device-detail-bms-box-title">BMS参数信息</view>
+        <view class="device-detail-bms-box-info">
+          <view>电池状态：{{deviceInfo.BatterySatusText}}</view>
+          <view>电池温度：{{deviceInfo.BatteryTempText}}℃</view>
+          <view>MOS温度：{{deviceInfo.mosTempText}}℃</view>
+          <view>充电器匹配检测电压：{{deviceInfo.Voltage1Text}}mV</view>
+          <view>放电电流：{{deviceInfo.dischargeText}}mA</view>
+          <view>充电电流：{{deviceInfo.discharge1Text}}mA</view>
+          <!-- <view>单体电压：{{deviceInfo.Voltage2Text}}mV</view> -->
+          <view>充电截至电压：{{deviceInfo.Voltage3Text}}mV</view>
+          <view>电池总压：{{deviceInfo.Voltage4Text}}mV</view>
+          <view>固件版本：{{deviceInfo.version1Text}}</view>
+          <view>硬件版本：{{deviceInfo.version2Text}}</view>
+          <view>电池规格：{{deviceInfo.typeText}}</view>
+          <view>蓝牙Mac地址：{{deviceInfo.mac}}</view>
+          <view>设备SN码：{{deviceInfo.sncodeText}}</view>
+        </view>
+      
+        </view>
+    </view>
+    <!-- 快速检测 -->
+    <view class="device-detail-tab-box">
+    <view class="device-detail-tab" bindtap="goFastTest">
+      快速检测
+      <image src="../../../images/md-cached.svg" mode="widthFix" class="icon-small"/>
+    </view>
+    <view class="device-detail-tab">
+      详细检测
+      <image src="../../../images/md-cached.svg" mode="widthFix" class="icon-small"/>
+    </view>
+    <view class="device-detail-tab" bindtap="goHelp">
+      帮助
+      <image src="../../../images/md-help_outline.svg" mode="widthFix" class="icon-small"/>
+    </view>
+    <view class="device-detail-tab">
+      固件更新
+      <image src="../../../images/antOutline-cloud-upload.svg" mode="widthFix" class="icon-small"/>
+    </view>
+  </view>
+</view>
+

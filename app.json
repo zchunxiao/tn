@@ -1,16 +1,22 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/my/index",
-    "pages/deviceList/index",
-    "pages/deviceDetail/index",
-    "pages/person/index",
-    "pages/help/index",
-    "pages/article/index",
-    "pages/fastTest/index",
-    "pages/bind/index"
+    "pages/my/index"
   ],
-  "subPackages": [],
+  "subpackages": [
+    {
+      "root": "pagesOther",
+      "pages": [
+        "pages/deviceList/index",
+        "pages/deviceDetail/index",
+        "pages/person/index",
+        "pages/help/index",
+        "pages/article/index",
+        "pages/fastTest/index",
+        "pages/bind/index"
+      ]
+    }
+  ],
   "tabBar": {
     "color": "#DCDDDF",
     "selectedColor": "#3A85F8",
@@ -41,8 +47,5 @@
     }
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap48.json",
-  "useExtendedLib": {
-    "weui": true
-  }
+  "sitemapLocation": "sitemap48.json"
 }

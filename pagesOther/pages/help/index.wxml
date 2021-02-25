@@ -1,0 +1,33 @@
+<!--pages/help/index.wxml-->
+<view>
+  <!-- 搜索
+  <view class="help-search">
+    <image  src="../../images/md-search.svg" mode="widthFix" class="help-search-img"/>
+    <input placeholder="搜索关键字" placeholder-class="help-search-input"/>
+  </view> -->
+  <!-- 轮播图片 -->
+  <view class="help-swiper-box">
+    <swiper class="help-swiper" autoplay="true" circular="true" indicator-dots="true" indicator-active-color="#3A85F8" bindchange="_swiperChange" >
+      <swiper-item  wx:for="{{bannerList}}"  wx:key="index" data-article-id="{{item.articleId}}">
+        <image src= "{{item.bannerUrl}}" lazy-load="true" mode="widthFix" class="help-image"/>
+      </swiper-item>
+    </swiper>
+    <view class="help-swiper-text" bindtap="goArticle" data-type="banner" wx:if="{{articleId}}">查看详情</view>
+  </view>
+  <!-- 常见问题 -->
+  <view class="help-question">
+    <view class="help-question-title">常见问题</view>
+    <view  wx:for="{{[1,2,3,4,5]}}" wx:key="index" >
+      <view class="help-question-item" bindtap="goArticle" data-article-id="22" data-type="article">
+          <image src="../../../images/pic.png" mode="widthFix" class="help-question-item-img"/>
+          <view class="help-question-item-main">
+            <view class="help-question-item-title">标题一</view>
+            <view class="help-question-item-content">关于电池相关问题的具体内容简介，或者获取文章前面30个字左右显示在此处相关问题的具体内容简介，或者获取文章前面30个字左右显示在此处</view>
+          </view>
+      </view>
+    </view>
+    <!-- 查看更多 -->
+    <view class="help-question-more">查看更多</view>
+  </view>
+
+</view>

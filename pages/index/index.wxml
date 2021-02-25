@@ -5,14 +5,16 @@
     <text class="hp-nickname">Hi! {{user.nickName}}</text>
   </View>
   <!-- 轮播图片 -->
-  <swiper class="hp-swiper" autoplay="true" circular="true" autoplay="true" circular="true" indicator-dots="true" indicator-active-color="#3A85F8">
+  <swiper class="hp-swiper" circular="true" indicator-dots="true" indicator-active-color="#3A85F8">
     <swiper-item  wx:for="{{bannerList}}"  wx:key="index">
-      <image src= "{{item.bannerUrl}}" lazy-load="true" mode="scaleToFill"
-      class="hp-image"/>
+      <view>
+        <image src= "{{item.bannerUrl}}" lazy-load="true" mode="scaleToFill"
+        class="hp-image"/>
+      </view>
     </swiper-item>
   </swiper>
 
-  <!-- <image src="http://192.168.33.129:9000/dosp/74b50cd515884f5091e390dd8b593728.jpeg" mode="widthFix"  style="width:100%"/> -->
+
   <!-- 常用设备 -->
   <view class="hp-device">
     <text>常用设备</text>

@@ -7,7 +7,7 @@ App({
 
   globalData: {
     userInfo: null,
-    num:1,
+    num:10,
     latitude:"",
     longitude:"",
     deviceId:"",

@@ -1,4 +1,5 @@
 /* pages/index/index.wxss */
+
 .hp{
   margin:0 20rpx;
   overflow: hidden;
@@ -18,6 +19,7 @@
 }
 .hp-swiper{
   margin:36rpx 0 68rpx;
+  height:480rpx;
 }
 .hp-device{
   font-size: 36rpx;

@@ -15,11 +15,9 @@ const fetch = (url="",data={},option={method:'get',all:false,loading:true}) => {
     })
     return false;
   }
-  // if(option.loading){
-  //   wx.showLoading({
-  //     title: '加载中'
-  //   });
-  // }
+  if(option.loading){
+    wx.showLoading();
+  }
   
 
   return new Promise((resolve,reject)=>{
@@ -34,13 +32,13 @@ const fetch = (url="",data={},option={method:'get',all:false,loading:true}) => {
       method:option.method,
       success:res=>{
        const {data:{code,msg,data}} =  res;
-       //option.loading &&  wx.hideLoading();
+       option.loading &&  wx.hideLoading();
        if(code != 0){
          wx.showToast({
            title: msg,
            icon: 'error',
-           duration:5000,
-          // mask:true
+           duration:2000,
+           mask:true
          })
        }
         if(option.all){

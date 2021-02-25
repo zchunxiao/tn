@@ -114,7 +114,7 @@ Page({
    */
   addDevice:function(){
     wx.navigateTo({
-      url:"/pages/deviceList/index"
+      url:"/pagesOther/pages/deviceList/index"
     })
   },
   /**
@@ -180,13 +180,14 @@ Page({
     const _this  = this;
     // 根据openid查询该用户是否绑定了手机号
     isBindPhone({openId}).then(res=>{
-      const {flag,phoneNumber,token} =  res;
+      const {flag,phoneNumber,token,qrCodeUrl} =  res;
       // 未绑定手机号跳转到绑定页面
       if(!flag){
         wx.navigateTo({
-          url: '/pages/bind/index',
+          url: '/pagesOther/pages/bind/index',
         })
       }else{
+        console.log("_this:",_this)
         // 缓存手机号和token
         wx.setStorage({
           data: `Bearer ${token}`,
@@ -196,6 +197,11 @@ Page({
           data: phoneNumber,
           key: 'phoneNumber',
         })
+        wx.setStorage({
+          data: qrCodeUrl,
+          key: 'qrCodeUrl',
+        })
+        
         // 获取常用设备
         setTimeout(function(){
           getListProductByUser().then(data=>{
@@ -218,7 +224,7 @@ Page({
     const deviceId = ds.deviceId
     const imgUrl = ds.imgUrl
     wx.navigateTo({
-      url:`/pages/deviceDetail/index?deviceId=${deviceId}&imgUrl=${imgUrl}`
+      url:`/pagesOther/pages/deviceDetail/index?deviceId=${deviceId}&imgUrl=${imgUrl}`
     })
   }
 
