@@ -1,7 +1,6 @@
 /* pages/index/index.wxss */
 
 .hp{
-  margin:0 20rpx;
   overflow: hidden;
 }
 .hp-image{
@@ -56,4 +55,23 @@
 .hp-device-pic{
   width: 280rpx;
   border-radius: 24rpx;
+}
+.hp-content{
+  border-radius:20rpx 20rpx 0 0;
+  background:#fff
+}
+.hp-content-type{
+  display:flex;
+  flex-wrap:wrap;
+}
+.hp-content-item{
+  width: 314rpx;
+  height: 208rpx;
+  margin:0 0 42rpx 40rpx;
+}
+.hp-ad{
+  margin:0 40rpx;
+}
+.hp-img{
+  width:100%;
 }

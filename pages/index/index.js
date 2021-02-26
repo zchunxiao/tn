@@ -12,7 +12,13 @@ Page({
     code:"",
     user:{},
     isAuth:isLogin(), //是否授权
-    deviceList:[] //常用设备列表
+    deviceList:[], //常用设备列表
+    imgList:[
+      '../../images/pic1.png',
+      '../../images/pic2.png',
+      '../../images/pic3.png',
+      '../../images/pic4.png'
+    ]
   },
 
   /**
@@ -114,7 +120,7 @@ Page({
    */
   addDevice:function(){
     wx.navigateTo({
-      url:"/pagesOther/pages/deviceList/index"
+      url:"/pagesDevice/pages/deviceList/index"
     })
   },
   /**
@@ -184,10 +190,9 @@ Page({
       // 未绑定手机号跳转到绑定页面
       if(!flag){
         wx.navigateTo({
-          url: '/pagesOther/pages/bind/index',
+          url: '/pages/bind/index',
         })
       }else{
-        console.log("_this:",_this)
         // 缓存手机号和token
         wx.setStorage({
           data: `Bearer ${token}`,
@@ -224,7 +229,7 @@ Page({
     const deviceId = ds.deviceId
     const imgUrl = ds.imgUrl
     wx.navigateTo({
-      url:`/pagesOther/pages/deviceDetail/index?deviceId=${deviceId}&imgUrl=${imgUrl}`
+      url:`/pagesDevice/pages/deviceDetail/index?deviceId=${deviceId}&imgUrl=${imgUrl}`
     })
   }
 

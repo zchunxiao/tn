@@ -14,6 +14,25 @@
     </swiper-item>
   </swiper>
 
+  <view class="hp-content">
+      <view class="hp-content-type">
+        <view class="hp-content-item" wx:for="{{imgList}}" wx:key="index">
+          <view wx:if="{{!isAuth}}">
+            <button open-type="getUserInfo" 
+                    lang="zh_CN" 
+                    bindgetuserinfo="bindGetUserInfo">
+                <image src="{{item}}" mode="widthFix" class="hp-img"/>
+            </button>
+          </view>
+          <view  wx:else>
+              <image src="{{item}}" mode="widthFix" class="hp-img"/>
+          </view>
+        </view>
+      </view>
+      <view class="hp-ad">
+        <image src="../../images/ad.png" mode="widthFix" class="hp-img"/>
+      </view>
+  </view>
 
   <!-- 常用设备 -->
   <view class="hp-device">

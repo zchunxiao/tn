@@ -1,21 +1,29 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/my/index"
+    "pages/my/index",
+    "pages/bind/index"
   ],
   "subpackages": [
     {
       "root": "pagesOther",
       "pages": [
-        "pages/deviceList/index",
-        "pages/deviceDetail/index",
         "pages/person/index",
         "pages/help/index",
         "pages/article/index",
-        "pages/fastTest/index",
-        "pages/bind/index"
+        "pages/fastTest/index"
+       
+      ]
+    },
+    {
+      "root": "pagesDevice",
+      "pages": [
+        "pages/myDevice/index",
+        "pages/deviceList/index",
+        "pages/deviceDetail/index"
       ]
     }
+   
   ],
   "tabBar": {
     "color": "#DCDDDF",
@@ -36,9 +44,9 @@
     ]
   },
   "window": {
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "天能锂电售后服务",
-    "navigationBarBackgroundColor": "#AFC7E3",
+    "navigationBarBackgroundColor": "#FF2145",
     "backgroundColor": "#AFC7E3"
   },
   "permission": {

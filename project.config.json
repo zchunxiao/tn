@@ -102,6 +102,35 @@
           "pathName": "pages/index/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "device/device/pages/index",
+          "pathName": "device/device/pages/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "device/pages/device/index",
+          "pathName": "device/pages/device/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "device/pages/myDevice/index",
+          "pathName": "device/pages/myDevice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "device/pages/myDevice/index",
+          "pathName": "device/pages/myDevice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/myDevice/index",
+          "pathName": "pagesDevice/pages/myDevice/index",
+          "scene": null
         }
       ]
     }
