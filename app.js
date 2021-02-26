@@ -2,17 +2,10 @@
 // app.js
 App({
   onLaunch() {
-  // this.startConnect()
+    wx.hideTabBar();
   },
 
   globalData: {
-    userInfo: null,
-    num:10,
-    latitude:"",
-    longitude:"",
-    deviceId:"",
-    snCode:"",
-    phoneNumber:"",
-    token:""
+    
   }
 })

@@ -9,8 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info:"未初始化蓝牙适配器",
-    img:"",
     blueToothIsOpen:false,
     model:"" ,//设备名称
     deviceList:[], // 可用设备列表
