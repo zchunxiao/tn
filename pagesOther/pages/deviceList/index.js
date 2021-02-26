@@ -42,6 +42,8 @@ Page({
   
 
     const _this = this;
+
+    _this.getSetting();
     getListProductByUser().then(data=>{
       let result = (data||[]).map(item=>{
         item.productImgUrl =   replaceUrl(item.productImgUrl);
@@ -58,7 +60,6 @@ Page({
        model:wx.getSystemInfoSync().model
     })
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -99,54 +100,7 @@ Page({
   saoma:function(){
     const _this = this;
     if (!getStorageByKey('location')){
-      wx.getSetting({
-        success: function (res) {
-          // 没有授权地址
-          if (!res.authSetting['scope.userLocation']) {
-            wx.getLocation({
-              success: res=> {
-
-                if(!res) return false;
-                const { latitude,longitude} =  res;
-              
-                wx.setStorage({
-                  key:"location",
-                  data:res
-                })
-                // 扫码
-                _this.emitSaoMa()
-              
-              
-              },
-              fail:res=>{
-                wx.showModal({//弹出模态框，询问
-                  title: '是否授权当前位置',
-                  content: '如需正常使用本程序，请按确定并在右上角落设置中选中“地理位置”，然后点按返回即可正常使用。',
-                  cancelColor: '#f00',
-                  success: function (res) {
-                    if (res.confirm) {//同意授权
-                       // 扫码
-                       _this.emitSaoMa()
-                    } else if (res.cancel) {//不同意授权，进行普通查询
-                    
-                    }
-                  }
-                })
-                // wx.showToast({
-                //   title:"绑定设备需先授权地理位置"
-                // })
-              }
-            })
-           
-           
-          }else{
-            // 扫码
-           _this.emitSaoMa()
-          }
-        }
-      })
-
-
+      _this.getSetting();
     }else{
       _this.emitSaoMa()  
     }
@@ -176,7 +130,7 @@ Page({
       const {latitude,longitude} = getStorageByKey('location');
       const {snCode,blueToothName} = data
       // 绑定当前的设备
-      _this.bindBlueTooth(blueToothName,latitude,longitude,snCode);
+      _this.bindBlueTooth(blueToothName,latitude,longitude,snCode,_this);
   
     })
   },
@@ -190,22 +144,13 @@ Page({
 
   wx.openBluetoothAdapter({
     success:(res)=>{
-     // console.log('初始化蓝牙适配器成功')
-    //  wx.showModal({//弹出模态框，询问
-    //   title: '是否继续等待',
-    //   content: '搜索蓝牙需要等待一段时间',
-    //   success: function (res) {
-    //     console.log("rdd:",res)
-    //     if(res.cancel){
-    //       wx.navigateBack()
-    //     }
-    //   }
-    // })
-    
-      //页面日志显示
       that.setData({
         blueToothIsOpen: true,
-        visible:true
+       // visible:true
+      })
+      wx.showLoading({
+        title:"搜索中",
+        mask:true
       })
       that.findBlue();
    
@@ -220,9 +165,6 @@ Page({
         blueToothIsOpen: false
       })
     },
-    complete:()=>{
-     
-    }
   })
  },
  // 开始
@@ -232,7 +174,6 @@ Page({
 
   wx.getBluetoothAdapterState({
     success: function (res) {
-  
       if(!res.available) return false;
       // 搜索蓝牙设备（消耗大量资源，要及时结束）
       wx.startBluetoothDevicesDiscovery({
@@ -257,9 +198,10 @@ Page({
                   that.initBlue()
                 }else{
                   that.setData({
-                    visible:false,
+                   // visible:false,
                     deviceList: tnDeviceList
                   });
+                  wx.hideLoading();
                 }
   
               }
@@ -296,76 +238,20 @@ Page({
       data: deviceId ,
       key: 'deviceId',
     })
-    // wx.showToast({
-    //   title: '绑定中',
-    //   duration:10000,
-    //   mask:true
-    // })
-    // wx.showLoading({
-    //   title: '绑定中'
-    // })
-    _this.setData({
-      visible:true,
-      text:"绑定中"
-    })
-    
-    _this.connetBlue(deviceId);
-    setTimeout(() => {
-        if (!getStorageByKey('location')){
-          wx.getSetting({
-            success: function (res) {
-              // 没有授权地址
-              if (!res.authSetting['scope.userLocation']) {
-                wx.getLocation({
-                  success: res=> {
-    
-                    if(!res) return false;
-                    const { latitude,longitude} =  res;
-                  
-                    wx.setStorage({
-                      key:"location",
-                      data:res
-                    })
-                    // 绑定当前的设备
-                    _this.bindBlueTooth(name,latitude,longitude,getStorageByKey('snCode')||"");
-                  
-                  
-                  },
-                  fail:res=>{
-                    // wx.showToast({
-                    //   title:"绑定设备需先授权地理位置"
-                    // })
-                    wx.showModal({//弹出模态框，询问
-                      title: '是否授权当前位置',
-                      content: '如需正常使用本程序，请按确定并在右上角落设置中选中“地理位置”，然后点按返回即可正常使用。',
-                      cancelColor: '#f00',
-                      success: function (res) {
-                        if (res.confirm) {//同意授权
-                          // 绑定当前的设备
-                            _this.bindBlueTooth(name,latitude,longitude,getStorageByKey('snCode')||"");
-                        } else if (res.cancel) {//不同意授权，进行普通查询
-                          
-                        }
-                      }
-                    })
-                  }
-                })
-                
-                
-              }else{
-                const {latitude,longitude} = getStorageByKey('location');
-                    // 绑定当前的设备
-                _this.bindBlueTooth(name,latitude,longitude,getStorageByKey('snCode')||"");
-              }
-            }
-          })
-        }else{
-          const {latitude,longitude} = getStorageByKey('location');
-            // 绑定当前的设备
-            _this.bindBlueTooth(name,latitude,longitude,getStorageByKey('snCode')||"");
-        }
-    }, 5000);
-  
+    if (!getStorageByKey('location')){
+      _this.getSetting();
+    }else{
+      _this.setData({
+        visible:true,
+        text:"绑定中"
+      })
+      _this.connetBlue(deviceId);
+      const {latitude,longitude} = getStorageByKey('location');
+      // 绑定当前的设备
+      setTimeout(() => {
+        _this.bindBlueTooth(name,latitude,longitude,getStorageByKey('snCode')||"",_this);
+      }, 5000);
+    }  
   },
   // 获取到设备之后连接蓝牙设备
   connetBlue(deviceId){ 
@@ -465,20 +351,20 @@ Page({
         // sn码
         let sncodeText = hexToStr(str.substr(148,64));
 
-        console.log("sn码",sncodeText);
-        console.log("电池状态",BatterySatusText);
-        console.log("电池温度",BatteryTempText);
-        console.log("mos温度", mosTempText);
-        console.log("充电器匹配检测电压",Voltage1Text);
-        console.log("放电电流:",dischargeText);
-        console.log("充电电流:",discharge1Text);
-        console.log("单体电压",Voltage2Text);
-        console.log('充电截至电压:',Voltage3Text)
-        console.log('电池总压:',Voltage4Text)
-        console.log('固件版本:',version1Text)
-        console.log('硬件版本:',version2Text)
-        console.log('电池规则:',typeText)
-        console.log('mac地址:',mac)
+        // console.log("sn码",sncodeText);
+        // console.log("电池状态",BatterySatusText);
+        // console.log("电池温度",BatteryTempText);
+        // console.log("mos温度", mosTempText);
+        // console.log("充电器匹配检测电压",Voltage1Text);
+        // console.log("放电电流:",dischargeText);
+        // console.log("充电电流:",discharge1Text);
+        // console.log("单体电压",Voltage2Text);
+        // console.log('充电截至电压:',Voltage3Text)
+        // console.log('电池总压:',Voltage4Text)
+        // console.log('固件版本:',version1Text)
+        // console.log('硬件版本:',version2Text)
+        // console.log('电池规则:',typeText)
+        // console.log('mac地址:',mac)
 
         const _deviceInfo = {
           sncodeText,
@@ -507,17 +393,19 @@ Page({
 
   },
   // 绑定蓝牙设备
-  bindBlueTooth:(blueToothName,latitude,longitude,snCode)=>{
-
+  bindBlueTooth:(blueToothName,latitude,longitude,snCode,that)=>{
       const params = {
         bindType:1, //绑定类型(1:绑定 2:解绑)
         blueToothName,
         latitude,
         longitude,
         snCode
-        //snCode:getStorageByKey('snCode') ?getStorageByKey('snCode'):"no"
       }
-      console.log("pahdram2?:",params)
+    
+      that.setData({
+        visible:false
+      })
+      console.log("params:",params)
       handleBindPDevice(params).then(data=>{
         console.log("绑定蓝牙设备:",data)
         if(data && data == '操作成功'){
@@ -544,7 +432,6 @@ Page({
       confirmText: '删除',
       success: function (res) {
         if (res.confirm) {
-        
           const ds = e.currentTarget.dataset;
           const {blueToothName,snCode} =  ds;
           _this.handleDeleteDevice(blueToothName,snCode);
@@ -552,8 +439,8 @@ Page({
       }
     })
   },
-    // 删除设备
-    handleDeleteDevice:function(blueToothName,snCode){
+  // 删除设备
+  handleDeleteDevice:function(blueToothName,snCode){
       const params = {
         bindType:2, //绑定类型(1:绑定 2:解绑)
         blueToothName,
@@ -577,5 +464,75 @@ Page({
         }
       })
 
+  },
+  //获取用户的当前设置
+  getSetting:function(){ 
+    const _this = this;
+    wx.getSetting({
+      success: (res) => {
+        console.log("fddd:",res)
+        // res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
+        // res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
+        // res.authSetting['scope.userLocation'] == true    表示 地理位置授权
+        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true)                     {
+          //未授权
+          wx.showModal({
+            title: '请求授权当前位置',
+            content: '需要获取您的地理位置，请确认授权',
+            success: function (res) {
+              if (res.cancel) {
+                //取消授权
+                wx.showToast({
+                  title: '拒绝授权',
+                  icon: 'none',
+                  duration: 1000
+                })
+              } else if (res.confirm) {
+                //确定授权，通过wx.openSetting发起授权请求
+                wx.openSetting({
+                  success: function (res) {
+                    if (res.authSetting["scope.userLocation"] == true) {
+                      wx.showToast({
+                        title: '授权成功',
+                        icon: 'success',
+                        duration: 1000
+                      })
+                      //再次授权，调用wx.getLocation的API
+                      _this.goAddress();
+                    } else {
+                      wx.showToast({
+                        title: '授权失败',
+                        icon: 'none',
+                        duration: 1000
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          })
+        } else if (res.authSetting['scope.userLocation'] == undefined) {
+          //用户首次进入页面,调用wx.getLocation的API
+          _this.goAddress();
+        }
+        else {
+          // console.log('授权成功')
+          //调用wx.getLocation的API
+          _this.goAddress();
+        }
+      }
+    })
+  },
+  // 获取地址
+  goAddress:function() {
+    wx.getLocation({
+      success: res=> {
+        if(!res) return false;
+        wx.setStorage({
+          key:"location",
+          data:res
+        })
+      }
+    })
   }
 })
