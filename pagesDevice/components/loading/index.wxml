@@ -1,0 +1,11 @@
+<!--components/Loading/index.wxml-->
+
+<view wx:if="{{isLoading}}">
+  <view class="c-loading" >
+    <!-- 这是自定义组件的内部WXML结构 -->
+    <view  class="c-loading-box">
+      <image src="../../../images/loading.gif" mode="widthFix"  class="c-loading-icon" style="width:10%"/>
+      <view wx:if="{{text}}">{{text}}</view>
+    </view>
+  </view>
+</view>

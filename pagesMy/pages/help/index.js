@@ -79,11 +79,11 @@ Page({
     // 轮播图并且存在文章id
     if(ds.type=="banner" && this.articleId){
       wx.navigateTo({
-        url: `/pagesOther/pages/article/index?articleId=${this.articleId}`
+        url: `/pagesMy/pages/article/index?articleId=${this.articleId}`
       })
     }else{ // 文章列表
       wx.navigateTo({
-        url: `/pagesOther/pages/article/index?articleId=${ds.articleId}`
+        url: `/pagesMy/pages/article/index?articleId=${ds.articleId}`
       })
     }
   },

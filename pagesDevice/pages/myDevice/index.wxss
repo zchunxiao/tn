@@ -1,1 +1,22 @@
 /* device/pages/device/index.wxss */
+page{
+    background:#fff;
+}
+.my-device-content{
+  padding:58rpx 34rpx 214rpx;
+}
+.my-device-item{
+  width:100%;
+  height:294rpx;
+  margin-bottom:28rpx;
+  border-radius: 0 20rpx 20rpx 20rpx;
+  box-shadow:6rpx 6rpx 6rpx rgb(255,182,193,0.5);
+  padding:0 50rpx;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-sizing: border-box;
+}
+.my-device-img{
+    width:178rpx;
+}

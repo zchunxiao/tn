@@ -91,13 +91,13 @@ Page({
   // 帮助
   goHelp:function(){
     wx.navigateTo({
-      url: '/pagesOther/pages/help/index',
+      url: '/pagesMy/pages/help/index',
     })
   },
   // 快速检测
   goFastTest:function(){
     wx.navigateTo({
-      url: '/pagesOther/pages/fastTest/index',
+      url: '/pagesMy/pages/fastTest/index',
     })
   },
   // 初始化蓝牙设备

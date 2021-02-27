@@ -1,6 +1,6 @@
 // pages/my/index.js
-import {getListProductByUser,handleBindPDevice} from '../../api/index.js'
-import {replaceUrl} from '../../utils/index.js'
+import {getListProductByUser,handleBindPDevice} from '../../../api/index.js'
+import {replaceUrl} from '../../../utils/index.js'
 Page({
 
   /**

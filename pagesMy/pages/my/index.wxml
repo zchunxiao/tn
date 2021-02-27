@@ -1,0 +1,51 @@
+<!--pages/my/index.wxml-->
+<view>
+
+  <view class="my-person-bg"/>
+    <view class="my-person">
+      <!-- 个人信息 -->
+      <view class="my-person-info">
+          <image src="{{user.avatarUrl}}" mode="widthFix" class="my-person-img"/>
+          <view>
+            <view class="my-person-icon">
+              <image src="../../../images/antFill-crown.svg" mode="widthFix" class="my-person-start"/>
+              <text>VIP</text>
+            </view>
+            <view class="my-person-nickname">{{user.nickName}}</view>
+          </view>
+      </view>
+      <!-- 管理设备 -->
+      <view class="my-person-device-info">
+        <view>
+          <view class="my-person-device-num">{{deviceSize}}</view>
+          <view>管理设备</view>
+        </view>
+        <button class="my-person-edit" bindtap="edit">个人资料</button>
+      </view>
+    </view>
+
+    <!-- 设备 -->
+    <view>
+      <view class="my-person-device-box" wx:for="{{deviceList}}" wx:key="index">
+        <view class="my-person-device-title">
+           {{item.productCategory}}
+        </view>
+        <view class="my-person-device-operation">
+          <view class="my-person-device-desc">
+            <image  src="{{item.productImgUrl}}" mode="widthFix" class="my-person-device-image"/>
+            <view>S/N：{{item.snCode}}</view>
+          </view>
+          <view>
+            <button class="my-person-btn my-person-help" bindtap="goHelp">帮助</button>
+            <button class="my-person-btn my-person-del"
+                    data-blue-tooth-name="{{item.blueToothName}}" 
+                    data-sn-code="{{item.snCode}}" 
+                    bindtap="deleteDevice">
+                    删除设备
+            </button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+</view>

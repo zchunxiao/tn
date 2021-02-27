@@ -1,4 +1,9 @@
 <!--device/pages/device/index.wxml-->
 <view>
-333
+ <view class="my-device-content">
+    <view class="my-device-item" wx:for="{{[1,2,3,4]}}" wx:key="index">
+      <image src="../../images/device1.png" mode="widthFix" class="my-device-img"/>
+      <text>衡科技4812</text>
+    </view>
+ </view>
 </view>

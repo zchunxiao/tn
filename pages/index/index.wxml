@@ -1,9 +1,9 @@
 <!--pages/index/index.wxml-->
 <view class="hp">
   <!-- 用户信息 -->
-  <View class="hp-user">
+  <!-- <View class="hp-user">
     <text class="hp-nickname">Hi! {{user.nickName}}</text>
-  </View>
+  </View> -->
   <!-- 轮播图片 -->
   <swiper class="hp-swiper" circular="true" indicator-dots="true" indicator-active-color="#3A85F8">
     <swiper-item  wx:for="{{bannerList}}"  wx:key="index">
@@ -21,11 +21,11 @@
             <button open-type="getUserInfo" 
                     lang="zh_CN" 
                     bindgetuserinfo="bindGetUserInfo">
-                <image src="{{item}}" mode="widthFix" class="hp-img"/>
+                <image src="{{item.img}}" mode="widthFix" class="hp-img"/>
             </button>
           </view>
           <view  wx:else>
-              <image src="{{item}}" mode="widthFix" class="hp-img"/>
+              <image src="{{item.img}}" mode="widthFix" class="hp-img" data-url="{{item.url}}" bindtap="goUrl"/>
           </view>
         </view>
       </view>
@@ -36,49 +36,44 @@
 
   <!-- 常用设备 -->
   <view class="hp-device">
-    <text>常用设备</text>
+    <!-- <text>常用设备</text> -->
     <!-- 未授权先进行授权 -->
-    <view wx:if="{{!isAuth}}">
+    <!-- <view wx:if="{{!isAuth}}">
       <button open-type="getUserInfo" 
               lang="zh_CN" 
               bindgetuserinfo="bindGetUserInfo">
               <image src="../../images/add.png" lazy-load="true" mode="widthFix" class="hp-device-add-icon" />
       </button>
-    </view>
+    </view> -->
      <!-- 已经授权 -->
-    <view wx:else>
+    <!-- <view wx:else>
       <image src="../../images/add.png" lazy-load="true" mode="widthFix" class="hp-device-add-icon" bindtap="addDevice" />
-    </view>
+    </view> -->
   </view>
   <view class="hp-device-content">
     <!-- 设备展示 -->
-    <view  wx:if="{{isAuth}}">
+    <!-- <view  wx:if="{{isAuth}}">
         <view  wx:for="{{deviceList}}"  wx:key="index">
           <image src="{{item.productImgUrl}}" mode="widthFix" lazy-load="true" class="hp-device-pic"  bindtap="goDeviceDetail" 
           data-device-id="{{item.productId}}" data-img-url="{{item.productImgUrl}}"/>
           <text class="hp-device-text">{{item.productCategory}}</text>
         </view>
-    </view>
+    </view> -->
     <!-- 未登录添加设备 -->
-    <view wx:if="{{!isAuth}}">
+    <!-- <view wx:if="{{!isAuth}}">
       <button open-type="getUserInfo" 
               lang="zh_CN" 
               bindgetuserinfo="bindGetUserInfo">
         <image src="../../images/device-add.svg" mode="widthFix" lazy-load="true" class="hp-device-add"/>
         <text class="hp-device-add-text">点击添加设备</text>
       </button>
-    </view>
-    <view wx:if="{{isAuth && deviceList.length==0}}">
-      <!--<button open-type="getUserInfo" 
-              lang="zh_CN" 
-              bindgetuserinfo="bindGetUserInfo">-->
+    </view> -->
+    <!-- <view wx:if="{{isAuth && deviceList.length==0}}">
         <view bindtap="addDevice">
           <image src="../../images/device-add.svg" mode="widthFix" lazy-load="true" class="hp-device-add"/>
           <text class="hp-device-add-text">点击添加设备</text>
         </view>
-      <!--</button>-->
-    </view>
-
+    </view> -->
   </view>
 </view>
 

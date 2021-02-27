@@ -12,7 +12,7 @@
     <view class="device-bluetooth-text bold">蓝牙</view>
     <view class="device-bluetooth-status">
       <text>当前可被附近蓝牙设备发现</text>
-      <switch disabled="true"  checked="{{blueToothIsOpen}}" style="zoom:0.8"/>
+      <switch disabled="true"  color="#FF2145" checked="{{blueToothIsOpen}}" style="zoom:0.8"/>
     </view>
     <view class="device-name">
       <text class="bold">设备名称</text>

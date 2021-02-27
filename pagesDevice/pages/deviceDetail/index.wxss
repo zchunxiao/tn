@@ -9,13 +9,12 @@ page{
   width: 686rpx;
   height: 442rpx;
   line-height: 40rpx;
-  border-radius: 24rpx;
   text-align: center;
-  box-shadow: 0rpx 8rpx 16rpx 0px rgba(168, 168, 168, 10);
-  border: 2rpx solid rgba(255, 255, 255, 100);
   background:#FFF;
   color: rgba(110, 110, 110, 100);
   font-size: 24rpx;
+  border-radius: 0 20rpx 20rpx 20rpx;
+  box-shadow:6rpx 6rpx 6rpx rgb(255,182,193,0.5);
 }
 .device-detail-image{
   width:392rpx;
@@ -26,10 +25,7 @@ page{
   width: 686rpx;
   height: 202rpx;
   line-height: 40rpx;
-  border-radius: 24rpx;
   text-align: center;
-  box-shadow: 0rpx 8rpx 16rpx 0px rgba(168, 168, 168, 10);
-  border: 2rpx solid rgba(255, 255, 255, 100);
   background:#FFF;
   margin:26rpx 0 ;
   display:flex;
@@ -39,6 +35,8 @@ page{
   color: #1890FF;
   font-size: 32rpx;
   box-sizing: border-box;
+  border-radius: 0 20rpx 20rpx 20rpx;
+  box-shadow:6rpx 6rpx 6rpx rgb(255,182,193,0.5);
 }
 .device-detail-status-text{
   color: rgba(51, 51, 51, 100);

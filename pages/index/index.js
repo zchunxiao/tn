@@ -14,10 +14,22 @@ Page({
     isAuth:isLogin(), //是否授权
     deviceList:[], //常用设备列表
     imgList:[
-      '../../images/pic1.png',
-      '../../images/pic2.png',
-      '../../images/pic3.png',
-      '../../images/pic4.png'
+      {
+        img:'../../images/pic1.png',
+        url:'/pagesDevice/pages/myDevice/index'
+      },
+      {
+        img:'../../images/pic2.png',
+        url:'/pagesDevice/pages/deviceList/index'
+      },
+      {
+        img:'../../images/pic3.png',
+        url:'/pagesMy/pages/my/index'
+      },
+      {
+        img:'../../images/pic4.png',
+        url:'/pagesDevice/pages/myDevice/index'
+      },
     ]
   },
 
@@ -225,12 +237,18 @@ Page({
   },
   // 设备详情
   goDeviceDetail(e){
-    const ds = e.currentTarget.dataset
-    const deviceId = ds.deviceId
-    const imgUrl = ds.imgUrl
+    const {deviceId, imgUrl } =  e.currentTarget.dataset
     wx.navigateTo({
       url:`/pagesDevice/pages/deviceDetail/index?deviceId=${deviceId}&imgUrl=${imgUrl}`
     })
+  },
+  // 图标跳转
+  goUrl(e){
+    const {url} = e.currentTarget.dataset;
+    wx.navigateTo({
+      url
+    })
+  
   }
 
 })

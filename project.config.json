@@ -130,6 +130,24 @@
         {
           "name": "pagesDevice/pages/myDevice/index",
           "pathName": "pagesDevice/pages/myDevice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/deviceDetail/index",
+          "pathName": "pagesDevice/pages/deviceDetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/deviceDetail/index",
+          "pathName": "pagesDevice/pages/deviceDetail/index",
+          "query": "deviceId=1357152509086830593",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/fastTest/index",
+          "pathName": "pagesMy/pages/fastTest/index",
           "scene": null
         }
       ]

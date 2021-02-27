@@ -6,8 +6,9 @@
   ],
   "subpackages": [
     {
-      "root": "pagesOther",
+      "root": "pagesMy",
       "pages": [
+        "pages/my/index",
         "pages/person/index",
         "pages/help/index",
         "pages/article/index",
