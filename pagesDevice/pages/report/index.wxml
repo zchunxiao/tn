@@ -1,0 +1,36 @@
+<!--pagesDevice/pages/report/index.wxml-->
+<view class='report'>
+    <view>
+        <text class='report-text'>检测详情</text>
+        <view class="report-area">
+            <textarea value="{{value}}" style="height:100%;" />
+        </view>
+    </view>
+       <view>
+        <text class='report-text'>检测结论</text>
+        <view class="report-area">
+            <textarea value="{{value}}" style="height:100%;"/>
+        </view>
+    </view>
+       <view>
+        <text class='report-text'>处理意见</text>
+        <view class="report-area">
+            <textarea value="{{value}}" style="height:100%;" />
+        </view>
+    </view>
+    <view class="report-btn-box">
+      <button class="report-btn">
+        <view class="report-btn-content">
+            <view>蓝牙断开/结果不满意</view>
+            <text>点击重测</text>
+        </view>
+      </button>
+       <button class="report-btn">
+         <view class="report-btn-content">
+            <view>点击进入</view>
+            <text>深度检测</text>
+         </view>
+      </button>
+    </view>
+    <button class="report-back">返回</button>
+</view>

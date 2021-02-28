@@ -1,0 +1,18 @@
+/* pagesMy/pages/setting/index.wxss */
+.setting{
+    padding:44rpx 58rpx 0;
+}
+.setting-item{
+    height:94rpx;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    border:2rpx solid rgb(194,194,194);
+    border-radius:20rpx;
+    font-size: 28rpx;
+    box-sizing:border-box;
+    padding:0 36rpx 0  76rpx;
+}
+.bold{
+    font-weight: 500;
+}

@@ -148,6 +148,48 @@
         {
           "name": "pagesMy/pages/fastTest/index",
           "pathName": "pagesMy/pages/fastTest/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/my/index",
+          "pathName": "pagesMy/pages/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/opinion/index",
+          "pathName": "pagesMy/pages/opinion/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/setting/index",
+          "pathName": "pagesMy/pages/setting/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/contact/index",
+          "pathName": "pagesMy/pages/contact/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/contactUs/index",
+          "pathName": "pagesMy/pages/contactUs/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/report/index",
+          "pathName": "pagesDevice/pages/report/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/fastTest/index",
+          "pathName": "pagesDevice/pages/fastTest/index",
           "scene": null
         }
       ]

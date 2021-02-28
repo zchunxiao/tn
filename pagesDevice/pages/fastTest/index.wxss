@@ -1,0 +1,28 @@
+/**index.wxss**/
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+.test-content{
+   padding:0 140rpx;
+}
+.test-content-item{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom:22rpx;
+}
+.test-loading{
+  width:42rpx;
+}
+.test-more-btn{
+  width: 418rpx;
+  height: 70rpx;
+  border-radius: 28rpx;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background:#FF2145;
+  color:#fff;
+  margin:0 auto 70rpx;
+}

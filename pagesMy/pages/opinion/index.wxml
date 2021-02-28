@@ -1,0 +1,9 @@
+<!--pagesMy/pages/opinion/index.wxml-->
+<view class='opinion'>
+    <text class='opinion-text'>意见反馈</text>
+    <view class="opinion-area">
+        <textarea value="{{value}}" maxlength="128" />
+        <text class='opinion-num'>不超过过128个字</text>
+    </view>
+    <button class="opinion-btn">确定</button>
+</view>

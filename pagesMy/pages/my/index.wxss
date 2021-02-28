@@ -115,3 +115,61 @@
 .my-person-del{
   background:#E60909;
 }
+
+
+.my-content{
+  margin:0 64rpx;
+  background: #FFFFFF;
+  border: 2rpx solid #FFFFFF;
+  box-shadow: 0px 4rpx 6rpx 2rpx rgba(7, 0, 1, 0.2);
+  border-radius: 56rpx 56rpx 0rpx 0rpx;
+}
+.my-content-type{
+  padding: 12rpx 36rpx;
+}
+.my-content-item{
+   border-bottom: 2rpx solid rgba(7, 0, 1, 0.2);
+   font-size: 28rpx;
+   font-weight: bold;
+   display: flex;
+   align-items: center;
+   height: 98rpx;
+}
+
+.my-content-item-img{
+  width:40rpx;
+  margin-right: 42rpx;
+}
+.my-content-bottom{
+  width:100%;
+  margin-top:100rpx;
+}
+.my-content-top{
+  width:100%;
+  height:324rpx;
+  text-align: center;
+  margin-bottom:80rpx;
+  background-size:100%;
+  background-repeat:no-repeat;
+  background-image:url('https://lidian.etianneng.cn/admin/sys-file/dosp/b71a121cc17343d0a7c2d03a2680f29d.png');
+  margin-top:-2rpx;
+}
+
+.my-logo{
+  width:430rpx;
+  margin-top:70rpx;
+}
+.my-content-circle{
+  width:200rpx;
+  height:200rpx;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-size:100%;
+  background-repeat:no-repeat;
+  background-image:url('https://lidian.etianneng.cn/admin/sys-file/dosp/f24640c956eb402d99ae1d15a2f19cf8.png');
+}
+.my-tiger{
+  width:122rpx;
+}

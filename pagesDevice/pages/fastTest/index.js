@@ -56,9 +56,69 @@ Page({
   data: {
     ec: {
       onInit: initChart
-    }
+    },
+    itemList:[
+     {
+      title:"电压总压检测",
+      showLoading:true
+     },
+     {
+      title:"单体电压检测",
+      showLoading:true
+     },
+       {
+      title:"MOS过猛检测",
+      showLoading:true
+     },
+     {
+      title:"AFE前端芯片故障",
+      showLoading:true
+     },
+     {
+      title:"掉线检测",
+      showLoading:true
+     },
+     {
+      title:"电芯温度检测",
+      showLoading:true
+     },
+     {
+      title:"充电过流检测",
+      showLoading:true
+     },
+     {
+      title:"放电过流检测",
+      showLoading:true
+     }
+  ]
   },
 
   onReady() {
+  },
+  onShow(){
+    const _this = this;
+    for(let i = 0;i<8;i++){
+      setTimeout(()=>{
+        console.log("ddd:",i, _this.data)
+        _this.data.itemList[i].showLoading = false;
+        _this.setData({
+             itemList: _this.data.itemList
+           })
+       // _this.itemList[i]
+      //  _this.setData({
+      //    itemList:_this.itemList[i].showLoading = false
+      //  })
+      },i*1000)
+    }
   }
 });
+
+
+
+
+
+
+
+
+
+

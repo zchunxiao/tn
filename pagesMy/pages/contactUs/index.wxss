@@ -1,0 +1,19 @@
+/* pagesMy/pages/contactUs/index.wxss */
+/* pagesMy/pages/setting/index.wxss */
+.contact-us{
+  padding:44rpx 58rpx 0;
+}
+.contact-us-item{
+  height:94rpx;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  border:2rpx solid rgb(194,194,194);
+  border-radius:20rpx;
+  font-size: 28rpx;
+  box-sizing:border-box;
+  padding:0 20rpx 0  26rpx;
+}
+.bold{
+  font-weight: 500;
+}

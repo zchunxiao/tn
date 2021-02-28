@@ -1,6 +1,0 @@
-<!--pagesOther/components/popup/index.wxml-->
-<view class="c-popup" wx:if="{{visible}}" bindtap="close">
- <view class="c-popup-content">
-     <image mode="widthFix" src="{{imgUrl}}" class="c-popup-img"></image>
- </view>
-</view>

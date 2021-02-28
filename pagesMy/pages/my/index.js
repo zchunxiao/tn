@@ -9,7 +9,34 @@ Page({
   data: {
     user:{},
     deviceSize:0,
-    deviceList:[]
+    deviceList:[],
+    list:[
+      {
+        imgUrl:"../../images/icon1.png",
+        text:"个人信息",
+        url:"/pagesMy/pages/person/index"
+      },
+      {
+        imgUrl:"../../images/icon2.png",
+        text:"收藏",
+        url:""
+      },
+      {
+        imgUrl:"../../images/icon3.png",
+        text:"意见反馈",
+        url:"/pagesMy/pages/opinion/index"
+      },
+      {
+        imgUrl:"../../images/icon4.png",
+        text:"基本设置",
+        url:"/pagesMy/pages/setting/index"
+      },
+      {
+        imgUrl:"../../images/icon5.png",
+        text:"联系我们",
+        url:"/pagesMy/pages/contact/index"
+      }
+  ]
   },
 
   /**
@@ -142,5 +169,11 @@ Page({
         }
       })
 
+  },
+  goUrl:function(e){
+   const {url} = e.currentTarget.dataset;
+   url && wx.navigateTo({
+    url
+  })
   }
 })

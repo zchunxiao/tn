@@ -4,7 +4,7 @@
   <view class="c-loading" >
     <!-- 这是自定义组件的内部WXML结构 -->
     <view  class="c-loading-box">
-      <image src="../../../images/loading.gif" mode="widthFix"  class="c-loading-icon" style="width:10%"/>
+      <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/f931db73eb364cb7b2b661b3d0d7242b.gif" mode="widthFix"  class="c-loading-icon" style="width:10%"/>
       <view wx:if="{{text}}">{{text}}</view>
     </view>
   </view>

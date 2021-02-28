@@ -12,8 +12,10 @@
         "pages/person/index",
         "pages/help/index",
         "pages/article/index",
-        "pages/fastTest/index"
-       
+        "pages/contact/index",
+        "pages/opinion/index",
+        "pages/setting/index",
+        "pages/contactUs/index"
       ]
     },
     {
@@ -21,10 +23,11 @@
       "pages": [
         "pages/myDevice/index",
         "pages/deviceList/index",
-        "pages/deviceDetail/index"
+        "pages/deviceDetail/index",
+        "pages/report/index",
+        "pages/fastTest/index"
       ]
     }
-   
   ],
   "tabBar": {
     "color": "#DCDDDF",

@@ -28,7 +28,7 @@ Page({
       },
       {
         img:'../../images/pic4.png',
-        url:'/pagesDevice/pages/myDevice/index'
+        url:'/pagesMy/pages/contactUs/index'
       },
     ]
   },

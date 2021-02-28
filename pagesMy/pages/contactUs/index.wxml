@@ -1,0 +1,7 @@
+<!--pagesMy/pages/contactUs/index.wxml-->
+<view class="contact-us">
+   <view class="contact-us-item">
+      <text class="bold">联系电话</text>
+      <text>400-878-8188 0572-6216008</text>
+   </view>
+</view>

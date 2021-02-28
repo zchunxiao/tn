@@ -1,0 +1,7 @@
+<!--pagesMy/pages/setting/index.wxml-->
+<view class="setting">
+   <view class="setting-item">
+      <text class="bold">版本号</text>
+      <text>1.1</text>
+   </view>
+</view>

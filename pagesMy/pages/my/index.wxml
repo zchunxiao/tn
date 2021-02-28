@@ -1,10 +1,8 @@
 <!--pages/my/index.wxml-->
-<view>
-
-  <view class="my-person-bg"/>
-    <view class="my-person">
+<!-- <view class="my-person-bg"/> -->
+    <!-- <view class="my-person"> -->
       <!-- 个人信息 -->
-      <view class="my-person-info">
+      <!-- <view class="my-person-info">
           <image src="{{user.avatarUrl}}" mode="widthFix" class="my-person-img"/>
           <view>
             <view class="my-person-icon">
@@ -13,20 +11,20 @@
             </view>
             <view class="my-person-nickname">{{user.nickName}}</view>
           </view>
-      </view>
+      </view> -->
       <!-- 管理设备 -->
-      <view class="my-person-device-info">
+      <!-- <view class="my-person-device-info">
         <view>
           <view class="my-person-device-num">{{deviceSize}}</view>
           <view>管理设备</view>
         </view>
         <button class="my-person-edit" bindtap="edit">个人资料</button>
-      </view>
-    </view>
+      </view> -->
+    <!-- </view> -->
 
     <!-- 设备 -->
-    <view>
-      <view class="my-person-device-box" wx:for="{{deviceList}}" wx:key="index">
+    <!-- <view> -->
+      <!--<view class="my-person-device-box" wx:for="{{deviceList}}" wx:key="index">
         <view class="my-person-device-title">
            {{item.productCategory}}
         </view>
@@ -45,7 +43,24 @@
             </button>
           </view>
         </view>
+      </view>-->
+<!-- </view> -->
+<view>
+  <view class="my-content-top">
+    <image src="../../images/logo.png"  mode="widthFix" class="my-logo"/>
+    <view class="my-content-circle">
+       <image src="../../images/tiger.png" mode="widthFix" class="my-tiger"/>
+    </view>
+  </view>
+  <view class="my-content">
+    <view class="my-content-type">
+      <view  wx:for="{{list}}" wx:key="index" >
+          <view class="my-content-item" bindtap="goUrl" data-url="{{item.url}}">
+            <image src="{{item.imgUrl}}" mode="widthFix" class="my-content-item-img"/>
+            <text>{{item.text}}</text>
+          </view>
       </view>
     </view>
-
+     <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/9503dd541cee44f6bf8fee4d1f0f4dec.png"  mode="widthFix" class="my-content-bottom"/>
+  </view>
 </view>

@@ -1,0 +1,33 @@
+/* pagesMy/pages/opinion/index.wxss */
+.opinion{
+    font-size: 28rpx;
+    font-weight:bold;
+    padding:50rpx 58rpx 0;
+
+}
+.opinion-text{
+    margin-left:38rpx;
+}
+.opinion-area{
+    border:2rpx solid rgb(194,194,194);
+    margin-top:16rpx;
+    position:relative;
+    padding:20rpx;
+    height:218rpx;
+    box-sizing:border-box;
+}
+.opinion-num{
+  position:absolute;
+  right:20rpx;
+  bottom:20rpx;
+  text-align:right;
+  color:rgb(194,194,194);
+}
+.opinion-btn{
+    background:#FF2145;
+    color:#fff;
+    width:30%;
+    margin-top:20rpx;
+    float:right;
+    font-size:28rpx;
+}

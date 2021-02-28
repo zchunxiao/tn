@@ -1,0 +1,54 @@
+/* pagesMy/pages/concat/index.wxss */
+.contact-logo{
+    background:url('https://lidian.etianneng.cn/admin/sys-file/dosp/a36e00c53bdb458ea8d4abc3126ea001.png');
+    width:194rpx;
+    height:194rpx;
+    background-size:100%;
+    background-repeat:no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:50rpx auto 16rpx;
+}
+.contact-logo-img{
+    width:146rpx;
+}
+.contact-name{
+    width:374rpx;
+    margin-bottom:56rpx;
+    margin: 0 auto 56rpx;
+    display: block;
+}
+.contact-content{
+    background:url('https://lidian.etianneng.cn/admin/sys-file/dosp/4a5729ecf491473c807e2c4f68be0c9d.png');
+    width:636rpx;
+    height:536rpx;
+    background-repeat:no-repeat;
+    background-size:100%;
+    margin:0 auto;
+    padding: 0 40rpx;
+    box-sizing: border-box
+}
+.contact-content-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-sizing:border-box;
+    position:repeat;
+    height:90rpx;
+    border-bottom:2rpx solid rgb(194,194,194);
+    font-size:28rpx;
+    padding-left:40rpx;
+}
+.contact-content-item:last-child{
+    border:none;
+}
+.bold{
+    font-weight:bold;
+}
+.contact-code{
+    margin:60rpx auto 0;
+    width:160rpx;
+    height: 160rpx;
+    display: block;
+}

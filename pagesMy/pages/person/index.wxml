@@ -36,7 +36,7 @@
       <view>姓名</view>
       <view class="person-info-desc">
        <text>未设置</text>
-        <image src="../../images/md-navigate_next.svg" mode="widthFix" class="person-icon"/>
+        <image src="../../../images/md-navigate_next.svg" mode="widthFix" class="person-icon"/>
       </view>
     </view>
     <!-- 性别 -->
