@@ -131,7 +131,10 @@ Page({
         _this.getBlue()
       },
       fail: function (res) {
-       // wx.hideLoading()
+        wx.showToast({
+          title: '蓝牙不可用',
+        })
+       _this.stopBluetoothDevicesDiscovery();
       }
 
     })

@@ -216,6 +216,7 @@ Page({
       wx.showToast({
         title: '蓝牙不可用',
       })
+      that.stopBluetoothDevicesDiscovery();
     }
   
   })

@@ -16,7 +16,9 @@ const fetch = (url="",data={},option={method:'get',all:false,loading:true}) => {
     return false;
   }
   if(option.loading){
-    wx.showLoading();
+    wx.showLoading({
+      title:"加载中"
+    });
   }
   
 
