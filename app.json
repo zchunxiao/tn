@@ -25,7 +25,8 @@
         "pages/deviceList/index",
         "pages/deviceDetail/index",
         "pages/report/index",
-        "pages/fastTest/index"
+        "pages/fastTest/index",
+        "pages/detector/index"
       ]
     }
   ],

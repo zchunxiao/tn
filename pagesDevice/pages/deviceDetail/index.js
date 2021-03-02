@@ -224,6 +224,7 @@ Page({
                         // 获取设备信息
                       _this.getDeviceInfo(str)
                     //  wx.hideLoading();
+                      wx.closeBLEConnection();
                       wx.closeBluetoothAdapter()
                         
                       })

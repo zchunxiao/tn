@@ -190,6 +190,18 @@
         {
           "name": "pagesDevice/pages/fastTest/index",
           "pathName": "pagesDevice/pages/fastTest/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/Detector/index",
+          "pathName": "pagesDevice/pages/Detector/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/detector/index",
+          "pathName": "pagesDevice/pages/detector/index",
           "scene": null
         }
       ]

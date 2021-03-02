@@ -1,0 +1,79 @@
+/* pagesDevice/pages/Detector/index.wxss */
+.detector-content{
+  background-image: url('https://lidian.etianneng.cn/admin/sys-file/dosp/3044b6780dc8471fa81b85face36def5.png');
+  width:100%;
+  height: 616rpx;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin:94rpx auto 220rpx;
+  overflow: hidden;
+}
+.detector-btn-box{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin:0 64rpx;
+}
+.detector-btn{
+  background-image: url('https://lidian.etianneng.cn/admin/sys-file/dosp/e3e2e6b4fc03459590d351a0432a2fb4.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width:278rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:0;
+}
+.detector-img{
+  width:150rpx;
+}
+.detector-all{
+  background:url('https://lidian.etianneng.cn/admin/sys-file/dosp/e7b4715f091d4ac28633debf720b1e80.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width:418rpx;
+  height: 70rpx;
+  margin:60rpx auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.detector-machine{
+  margin:286rpx 68rpx 0 88rpx;
+  display: flex;
+  font-size: 28rpx;
+  opacity: 0.7;
+  text-align: center;
+}
+.detector-machine-img1{
+  width: 75rpx;
+}
+.detector-machine-item{
+  display: flex;
+  flex-direction: column;
+}
+.detector-machine-img2{
+   width:110rpx;
+}
+.detector-machine-img3{
+  width:134rpx;
+  margin:18rpx 0 22rpx 0;
+}
+.detector-machine-img4{
+  width:100rpx;
+}
+.detector-machine-img5{
+  width:128rpx;
+  margin:10rpx 0;
+}
+.detector-machine-text1{
+  margin:16rpx 0 0 0;
+}
+.detector-machine-item2{
+  margin:0 10rpx;
+  font-size: 18rpx;
+}
+.detector-machine-text2{
+  margin:24rpx 0;
+}

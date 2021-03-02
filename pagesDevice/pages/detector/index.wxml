@@ -1,0 +1,39 @@
+<!--pagesDevice/pages/Detector/index.wxml-->
+<view>
+  <view class="detector-content">
+    <view class="detector-machine">
+      <view class="detector-machine-item">
+        <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/cdbab0b3c6a7485ba8711e2846e60ac5.png" mode="widthFix" class="detector-machine-img1"/>
+        <text class="detector-machine-text">手机</text>
+      </view>
+      <view class="detector-machine-item detector-machine-item2">
+        <text class="detector-machine-text2">已连接</text>
+        <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/9cb41a89ad8a4496b309f25ea7b3dbba.png" mode="widthFix" class="detector-machine-img2"/>
+      </view>
+      <view class="detector-machine-item detector-machine-item3">
+        <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/66f8cde5076d4b9f9ad696817955e8a5.png" mode="widthFix" class="detector-machine-img3"/>
+        <text class="detector-machine-text">检测仪</text>
+      </view>
+      <view class="detector-machine-item detector-machine-item2">
+        <text  class="detector-machine-text2">已连接</text>
+        <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/3658354d732f4e848856ff4ee7e3f3fa.png" mode="widthFix" class="detector-machine-img4"/>
+      </view>
+      <view class="detector-machine-item">
+        <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/88a153945fb34cb4b0b25f16d7363f89.png" mode="widthFix" class="detector-machine-img5"/>
+        <text class="detector-machine-text">电池</text>
+      </view>
+      
+    </view>
+  </view>
+  <view class="detector-btn-box">
+    <button class="detector-btn">
+      <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/47a31c5428784a68a0876701b1481732.png" mode="widthFix" class="detector-img"/>
+    </button>
+    <button class="detector-btn">
+      <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/ce0267bd222d47a18aa6b06b6baf09d5.png" mode="widthFix" class="detector-img"/>
+    </button>
+  </view>
+  <button class="detector-all">
+    <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/8064dd1016e84770a79d975a4b483857.png" mode="widthFix" class="detector-img"/>
+  </button>
+</view>
