@@ -17,8 +17,8 @@
   font-weight: bold;
 }
 .hp-swiper{
-  margin:36rpx 0 68rpx;
   height:480rpx;
+  background:#FF2145;
 }
 .hp-device{
   font-size: 36rpx;
@@ -58,7 +58,11 @@
 }
 .hp-content{
   border-radius:20rpx 20rpx 0 0;
-  background:#fff
+  background:#fff;
+  position:absolute;
+  left:0;
+  right:0;
+  top:460rpx;
 }
 .hp-content-type{
   display:flex;
@@ -75,3 +79,37 @@
 .hp-img{
   width:100%;
 }
+/*用来包裹所有的小圆点 */
+.dots {
+  /*width: 156rpx;*/
+  height: 36rpx;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 0rpx;
+  bottom: 20rpx;
+  justify-content: center;
+  right:0;
+ }
+ /*未选中时的小圆点样式 */
+ .dot {
+  width: 36rpx;
+  height: 8rpx;
+  border-radius: 4rpx;
+  margin-right: 26rpx;
+  background-color: #fff;
+  opacity: 0.3;
+  display: inline-block;
+ }
+ /*选中以后的小圆点样式 */
+ .active {
+  width: 36rpx;
+  height: 8rpx;
+  background-color: #fff;
+  opacity:1;
+ }
+ .hp-swiper-box{
+   position: relative;
+   height:480rpx;
+   background:#FF2145;
+ }

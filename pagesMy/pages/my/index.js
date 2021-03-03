@@ -26,11 +26,11 @@ Page({
         text:"意见反馈",
         url:"/pagesMy/pages/opinion/index"
       },
-      {
-        imgUrl:"../../images/icon4.png",
-        text:"基本设置",
-        url:"/pagesMy/pages/setting/index"
-      },
+      // {
+      //   imgUrl:"../../images/icon4.png",
+      //   text:"基本设置",
+      //   url:"/pagesMy/pages/setting/index"
+      // },
       {
         imgUrl:"../../images/icon5.png",
         text:"联系我们",

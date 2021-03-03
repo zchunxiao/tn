@@ -1,10 +1,13 @@
 // device/pages/device/index.js
+import {getListProductByUser} from '../../../api/index.js'
+import {replaceUrl} from '../../../utils/index.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    deviceList:[]
   },
 
   /**
@@ -25,7 +28,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const _this  = this;
+    getListProductByUser().then(data=>{
+      let result = data.map(item=>{
+        item.productImgUrl =  replaceUrl(item.productImgUrl);
+        return item;
+      })
 
+      _this.setData({
+        deviceList:result
+      })
+    })
   },
 
   /**

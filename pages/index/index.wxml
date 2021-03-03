@@ -4,8 +4,9 @@
   <!-- <View class="hp-user">
     <text class="hp-nickname">Hi! {{user.nickName}}</text>
   </View> -->
+  <view class="hp-swiper-box">
   <!-- 轮播图片 -->
-  <swiper class="hp-swiper" circular="true" indicator-dots="true" indicator-active-color="#3A85F8">
+  <swiper autoplay="{{autoplay}}"  class="hp-swiper" current="{{currentSwiper}}" bindchange="swiperChange">
     <swiper-item  wx:for="{{bannerList}}"  wx:key="index">
       <view>
         <image src= "{{item.bannerUrl}}" lazy-load="true" mode="scaleToFill"
@@ -13,6 +14,14 @@
       </view>
     </swiper-item>
   </swiper>
+   <!--重置小圆点的样式 -->
+    <view class="dots"> 
+      <block wx:for="{{bannerList}}" wx:key="index"> 
+      <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view> 
+      </block> 
+    </view> 
+  </view>
+
 
   <view class="hp-content">
       <view class="hp-content-type">

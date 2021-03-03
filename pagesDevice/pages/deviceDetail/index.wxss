@@ -73,6 +73,7 @@ page{
   box-sizing: border-box;
   padding:0 40rpx 0 34rpx;
   background:#fff;
+  
 }
 .device-detail-bms-box{
   width: 686rpx;

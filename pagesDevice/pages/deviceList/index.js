@@ -249,7 +249,7 @@ Page({
       // 绑定当前的设备
       setTimeout(() => {
         _this.bindBlueTooth(name,latitude,longitude,getStorageByKey('snCode')||"",_this);
-      }, 5000);
+      }, 10000);
     }  
   },
   // 获取到设备之后连接蓝牙设备

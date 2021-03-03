@@ -30,9 +30,15 @@ Page({
         img:'../../images/pic4.png',
         url:'/pagesMy/pages/contactUs/index'
       },
-    ]
+    ],
+    currentSwiper: 0,
+    autoplay: true,
   },
-
+  swiperChange: function (e) {
+    this.setData({
+     currentSwiper: e.detail.current
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -220,28 +226,28 @@ Page({
         })
         
         // 获取常用设备
-        setTimeout(function(){
-          getListProductByUser().then(data=>{
-            let result = data.map(item=>{
-              item.productImgUrl =  replaceUrl(item.productImgUrl);
-              return item;
-            })
+        // setTimeout(function(){
+        //   getListProductByUser().then(data=>{
+        //     let result = data.map(item=>{
+        //       item.productImgUrl =  replaceUrl(item.productImgUrl);
+        //       return item;
+        //     })
 
-            _this.setData({
-              deviceList:result
-            })
-          })
-        },1000)
+        //     _this.setData({
+        //       deviceList:result
+        //     })
+        //   })
+        // },1000)
       }
     })
   },
   // 设备详情
-  goDeviceDetail(e){
-    const {deviceId, imgUrl } =  e.currentTarget.dataset
-    wx.navigateTo({
-      url:`/pagesDevice/pages/deviceDetail/index?deviceId=${deviceId}&imgUrl=${imgUrl}`
-    })
-  },
+  // goDeviceDetail(e){
+  //   const {deviceId, imgUrl } =  e.currentTarget.dataset
+  //   wx.navigateTo({
+  //     url:`/pagesDevice/pages/deviceDetail/index?deviceId=${deviceId}&imgUrl=${imgUrl}`
+  //   })
+  // },
   // 图标跳转
   goUrl(e){
     const {url} = e.currentTarget.dataset;
