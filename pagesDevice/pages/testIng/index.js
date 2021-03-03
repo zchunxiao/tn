@@ -132,7 +132,6 @@ Page({
   },
   onLoad(option){
     const {blueStr="0000"} = option;
-    console.log("dd0000d:",hex_to_bin(blueStr))
     this.setData({
       list: hex_to_bin(blueStr).split("")
     })

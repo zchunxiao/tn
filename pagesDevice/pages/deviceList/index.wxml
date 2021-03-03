@@ -32,7 +32,7 @@
           
           <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/d9ca0b6c7120408795ca4446de576272.png" class="device-img"/>
           <view class="device-pair-item-detail">
-            <text>{{item.productCategory}}</text>
+            <text>{{item.blueToothName}}</text>
             <image src="../../../images/device-delete.svg"  class="device-img-delete"/>
           </view>
         </view>
