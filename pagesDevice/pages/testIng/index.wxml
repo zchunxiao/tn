@@ -12,7 +12,7 @@
       </view>
     </view>
   </view>
-  <view class="test-more-btn">查看详情</view>
+  <view class="test-more-btn" bindtap="goMore">查看详情</view>
 </view>
 
 

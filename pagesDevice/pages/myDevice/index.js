@@ -61,5 +61,18 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  // 电池详情
+  goDetail:function(e){
+    const {deviceId, imgUrl } =  e.currentTarget.dataset
+    wx.navigateTo({
+      url:`/pagesDevice/pages/deviceDetail/index?deviceId=${deviceId}&imgUrl=${imgUrl}`
+    })
+  },
+  // 检测仪
+  goDetector:function(){
+    wx.navigateTo({
+      url:`/pagesDevice/pages/detector/index`
+    })
   }
 })

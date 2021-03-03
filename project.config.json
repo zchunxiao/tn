@@ -202,6 +202,24 @@
         {
           "name": "pagesDevice/pages/detector/index",
           "pathName": "pagesDevice/pages/detector/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/myDevice/index",
+          "pathName": "pagesDevice/pages/myDevice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/testIng/index",
+          "pathName": "pagesDevice/pages/testIng/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/detector/index",
+          "pathName": "pagesDevice/pages/detector/index",
           "scene": null
         }
       ]

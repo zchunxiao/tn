@@ -110,6 +110,12 @@ Page({
       //  })
       },i*1000)
     }
+  },
+   // 查看详情
+   goMore:function () {
+    wx.navigateTo({
+      url:`/pagesDevice/pages/report/index`
+    })
   }
 });
 

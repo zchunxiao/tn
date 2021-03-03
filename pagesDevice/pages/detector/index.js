@@ -62,5 +62,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  // 查看详情
+  goMore:function () {
+    wx.navigateTo({
+      url:`/pagesDevice/pages/report/index`
+    })
   }
 })

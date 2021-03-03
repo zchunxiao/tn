@@ -316,5 +316,11 @@ Page({
       _this.setData({
         visible:false
       })
+  },
+  // 检测
+  goTest:function () {
+    wx.navigateTo({
+      url:"/pagesDevice/pages/testIng/index"
+    })
   }
 })

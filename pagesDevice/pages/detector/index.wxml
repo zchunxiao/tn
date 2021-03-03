@@ -34,6 +34,6 @@
     </button>
   </view>
   <button class="detector-all">
-    <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/8064dd1016e84770a79d975a4b483857.png" mode="widthFix" class="detector-img"/>
+    <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/8064dd1016e84770a79d975a4b483857.png" mode="widthFix" class="detector-img" bindtap="goMore"/>
   </button>
 </view>

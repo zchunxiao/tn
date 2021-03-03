@@ -43,11 +43,7 @@
       </view>
       <!-- <view>电池基本信息：</view> -->
     </view>
-    <!-- 故障信息智能诊断 -->
-    <view class="device-detail-fault-box">
-      <view>故障信息智能诊断</view>
-      <image src="../../../images/md-cached.svg" mode="widthFix" class="icon-big"/>
-    </view>
+  
     <!-- BMS参数信息 -->
     <view class="device-detail-bms-box" wx:if="{{connectStatus}}">
         <view class="device-detail-bms-box-title">BMS参数信息</view>
@@ -70,8 +66,13 @@
       
         </view>
     </view>
+      <!-- 故障信息智能诊断 -->
+    <view class="device-detail-fault-box" bindtap="goTest">
+      <view>智能检测</view>
+      <image src="../../../images/md-cached.svg" mode="widthFix" class="icon-big"/>
+    </view>
     <!-- 快速检测 -->
-    <view class="device-detail-tab-box">
+    <!--<view class="device-detail-tab-box">
     <view class="device-detail-tab" bindtap="goFastTest">
       快速检测
       <image src="../../../images/md-cached.svg" mode="widthFix" class="icon-small"/>
@@ -88,6 +89,6 @@
       固件更新
       <image src="../../../images/antOutline-cloud-upload.svg" mode="widthFix" class="icon-small"/>
     </view>
-  </view>
+  </view>-->
 </view>
 
