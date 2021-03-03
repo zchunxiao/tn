@@ -1,5 +1,23 @@
 var app = getApp();
 
+// 16进制转2进制
+function hex_to_bin(str) {
+  let hex_array = [{key:0,val:"0000"},{key:1,val:"0001"},{key:2,val:"0010"},{key:3,val:"0011"},{key:4,val:"0100"},{key:5,val:"0101"},{key:6,val:"0110"},{key:7,val:"0111"},
+      {key:8,val:"1000"},{key:9,val:"1001"},{key:'a',val:"1010"},{key:'b',val:"1011"},{key:'c',val:"1100"},{key:'d',val:"1101"},{key:'e',val:"1110"},{key:'f',val:"1111"}]
+
+  let value=""
+  for(let i=0;i<str.length;i++){
+      for(let j=0;j<hex_array.length;j++){
+          if(str.charAt(i).toLowerCase()== hex_array[j].key){
+              value = value.concat(hex_array[j].val)
+              break
+          }
+      }
+  }
+  console.log(value)
+  return value
+}
+
 // 16进制转字符串
 function hexToStr(hexCharCodeStr) {
   　　var trimedStr = hexCharCodeStr.trim();
@@ -161,6 +179,7 @@ module.exports={
   hexToStr,
   hexToDecimalism ,
   ab2hex,
+  hex_to_bin,
   replaceUrl,
   // getOpenid,
   // getSessionKey,

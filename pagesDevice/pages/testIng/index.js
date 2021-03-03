@@ -1,6 +1,7 @@
 import * as echarts from '../../components/ec-canvas/echarts';
-
+import {hex_to_bin,getStorageByKey} from "../../../utils/index.js"
 const app = getApp();
+
 
 function initChart(canvas, width, height, dpr) {
   const chart = echarts.init(canvas, null, {
@@ -16,8 +17,10 @@ function initChart(canvas, width, height, dpr) {
     series: [{
       name: '业务指标',
       type: 'gauge',
+      min:0,
+      max:800, 
       detail: {
-        formatter: '{value}%'
+        formatter: '{value}'
       },
       axisLine: {
         show: true,
@@ -32,8 +35,8 @@ function initChart(canvas, width, height, dpr) {
         }
       },
       data: [{
-        value: 40,
-        name: '完成率',
+        value: getStorageByKey("num")||0,
+        name: '检测结果',
       }]
 
     }]
@@ -53,6 +56,7 @@ Page({
       fail: function () { }
     }
   },
+  
   data: {
     ec: {
       onInit: initChart
@@ -60,37 +64,54 @@ Page({
     itemList:[
      {
       title:"电压总压检测",
-      showLoading:true
+      showLoading:true,
+      status:"",
+      index:0,
      },
      {
       title:"单体电压检测",
-      showLoading:true
+      showLoading:true,
+      status:"",
+      index:1
      },
        {
       title:"MOS过猛检测",
-      showLoading:true
+      showLoading:true,
+      status:"",
+      index:2,
      },
      {
       title:"AFE前端芯片故障",
-      showLoading:true
+      showLoading:true,
+      status:"",
+      index:3,
      },
      {
       title:"掉线检测",
-      showLoading:true
+      showLoading:true,
+      status:"",
+      index:5
      },
      {
       title:"电芯温度检测",
-      showLoading:true
+      showLoading:true,
+      status:"",
+      index:6,
      },
      {
       title:"充电过流检测",
-      showLoading:true
+      showLoading:true,
+      status:"",
+      index:10,
      },
      {
       title:"放电过流检测",
-      showLoading:true
+      showLoading:true,
+      status:"",
+      index:11,
      }
-  ]
+  ],
+  list:[]
   },
 
   onReady() {
@@ -99,17 +120,24 @@ Page({
     const _this = this;
     for(let i = 0;i<8;i++){
       setTimeout(()=>{
-        console.log("ddd:",i, _this.data)
+  //console.log("ddd:",_this.data.list[_this.data.itemList[i].index])
         _this.data.itemList[i].showLoading = false;
+        _this.data.itemList[i].status = _this.data.list[_this.data.itemList[i].index];
         _this.setData({
              itemList: _this.data.itemList
            })
-       // _this.itemList[i]
-      //  _this.setData({
-      //    itemList:_this.itemList[i].showLoading = false
-      //  })
       },i*1000)
+      
     }
+  },
+  onLoad(option){
+    const {blueStr="0000"} = option;
+    console.log("dd0000d:",hex_to_bin(blueStr))
+    this.setData({
+      list: hex_to_bin(blueStr).split("")
+    })
+   
+
   },
    // 查看详情
    goMore:function () {

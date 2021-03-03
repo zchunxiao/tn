@@ -172,4 +172,5 @@
 }
 .my-tiger{
   width:122rpx;
+  border-radius:50%;
 }

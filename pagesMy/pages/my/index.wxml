@@ -49,7 +49,7 @@
   <view class="my-content-top">
     <image src="../../images/logo.png"  mode="widthFix" class="my-logo"/>
     <view class="my-content-circle">
-       <image src="../../images/tiger.png" mode="widthFix" class="my-tiger"/>
+       <image src="{{user.avatarUrl}}" mode="widthFix" class="my-tiger"/>
     </view>
   </view>
   <view class="my-content">

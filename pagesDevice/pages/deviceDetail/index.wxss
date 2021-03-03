@@ -64,23 +64,23 @@ page{
   line-height: 40rpx;
   border-radius: 24rpx;
   text-align: center;
-  box-shadow: 0rpx 8rpx 16rpx 0rpx rgba(168, 168, 168, 10);
+  box-shadow: 0rpx 8rpx 16rpx 0rpx rgba(255,192,203,0.6);
   border: 2rpx solid rgba(255, 255, 255, 100);
   margin:62rpx 28rpx 14rpx 34rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  padding:0 40rpx 0 34rpx;
+  padding:0 40rpx;
   background:#fff;
-  
+
 }
 .device-detail-bms-box{
   width: 686rpx;
   line-height: 40rpx;
   border-radius: 24rpx;
   text-align:left;
-  box-shadow: 0rpx 8rpx 16rpx 0rpx rgba(168, 168, 168, 10);
+  box-shadow: 0rpx 8rpx 16rpx 0rpx rgba(255,192,203,0.6);
   border: 2rpx solid rgba(255, 255, 255, 100);
   background:#fff;
   padding:26rpx 0 32rpx 34rpx;
@@ -150,4 +150,7 @@ page{
 }
 .opacity{
   opacity: 0.2;
+}
+.detail{
+  padding-bottom: 62rpx;
 }

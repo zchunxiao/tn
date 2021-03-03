@@ -1,5 +1,5 @@
 <!--pages/deviceDetail/index.wxml-->
-<view>
+<view class="detail">
   <loading  isLoading="{{visible}}" text="{{text}}"></loading>
   <view class="device-detail">
     <!-- 设备图片 -->
@@ -13,17 +13,17 @@
       <view class="device-detail-status-text" wx:else>未连接</view>
       <view>
         <!-- <view class="device-detail-status-battery">剩余电量：50% </view> -->
-        <view  wx:if="{{connectStatus}}">状态：良好</view>
+        <view wx:if="{{connectStatus}}">状态：良好</view>
         <view class="device-detail-status-blue" wx:else bindtap="initBlue">
           <view>重新连接</view>
           <image src="../../../images/md-bluetooth.svg" mode="widthFix" class="icon-small" />
         </view>
       </view>
     </view>
-    <view  class="device-detail-date-empty-box"  wx:if="{{!connectStatus}}">
+    <!--<view  class="device-detail-date-empty-box"  wx:if="{{!connectStatus}}">
       <view> 质保日期：-- -- </view>
       <view> 出厂日期：-- --</view>
-    </view>
+    </view>-->
     <!-- 电池基本信息： -->
     <!-- <view class="device-detail-basic-box">
       <view class="device-detail-basic-box-title">电池基本信息：</view>
@@ -36,13 +36,12 @@
       </view>
     </view> -->
     <!-- 日期 -->
-    <view class="device-detail-date-box" wx:else>
+    <!--<view class="device-detail-date-box" wx:else>
       <view class="device-detail-date">
       <text>质保日期：2022/11/11 </text>        
       <text>出厂日期：2021/11/11</text>
       </view>
-      <!-- <view>电池基本信息：</view> -->
-    </view>
+    </view>-->
   
     <!-- BMS参数信息 -->
     <view class="device-detail-bms-box" wx:if="{{connectStatus}}">

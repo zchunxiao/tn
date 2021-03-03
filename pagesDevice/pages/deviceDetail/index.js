@@ -1,4 +1,4 @@
-const { hexToStr,hexToDecimalism,ab2hex} = require("../../../utils/index.js")
+const { hexToStr,hexToDecimalism,ab2hex,hex_to_bin} = require("../../../utils/index.js")
 import {getProductById} from "../../../api/index.js"
 // pages/deviceDetail/index.js
 Page({
@@ -14,13 +14,17 @@ Page({
     deviceInfo:{},
     connectStatus:false,
     visible:false,
-    text:"获取中"
+    text:"获取中",
+    blueStr:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title:"连接中"
+    })
     const {deviceId,imgUrl} = options
     const _this  = this;
     this.setData({
@@ -48,9 +52,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.showLoading({
-      title:"连接中"
-    })
+  
    
   },
 
@@ -220,13 +222,17 @@ Page({
                         }else{
                           str=ab2hex(res.value)
                         }
+                      _this.setData({
+                        blueStr:str.substr(212,4)
+                      })
                         
                         // 获取设备信息
                       _this.getDeviceInfo(str)
                     //  wx.hideLoading();
-                      wx.closeBLEConnection();
+                      wx.closeBLEConnection({
+                        deviceId
+                      });
                       wx.closeBluetoothAdapter()
-                        
                       })
                     }
                 })
@@ -244,7 +250,7 @@ Page({
   },
   // 获取设备信息
   getDeviceInfo(str){
-       console.log("djhhfhhgfd999:",str.substr(240,2));
+       console.log("djhhfhhgfd999:",str.substr(212,4));
        const _this = this;
        // 电池状态
        let  BatterySatusText = hexToDecimalism(str.substr(10,2));
@@ -319,8 +325,21 @@ Page({
   },
   // 检测
   goTest:function () {
-    wx.navigateTo({
-      url:"/pagesDevice/pages/testIng/index"
+    const arr = [0,1,2,3,5,6,10,11];
+    let num=0;
+    const str =  hex_to_bin(this.data.blueStr).split("");
+    for(var i=0;i<arr.length;i++){
+      if(str[arr[i]]==0){
+        num+=100;
+      }
+    }
+    wx.setStorage({
+      key:"num",
+      data:num
     })
+    wx.navigateTo({
+      url:`/pagesDevice/pages/testIng/index?blueStr=${this.data.blueStr}`
+    })
+    
   }
 })

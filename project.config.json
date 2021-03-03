@@ -220,6 +220,19 @@
         {
           "name": "pagesDevice/pages/detector/index",
           "pathName": "pagesDevice/pages/detector/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/myDevice/index",
+          "pathName": "pagesDevice/pages/myDevice/index",
+          "query": "deviceId=1364097017127227393&imgUrl= http://192.168.33.148:9000/dosp/57fafed7e1124348a84d02998220ec43.png",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/testIng/index",
+          "pathName": "pagesDevice/pages/testIng/index",
+          "query": "",
           "scene": null
         }
       ]

@@ -77,11 +77,13 @@ button{
   height: 80rpx;
   display:flex;
   align-items: center;
+  border-bottom:1px solid #ccc;
 }
 .device-img{
-  width:60rpx;
-  height: 60rpx;
+  width: 46rpx;
+  height: 32rpx;
   float: left;
+  margin-right: 44rpx;
 }
 .device-img-delete{
   width:60rpx;
@@ -93,7 +95,7 @@ button{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom:1px solid #ccc;
+
 }
 .device-available{
   margin:18rpx 0 0 0;
@@ -103,7 +105,6 @@ button{
 .device-available-item-detail{
   width: 90%;
   height: 65rpx;
-  border-bottom:1px solid #ccc;
   display: flex;
   align-items: center;
   padding-left: 15rpx;

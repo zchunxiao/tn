@@ -7,8 +7,9 @@
     <view class="test-content-item" wx:for="{{itemList}}" wx:key="index">
       <text>{{item.title}}</text>
       <view>
-         <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/f931db73eb364cb7b2b661b3d0d7242b.gif" mode="widthFix" class="test-loading" wx:if="{{item.showLoading}}"/>
-         <icon type="success" wx:else/>
+        <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/f931db73eb364cb7b2b661b3d0d7242b.gif" mode="widthFix" class="test-loading" wx:if="{{item.showLoading}}"/>
+        <icon type="success" wx:if="{{item.status == 0 && !item.showLoading}}"/>
+        <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/7dad720686114ebd801331e287fc63f5.png" mode="widthFix" class="test-loading" wx:if="{{item.status == 1 && !item.showLoading}}"/>
       </view>
     </view>
   </view>

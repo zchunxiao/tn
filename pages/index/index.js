@@ -156,6 +156,7 @@ Page({
         data: e.detail.userInfo,
         key: 'user',
       })
+  
     } else {
         //用户按了拒绝按钮
         wx.showModal({
@@ -183,6 +184,9 @@ Page({
           if(!data) return false;
           const {openid,session_key} = data;
           // 存储openid session_key
+          wx.showToast({
+            title:"授权登录成功"
+          })
           wx.setStorage({
             key:"openid",
             data:openid
