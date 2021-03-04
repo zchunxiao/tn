@@ -40,8 +40,18 @@ Page({
   
 
     const _this = this;
-
+    _this.getList();
     _this.getSetting();
+  
+    // 蓝牙连接
+    _this.initBlue();
+    // 获取设备信息
+    _this.setData({
+       model:wx.getSystemInfoSync().model
+    })
+  },
+  getList:function() {
+    const _this = this;
     getListProductByUser().then(data=>{
       let result = (data||[]).map(item=>{
         item.productImgUrl =   replaceUrl(item.productImgUrl);
@@ -50,12 +60,6 @@ Page({
       _this.setData({
         deviceConnectList:result
       })
-    })
-    // 蓝牙连接
-    _this.initBlue();
-    // 获取设备信息
-    _this.setData({
-       model:wx.getSystemInfoSync().model
     })
   },
   /**
@@ -124,11 +128,18 @@ Page({
     const _this = this;
     getBlueInfoByProductCode({
       productCode:result
-    }).then(data=>{
+    }).then(res=>{
+      console.log("ssaoma:",res)
+      if(!res){
+        return false;
+      }
       const {latitude,longitude} = getStorageByKey('location');
-      const {snCode,blueToothName} = data
+      const {snCode,blueToothName} = res
       // 绑定当前的设备
       _this.bindBlueTooth(blueToothName,latitude,longitude,snCode,_this);
+      setTimeout(function() {
+        _this.getList();
+      },1000)
   
     })
   },
@@ -146,9 +157,13 @@ Page({
         blueToothIsOpen: true,
        // visible:true
       })
-      wx.showLoading({
-        title:"搜索中",
-        mask:true
+      // wx.showLoading({
+      //   title:"搜索中1",
+      //   mask:true
+      // })
+      that.setData({
+        visible:true,
+        text:this.data.text
       })
       that.findBlue();
    
@@ -199,7 +214,11 @@ Page({
                    // visible:false,
                     deviceList: tnDeviceList
                   });
-                  wx.hideLoading();
+                 // wx.hideLoading();
+                 that.setData({
+                  visible:false,
+                  text:that.data.text
+                })
                 }
   
               }

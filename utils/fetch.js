@@ -34,7 +34,7 @@ const fetch = (url="",data={},option={method:'get',all:false,loading:true}) => {
       method:option.method,
       success:res=>{
        const {data:{code,msg,data}} =  res;
-       option.loading &&  wx.hideLoading();
+    
        if(code != 0){
          wx.showToast({
            title: msg,
@@ -44,10 +44,11 @@ const fetch = (url="",data={},option={method:'get',all:false,loading:true}) => {
          })
        }
         if(option.all){
-          resolve(res)
+          resolve(res.data)
         }else{
           resolve(data)
         }
+        option.loading &&  wx.hideLoading();
        
       },
       fail:err=>{
