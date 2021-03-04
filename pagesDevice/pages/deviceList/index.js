@@ -369,20 +369,20 @@ Page({
         // sn码
         let sncodeText = hexToStr(str.substr(148,64));
 
-        // console.log("sn码",sncodeText);
-        // console.log("电池状态",BatterySatusText);
-        // console.log("电池温度",BatteryTempText);
-        // console.log("mos温度", mosTempText);
-        // console.log("充电器匹配检测电压",Voltage1Text);
-        // console.log("放电电流:",dischargeText);
-        // console.log("充电电流:",discharge1Text);
-        // console.log("单体电压",Voltage2Text);
-        // console.log('充电截至电压:',Voltage3Text)
-        // console.log('电池总压:',Voltage4Text)
-        // console.log('固件版本:',version1Text)
-        // console.log('硬件版本:',version2Text)
-        // console.log('电池规则:',typeText)
-        // console.log('mac地址:',mac)
+        console.log("sn码",sncodeText);
+        console.log("电池状态",BatterySatusText);
+        console.log("电池温度",BatteryTempText);
+        console.log("mos温度", mosTempText);
+        console.log("充电器匹配检测电压",Voltage1Text);
+        console.log("放电电流:",dischargeText);
+        console.log("充电电流:",discharge1Text);
+        console.log("单体电压",Voltage2Text);
+        console.log('充电截至电压:',Voltage3Text)
+        console.log('电池总压:',Voltage4Text)
+        console.log('固件版本:',version1Text)
+        console.log('硬件版本:',version2Text)
+        console.log('电池规则:',typeText)
+        console.log('mac地址:',mac)
 
         const _deviceInfo = {
           sncodeText,

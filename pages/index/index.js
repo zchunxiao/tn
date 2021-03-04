@@ -11,7 +11,7 @@ Page({
     bannerList:[], //轮播图
     code:"",
     user:{},
-    isAuth:isLogin(), //是否授权
+    isAuth:false, //是否授权
     deviceList:[], //常用设备列表
     imgList:[
       {
@@ -68,20 +68,56 @@ Page({
             bannerList:result
         })
     })
-   
+    wx.checkSession({
+      success:function(res){
+        console.log("已登录:",res);
+        _this.setData({
+          isAuth:true
+        })
+        wx.getStorage({
+          key:'openid',
+          success(res){
+            _this.checkBindPhone(res.data)
+          },
+          fail(err){
+            console.log(err)
+          }
+        });
+        wx.getStorage({
+          key: 'user',
+          success:res=>{
+            const {data,errMsg} = res;
+            if(errMsg ==  "getStorage:ok"){
+              _this.setData({
+                user:data
+              })
+            }
+          },
+          fail:res=>{
+            console.log("获取失败",res)
+          }
+        })
+      },
+      fail:function(res){
+        console.log("未登录:",res)
+        _this.setData({
+          isAuth:false
+        })
+      }
+    })
     // 已经登录
-    if(_this.data.isAuth){
-      // 校验是否绑定过手机号
-      wx.getStorage({
-        key:'openid',
-        success(res){
-          _this.checkBindPhone(res.data)
-        },
-        fail(err){
-          console.log(err)
-        }
-      })
-    }
+    // if(_this.data.isAuth){
+    //   // 校验是否绑定过手机号
+    //   wx.getStorage({
+    //     key:'openid',
+    //     success(res){
+    //       _this.checkBindPhone(res.data)
+    //     },
+    //     fail(err){
+    //       console.log(err)
+    //     }
+    //   })
+    // }
         
     wx.getStorage({
       key: 'user',
