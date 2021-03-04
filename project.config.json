@@ -250,6 +250,18 @@
         {
           "name": "pagesDevice/pages/myDevice/index",
           "pathName": "pagesDevice/pages/myDevice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/my/index",
+          "pathName": "pagesMy/pages/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/person/index",
+          "pathName": "pagesMy/pages/person/index",
           "scene": null
         }
       ]

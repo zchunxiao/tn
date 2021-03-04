@@ -1,0 +1,9 @@
+<!--pagesMy/components/edit/index.js.wxml-->
+<view class="c-popup" wx:if="{{visible}}" >
+ <view class="c-popup-content">
+        <!--<form bindsubmit="bindFormSubmit" class="opinion-area">-->
+           <input   bindinput="changeValue" auto-focus placeholder="点击修改用户名"/>
+            <button form-type="submit" class="opinion-btn" catchtap="bindFormSubmit"> 提交 </button>
+       <!-- </form>-->
+ </view>
+</view>

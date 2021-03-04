@@ -32,10 +32,10 @@
       </view>
     </view>
     <!-- 姓名 -->
-    <view class="person-info-item">
+    <view class="person-info-item" bindtap="changeName">
       <view>姓名</view>
       <view class="person-info-desc">
-       <text>未设置</text>
+       <text>{{realName || '未设置'}}</text>
         <image src="../../../images/md-navigate_next.svg" mode="widthFix" class="person-icon"/>
       </view>
     </view>
@@ -58,4 +58,9 @@
            visible="{{isShow}}" 
             bind:close="getCloseInfo"
            />
+    <edit  imgUrl="{{imgUrl}}" 
+      visible="{{nameEditShow}}" 
+      bind:close="closeEditName"
+      bind:edit="editName"
+      />
 </view>

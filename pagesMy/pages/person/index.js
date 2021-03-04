@@ -1,5 +1,6 @@
 // pages/person/index.js
 import {getStorageByKey} from '../../../utils/index'
+import {getUserInfo, editUserInfo} from '../../../api/index.js'
 Page({
 
   /**
@@ -9,13 +10,23 @@ Page({
     user:{},
     isShow:false,
     imgUrl:getStorageByKey('qrCodeUrl')|| "",
-    phoneNumber:getStorageByKey('phoneNumber')
+    phoneNumber:getStorageByKey('phoneNumber'),
+    realName:"",
+    nameEditShow:false,
+    userId:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+   
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
     var _this = this;
     wx.getStorage({
       key: 'user',
@@ -31,15 +42,19 @@ Page({
         console.log("获取失败",res)
       }
     })
+    _this.userInfo()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
+   userInfo:function(){
+     const _this  = this;
+    getUserInfo(getStorageByKey('phoneNumber')).then(data=>{
+      console.log("ddd:",data)
+      const {realName,userId} = data;
+      _this.setData({
+        realName,
+        userId,
+      })
+    })
+   },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -92,5 +107,29 @@ Page({
     _this.setData({
       isShow:false
     })
+  },
+  closeEditName:function(){
+    const _this  = this;
+    _this.setData({
+      nameEditShow:false
+    })
+  },
+  changeName:function(){
+
+    const _this  = this;
+    _this.setData({
+      nameEditShow:true
+    })
+  },
+  editName:function(data){
+    const _this  = this;
+   editUserInfo({realName:data.detail,userId:this.data.userId}).then(data=>{
+     if(data){
+      wx.showToast({
+        title:"修成功"
+      });
+      _this.userInfo();
+     }
+   })
   }
 })

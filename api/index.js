@@ -39,6 +39,10 @@ const getFeedBack = data => fetch(`feedback/feedBack?feedBack=${data}`,{},{metho
 const getContactUs = data=> fetch('/contact/page');
 
 const editUserInfo = data =>fetch('/user',data,{method:"put"})
+
+// 查询用户
+const getUserInfo = data=>fetch(`/user/getUserByPhone?phoneNumber=${data}`)
+
 module.exports= {
   getBannerList,
   wxLogin,
@@ -51,5 +55,7 @@ module.exports= {
   getArticleDetail,
   getBlueInfoByProductCode,
   getFeedBack,
-  getContactUs
+  getContactUs,
+  editUserInfo,
+  getUserInfo
 }

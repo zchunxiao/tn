@@ -1,5 +1,6 @@
 // pages/article/index.js
 import {replaceUrl, test} from '../../../utils/index.js'
+import {getArticleDetail} from "../../../api/index.js"
 
 Page({
 
@@ -17,6 +18,7 @@ Page({
    */
   onLoad: function (options) {
     console.log("options:",options)
+    const {articleId} = options;
     const _this = this;
     //  测试数据
     let d  = {
@@ -37,16 +39,17 @@ Page({
       "remark": "",
       "articleContentBase64": null
     }
-    test(d).then(data=>{
-      console.log("djhfjdhf:",data)
+    getArticleDetail(articleId).then(data=>{
+     // console.log("djhfjdhf:",data)
       if(!data.thumbnailUrl ) return false;
       data.thumbnailUrl =  replaceUrl(data.thumbnailUrl);
       _this.setData({
-        articleInfo:data
+        articleInfo:data,
+        nodes:data 
       })
     })
 
-    let data = '<div><h3 style="color:red">javascript - <em>js同步编程</em>与异步编程的区别,异步有哪些优点,为什么...</h3><div><span>2016年5月20日 - </span>从编程方式来讲当然是<em>同步编程</em>的方式更为简单,但是同步有其局限性一是假如是单线程那么一旦遇到阻塞调用,会造成整个线程阻塞,导致cpu无法得到有效利用...</div><div><div></div><span ><span ></span></span> - 百度快照</div><div ><span>为您推荐：</span>js同步和异步ajax异步和同步的区别</div></div>';
+    // let data = '<div><h3 style="color:red">javascript - <em>js同步编程</em>与异步编程的区别,异步有哪些优点,为什么...</h3><div><span>2016年5月20日 - </span>从编程方式来讲当然是<em>同步编程</em>的方式更为简单,但是同步有其局限性一是假如是单线程那么一旦遇到阻塞调用,会造成整个线程阻塞,导致cpu无法得到有效利用...</div><div><div></div><span ><span ></span></span> - 百度快照</div><div ><span>为您推荐：</span>js同步和异步ajax异步和同步的区别</div></div>';
     this.setData({ nodes:data })
   },
 

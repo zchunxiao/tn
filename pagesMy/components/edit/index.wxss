@@ -1,0 +1,42 @@
+/* pagesMy/components/edit/index.js.wxss */
+.c-popup{
+  position:fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  background:rgba(0,0,0,0.4);
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.c-popup-content{
+  /*position:absolute;
+  left:0;
+  right:0;
+  bottom:0;*/
+  background:#fff;
+  width:100%;
+  border-radius: 20rpx 20rpx 0 0;
+  box-shadow:10rpx 10rpx 10rpx #000;
+  padding: 20rpx;
+  transition:all 2s; 
+  box-sizing:border-box;
+  margin:0 60rpx;
+}
+.c-popup-img{
+  width:100%;
+}
+.hide{
+  margin-bottom:-200%;
+}
+.opinion-btn{
+    background:#FF2145;
+    color:#fff;
+ 
+    margin-top:20rpx;
+    font-size:28rpx;
+
+
+}
