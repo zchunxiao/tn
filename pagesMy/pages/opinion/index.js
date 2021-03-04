@@ -1,4 +1,5 @@
 // pagesMy/pages/opinion/index.js
+import {getFeedBack} from "../../../api/index"
 Page({
 
   /**
@@ -62,5 +63,21 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  bindFormSubmit:function(){
+    console.log("dd:",this.data.value)
+    getFeedBack(this.data.value).then(data=>{
+      console.log("ff:",data)
+      if(!data) return false;
+      wx.showToast({
+        title:data
+      })
+    })
+  },
+  handleBindinput:function(e){
+    const {value}  = e.detail;
+    this.setData({
+      value
+    })
   }
 })

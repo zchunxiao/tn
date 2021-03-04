@@ -15,6 +15,7 @@
     padding:20rpx;
     height:218rpx;
     box-sizing:border-box;
+    display: block;
 }
 .opinion-num{
   position:absolute;
@@ -26,8 +27,9 @@
 .opinion-btn{
     background:#FF2145;
     color:#fff;
-    width:30%;
+ 
     margin-top:20rpx;
-    float:right;
     font-size:28rpx;
+
+
 }

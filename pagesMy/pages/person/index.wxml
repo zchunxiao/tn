@@ -20,7 +20,7 @@
     <view class="person-info-item">
       <view>手机号</view>
       <view class="person-info-desc">
-        <view class="person-info-right">15858215661</view>
+        <view class="person-info-right">{{phoneNumber}}</view>
       </view>
     </view>
     <!-- 二维码 -->

@@ -1,9 +1,16 @@
 <!--pagesMy/pages/opinion/index.wxml-->
 <view class='opinion'>
     <text class='opinion-text'>意见反馈</text>
-    <view class="opinion-area">
-        <textarea value="{{value}}" maxlength="128" />
+    <!-- <view class="opinion-area">
+        <textarea value="{{value}}" maxlength="128"  bindinput="handleBindinput"/>
         <text class='opinion-num'>不超过过128个字</text>
-    </view>
-    <button class="opinion-btn">确定</button>
+    </view> -->
+    <form bindsubmit="bindFormSubmit" class="opinion-area">
+        <textarea value="{{value}}" maxlength="128"  bindinput="handleBindinput"/>
+        <text class='opinion-num'>不超过过128个字</text>
+            <button form-type="submit" class="opinion-btn"> 提交 </button>
+        </form>
+
+
+    <!-- <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/9f2bf9be24ad40419612b84816140bc8.png" bindtap="goUrl" class="opinion-btn"/> -->
 </view>

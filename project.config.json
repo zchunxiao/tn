@@ -234,6 +234,11 @@
           "pathName": "pagesDevice/pages/testIng/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pagesMy/pages/opinion/index",
+          "pathName": "pagesMy/pages/opinion/index",
+          "scene": null
         }
       ]
     }

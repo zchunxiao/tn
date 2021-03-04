@@ -32,6 +32,13 @@ const getArticleDetail =  data=> fetch(`article/${data}`,data)
 // 通过产品码（激光码）查询产品信息 get
 const getBlueInfoByProductCode = data=>fetch('/product/getByProductCode',data,{loading:false})
 
+// 意见反馈 post 
+const getFeedBack = data => fetch(`feedback/feedBack?feedBack=${data}`,{},{method:"post"})
+
+// 联系我们 get
+const getContactUs = data=> fetch('/contact/page');
+
+const editUserInfo = data =>fetch('/user',data,{method:"put"})
 module.exports= {
   getBannerList,
   wxLogin,
@@ -42,5 +49,7 @@ module.exports= {
   handleBindPDevice,
   getArticleList,
   getArticleDetail,
-  getBlueInfoByProductCode
+  getBlueInfoByProductCode,
+  getFeedBack,
+  getContactUs
 }

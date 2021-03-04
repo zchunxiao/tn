@@ -6,7 +6,7 @@
   </View> -->
   <view class="hp-swiper-box">
   <!-- 轮播图片 -->
-  <swiper autoplay="{{autoplay}}"  class="hp-swiper" current="{{currentSwiper}}" bindchange="swiperChange">
+  <swiper   class="hp-swiper" current="{{currentSwiper}}" bindchange="swiperChange">
     <swiper-item  wx:for="{{bannerList}}"  wx:key="index">
       <view>
         <image src= "{{item.bannerUrl}}" lazy-load="true" mode="scaleToFill"

@@ -74,7 +74,10 @@
   margin:0 0 42rpx 40rpx;
 }
 .hp-ad{
-  margin:0 40rpx;
+  margin: 0 40rpx;
+  position: absolute;
+  left: 0;
+  right:0;
 }
 .hp-img{
   width:100%;

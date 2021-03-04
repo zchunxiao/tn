@@ -8,7 +8,8 @@ Page({
   data: {
     user:{},
     isShow:false,
-    imgUrl:getStorageByKey('qrCodeUrl')|| ""
+    imgUrl:getStorageByKey('qrCodeUrl')|| "",
+    phoneNumber:getStorageByKey('phoneNumber')
   },
 
   /**

@@ -1,11 +1,13 @@
 // pagesMy/pages/concat/index.js
+import {getContactUs} from "../../../api/index"
+import {replaceUrl} from "../../../utils/index.js"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    info:{}
   },
 
   /**
@@ -19,7 +21,17 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    getContactUs().then(data=>{
+      const {records} = data;
+      let result = records.map((item)=>{
+        item.qrCode = replaceUrl(item.qrCode)
+        item.headImgUrl = replaceUrl(item.headImgUrl)
+        return item
+      })
+      this.setData({
+        info:result
+      })
+    })
   },
 
   /**

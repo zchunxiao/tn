@@ -71,32 +71,36 @@ Page({
     wx.checkSession({
       success:function(res){
         console.log("已登录:",res);
-        _this.setData({
-          isAuth:true
-        })
-        wx.getStorage({
-          key:'openid',
-          success(res){
-            _this.checkBindPhone(res.data)
-          },
-          fail(err){
-            console.log(err)
-          }
-        });
-        wx.getStorage({
-          key: 'user',
-          success:res=>{
-            const {data,errMsg} = res;
-            if(errMsg ==  "getStorage:ok"){
-              _this.setData({
-                user:data
-              })
+        if(isLogin()){
+          _this.setData({
+            isAuth:true
+          })
+          wx.getStorage({
+            key:'openid',
+            success(res){
+              _this.checkBindPhone(res.data)
+            },
+            fail(err){
+              console.log(err)
             }
-          },
-          fail:res=>{
-            console.log("获取失败",res)
-          }
-        })
+          });
+          wx.getStorage({
+            key: 'user',
+            success:res=>{
+              const {data,errMsg} = res;
+              if(errMsg ==  "getStorage:ok"){
+                _this.setData({
+                  user:data
+                })
+              }
+            },
+            fail:res=>{
+              console.log("获取失败",res)
+            }
+          })
+        }
+      
+      
       },
       fail:function(res){
         console.log("未登录:",res)

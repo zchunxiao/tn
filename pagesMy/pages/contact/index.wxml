@@ -1,36 +1,36 @@
 <!--pagesMy/pages/concat/index.wxml-->
 <view class="contact">
     <view class="contact-logo">
-       <image mode="widthFix" src="https://lidian.etianneng.cn/admin/sys-file/dosp/e6da14e7857549629ca38dd7e6e82378.png" class="contact-logo-img"/>
+       <image mode="widthFix" src="{{info.headImgUrl || ''}}" class="contact-logo-img"/>
     </view>
     <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/b09df0ede6684a1cb3c218a2af86a8d2.png" mode="widthFix" class="contact-name"/>
 
     <view class="contact-content">
       <view class="contact-content-item">
          <text class="bold">电话</text>
-         <text>400-878-8188 0572-6216008</text>
+         <text>{{info.phone||""}}</text>
       </view>
       <view class="contact-content-item">
          <text class="bold">邮编</text>
-         <text>313100</text>
+         <text>{{info.postCode||""}}</text>
       </view>
       <view class="contact-content-item">
          <text class="bold">网址</text>
-         <text>http：//www.tn-ny.com</text>
+         <text>{{info.postalAddresse||""}}</text>
       </view>
       <view class="contact-content-item">
          <text class="bold">邮箱</text>
-         <text>info@tn-ny.com</text>
+         <text>{{info.mailbox||""}}</text>
       </view>
       <view class="contact-content-item">
          <text class="bold">传真</text>
-         <text>0572-6216158</text>
+         <text>{{info.fax ||""}}</text>
       </view>
       <view class="contact-content-item">
          <text class="bold">地址</text>
-         <text>浙江省长兴县画溪工业园区</text>
+         <text>{{info.address || ""}}</text>
       </view>
     </view>
 
-    <image mode="widthFix" src="https://lidian.etianneng.cn/admin/sys-file/dosp/6d88eb1036f349b088651a071db0ba60.png" class="contact-code"/>
+    <image mode="widthFix" src="{{info.qrCode || ''}}" class="contact-code"/>
 </view>
