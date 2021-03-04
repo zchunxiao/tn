@@ -184,9 +184,11 @@ Page({
           if(!data) return false;
           const {openid,session_key} = data;
           // 存储openid session_key
-          wx.showToast({
-            title:"授权登录成功"
-          })
+          setTimeout(() => {
+            wx.showToast({
+              title:"授权登录成功"
+            })
+          }, 1000);
           wx.setStorage({
             key:"openid",
             data:openid
