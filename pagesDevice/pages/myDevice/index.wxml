@@ -2,12 +2,22 @@
 <view>
  <view class="my-device-content">
     <view class="my-device-item" wx:for="{{deviceList}}" wx:key="index" bindtap="goDetail"   data-device-id="{{item.productId}}" data-img-url="{{item.productImgUrl}}">
-      <image src="{{item.productImgUrl}}" mode="widthFix" class="my-device-img"/>
-      <text>{{item.productCategory}}</text>
+        <view class="my-devide-box">
+          <image src="{{item.productImgUrl}}" mode="widthFix" class="my-device-img"/>
+          <text>{{item.productCategory}}</text>
+        </view>
+         <text data-blue-tooth-name="{{item.blueToothName}}" 
+              data-sn-code="{{item.snCode}}" 
+              catchtap="deleteDevice">删除设备</text>
     </view>
     <!--<view class="my-device-item" bindtap="goDetector"  data-device-id="11" data-img-url="../../images/device1.png">
-      <image src="../../images/device2.png" mode="widthFix" class="my-device-img"/>
-      <text>检测仪</text>
+     <view class="my-devide-box">
+        <image src="../../images/device2.png" mode="widthFix" class="my-device-img"/>
+        <text>检测仪</text>
+     </view>
+        <text data-blue-tooth-name="11" 
+              data-sn-code="22" 
+              catchtap="deleteDevice">删除设备</text>
     </view>-->
  </view>
 </view>

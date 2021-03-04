@@ -238,6 +238,18 @@
         {
           "name": "pagesMy/pages/opinion/index",
           "pathName": "pagesMy/pages/opinion/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/deviceList/index",
+          "pathName": "pagesDevice/pages/deviceList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/myDevice/index",
+          "pathName": "pagesDevice/pages/myDevice/index",
           "scene": null
         }
       ]

@@ -69,6 +69,9 @@ button{
   font-size: 28rpx;
   color: rgba(115, 115, 115, 100);
   padding:22rpx 0 50rpx 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 .device-item{
   /* display:flex;
@@ -112,4 +115,7 @@ button{
   white-space:nowrap;
   word-break: break-all;
   text-overflow:ellipsis;
+}
+.loading{
+  width:50rpx;
 }

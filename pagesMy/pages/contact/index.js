@@ -74,5 +74,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  tel:function (e) {
+    const {phone} = e.currentTarget.dataset;
+    wx.makePhoneCall({
+      phoneNumber: phone
+    })
   }
 })

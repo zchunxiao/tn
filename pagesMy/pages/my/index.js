@@ -18,7 +18,7 @@ Page({
       },
       {
         imgUrl:"../../images/icon2.png",
-        text:"收藏",
+        text:"说明书",
         url:""
       },
       {

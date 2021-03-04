@@ -41,7 +41,10 @@
   </view>
   <!-- 可用设备 -->
   <view class="device-available">
-    <view class="device-title bold">可用设备</view>
+    <view class="device-title bold">
+    <text>可用设备</text>
+    <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/f931db73eb364cb7b2b661b3d0d7242b.gif" mode="widthFix" class="loading"/>
+    </view>
     <view class="device-item" wx:for="{{deviceList}}" wx:key="index" bindtap="bindDevice" 
     data-device-id="{{item.deviceId}}" data-name="{{item.name}}">
       <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/d9ca0b6c7120408795ca4446de576272.png" class="device-img"/>

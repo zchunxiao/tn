@@ -17,6 +17,11 @@ page{
   justify-content:space-between;
   box-sizing: border-box;
 }
+.my-devide-box{
+  text-align:center;
+}
 .my-device-img{
     width:178rpx;
+    display:block;
+    margin-bottom:20rpx;
 }

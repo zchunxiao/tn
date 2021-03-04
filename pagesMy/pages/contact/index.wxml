@@ -8,7 +8,7 @@
     <view class="contact-content">
       <view class="contact-content-item">
          <text class="bold">电话</text>
-         <text>{{info.phone||""}}</text>
+         <text bindtap='tel' data-phone="{{info.phone||''}}">{{info.phone||""}}</text>
       </view>
       <view class="contact-content-item">
          <text class="bold">邮编</text>

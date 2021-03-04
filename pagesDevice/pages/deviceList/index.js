@@ -161,10 +161,10 @@ Page({
       //   title:"搜索中1",
       //   mask:true
       // })
-      that.setData({
-        visible:true,
-        text:this.data.text
-      })
+      // that.setData({
+      //   visible:true,
+      //   text:this.data.text
+      // })
       that.findBlue();
    
     },
@@ -215,10 +215,10 @@ Page({
                     deviceList: tnDeviceList
                   });
                  // wx.hideLoading();
-                 that.setData({
-                  visible:false,
-                  text:that.data.text
-                })
+                //  that.setData({
+                //     visible:false,
+                //     text:that.data.text
+                //   })
                 }
   
               }

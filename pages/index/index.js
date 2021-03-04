@@ -28,7 +28,7 @@ Page({
       },
       {
         img:'../../images/pic4.png',
-        url:'/pagesMy/pages/contactUs/index'
+        url:'/pagesMy/pages/contact/index'
       },
     ],
     currentSwiper: 0,
