@@ -12,7 +12,7 @@ Page({
     imgUrl:getStorageByKey('qrCodeUrl')|| "",
     phoneNumber:getStorageByKey('phoneNumber'),
     realName:"",
-    nameEditShow:false,
+    nameEditShow:true,
     userId:""
   },
 

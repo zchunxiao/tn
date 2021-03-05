@@ -38,52 +38,13 @@
           </view>
         </view>
       </view>
-      <view class="hp-ad">
-        <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/f1349d284289493ca0f9da70f2982b71.png" mode="widthFix" class="hp-img"/>
-      </view>
+      
   </view>
 
-  <!-- 常用设备 -->
-  <view class="hp-device">
-    <!-- <text>常用设备</text> -->
-    <!-- 未授权先进行授权 -->
-    <!-- <view wx:if="{{!isAuth}}">
-      <button open-type="getUserInfo" 
-              lang="zh_CN" 
-              bindgetuserinfo="bindGetUserInfo">
-              <image src="../../images/add.png" lazy-load="true" mode="widthFix" class="hp-device-add-icon" />
-      </button>
-    </view> -->
-     <!-- 已经授权 -->
-    <!-- <view wx:else>
-      <image src="../../images/add.png" lazy-load="true" mode="widthFix" class="hp-device-add-icon" bindtap="addDevice" />
-    </view> -->
+  <view class="hp-ad" v-if="{{Object.keys(bottomList).length > 0}}">
+        <image src="{{bottomList.bannerUrl}}" mode="widthFix"  class="hp-img"/>
   </view>
-  <view class="hp-device-content">
-    <!-- 设备展示 -->
-    <!-- <view  wx:if="{{isAuth}}">
-        <view  wx:for="{{deviceList}}"  wx:key="index">
-          <image src="{{item.productImgUrl}}" mode="widthFix" lazy-load="true" class="hp-device-pic"  bindtap="goDeviceDetail" 
-          data-device-id="{{item.productId}}" data-img-url="{{item.productImgUrl}}"/>
-          <text class="hp-device-text">{{item.productCategory}}</text>
-        </view>
-    </view> -->
-    <!-- 未登录添加设备 -->
-    <!-- <view wx:if="{{!isAuth}}">
-      <button open-type="getUserInfo" 
-              lang="zh_CN" 
-              bindgetuserinfo="bindGetUserInfo">
-        <image src="../../images/device-add.svg" mode="widthFix" lazy-load="true" class="hp-device-add"/>
-        <text class="hp-device-add-text">点击添加设备</text>
-      </button>
-    </view> -->
-    <!-- <view wx:if="{{isAuth && deviceList.length==0}}">
-        <view bindtap="addDevice">
-          <image src="../../images/device-add.svg" mode="widthFix" lazy-load="true" class="hp-device-add"/>
-          <text class="hp-device-add-text">点击添加设备</text>
-        </view>
-    </view> -->
-  </view>
+
 </view>
 
 

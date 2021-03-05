@@ -9,6 +9,7 @@ Page({
    */
   data: {
     bannerList:[], //轮播图
+    bottomList:[],
     code:"",
     user:{},
     isAuth:false, //是否授权
@@ -68,6 +69,18 @@ Page({
             bannerList:result
         })
     })
+    getBannerList({bannerType:3}).then(res=>{
+      // res[0].bannerUrl="https://lidian.etianneng.cn/admin/sys-file/dosp/f1349d284289493ca0f9da70f2982b71.png"
+      if(!res) return false;
+      let result = res.map(item=>{
+        item.bannerUrl = replaceUrl(item.bannerUrl)
+        return item
+      })
+     
+      _this.setData({
+        bottomList:result.length > 0 ?result[0]:[]
+      })
+  })
     wx.checkSession({
       success:function(res){
         console.log("已登录:",res);

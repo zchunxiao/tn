@@ -2,6 +2,7 @@
 
 .hp{
   overflow: hidden;
+  padding-bottom: 150rpx;
 }
 .hp-image{
   width:100%;
@@ -59,10 +60,10 @@
 .hp-content{
   border-radius:20rpx 20rpx 0 0;
   background:#fff;
-  position:absolute;
-  left:0;
-  right:0;
-  top:460rpx;
+  margin:-20rpx 0 0 0;
+  z-index: 10;
+  position: relative;
+
 }
 .hp-content-type{
   display:flex;
@@ -78,6 +79,9 @@
   position: absolute;
   left: 0;
   right:0;
+  bottom:0;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 .hp-img{
   width:100%;
@@ -115,4 +119,8 @@
    position: relative;
    height:480rpx;
    background:#FF2145;
+   z-index:0;
+ }
+ .hp-bottom-img{
+   height: 200rpx;
  }
