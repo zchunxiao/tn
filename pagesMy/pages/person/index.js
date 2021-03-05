@@ -12,7 +12,7 @@ Page({
     imgUrl:getStorageByKey('qrCodeUrl')|| "",
     phoneNumber:getStorageByKey('phoneNumber'),
     realName:"",
-    nameEditShow:true,
+    nameEditShow:false,
     userId:""
   },
 
@@ -47,11 +47,12 @@ Page({
    userInfo:function(){
      const _this  = this;
     getUserInfo(getStorageByKey('phoneNumber')).then(data=>{
-      console.log("ddd:",data)
       const {realName,userId} = data;
+      console.log("ddd:",realName?1:2)
       _this.setData({
         realName,
         userId,
+        nameEditShow :realName?false:true
       })
     })
    },

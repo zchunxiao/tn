@@ -22,14 +22,17 @@ Page({
    */
   onReady: function () {
     getContactUs().then(data=>{
+     
       const {records} = data;
+     
       let result = records.map((item)=>{
         item.qrCode = replaceUrl(item.qrCode)
         item.headImgUrl = replaceUrl(item.headImgUrl)
         return item
       })
+ 
       this.setData({
-        info:result
+        info:result.length > 0?result[0]:[]
       })
     })
   },

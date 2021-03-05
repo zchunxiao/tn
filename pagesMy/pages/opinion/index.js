@@ -65,13 +65,17 @@ Page({
 
   },
   bindFormSubmit:function(){
-    console.log("dd:",this.data.value)
     getFeedBack(this.data.value).then(data=>{
-      console.log("ff:",data)
       if(!data) return false;
       wx.showToast({
         title:data
       })
+      setTimeout(() => {
+        // wx.navigateTo({
+        //   url:"/pagesMy/pages/person/index"
+        // })
+        wx.navigateBack()
+      }, 2000);
     })
   },
   handleBindinput:function(e){

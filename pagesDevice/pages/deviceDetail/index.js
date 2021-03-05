@@ -10,6 +10,7 @@ Page({
     deviceId:"", //设备id
     imgUrl:"" ,// 图片url
     snCode:"",
+    blueToothName:"",
     serviceId:[],
     deviceInfo:{},
     connectStatus:false,
@@ -32,9 +33,10 @@ Page({
       imgUrl
     })
     getProductById({deviceId}).then(data=>{
-      const {snCode} = data;
+      const {snCode,blueToothName} = data;
       _this.setData({
         snCode,
+        blueToothName
       })
     })
   
@@ -148,11 +150,9 @@ Page({
     wx.getStorage({
        key: 'deviceId',
        success:res=>{
-         id = res.data
-       }
-     });
-
-    // 搜索蓝牙设备（消耗大量资源，要及时结束）
+         console.log("09090:",res.data)
+         id = res.data;
+            // 搜索蓝牙设备（消耗大量资源，要及时结束）
     wx.startBluetoothDevicesDiscovery({
       success: function (res) {
         // 获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
@@ -173,6 +173,12 @@ Page({
        
       }        
     })
+       }
+     });
+
+
+
+ 
   },
   // 获取到设备之后连接蓝牙设备
   connetBlue(deviceId){ 
@@ -230,7 +236,7 @@ Page({
                       _this.getDeviceInfo(str)
                     //  wx.hideLoading();
                       wx.closeBLEConnection({
-                        deviceId
+                        deviceId:deviceId
                       });
                       wx.closeBluetoothAdapter()
                       })
@@ -283,19 +289,19 @@ Page({
        let sncodeText = hexToStr(str.substr(148,64));
 
        console.log("sn码",sncodeText);
-       console.log("电池状态",BatterySatusText);
-       console.log("电池温度",BatteryTempText);
-       console.log("mos温度", mosTempText);
-       console.log("充电器匹配检测电压",Voltage1Text);
-       console.log("放电电流:",dischargeText);
-       console.log("充电电流:",discharge1Text);
-       console.log("单体电压",Voltage2Text);
-       console.log('充电截至电压:',Voltage3Text)
-       console.log('电池总压:',Voltage4Text)
-       console.log('固件版本:',version1Text)
-       console.log('硬件版本:',version2Text)
-       console.log('电池规则:',typeText)
-       console.log('mac地址:',mac)
+      //  console.log("电池状态",BatterySatusText);
+      //  console.log("电池温度",BatteryTempText);
+      //  console.log("mos温度", mosTempText);
+      //  console.log("充电器匹配检测电压",Voltage1Text);
+      //  console.log("放电电流:",dischargeText);
+      //  console.log("充电电流:",discharge1Text);
+      //  console.log("单体电压",Voltage2Text);
+      //  console.log('充电截至电压:',Voltage3Text)
+      //  console.log('电池总压:',Voltage4Text)
+      //  console.log('固件版本:',version1Text)
+      //  console.log('硬件版本:',version2Text)
+      //  console.log('电池规则:',typeText)
+      //  console.log('mac地址:',mac)
        
       _this.setData({
         connectStatus:true,

@@ -60,7 +60,7 @@
           <view>硬件版本：{{deviceInfo.version2Text}}</view>
           <view>电池规格：{{deviceInfo.typeText}}</view>
           <view>蓝牙Mac地址：{{deviceInfo.mac}}</view>
-          <view>设备SN码：{{deviceInfo.sncodeText}}</view>
+          <view>设备SN码：{{blueToothName}}</view>
         </view>
       
         </view>

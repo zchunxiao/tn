@@ -2,7 +2,7 @@
 import {handleBindPDevice,getListProductByUser,getBlueInfoByProductCode} from '../../../api/index.js'
 import {getStorageByKey, hexToStr,hexToDecimalism,ab2hex} from '../../../utils/index.js'
 import {replaceUrl} from '../../../utils/index.js'
-
+let timer;
 Page({
 
   /**
@@ -66,7 +66,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+     clearInterval(timer);
   },
 
   /**
@@ -195,7 +195,7 @@ Page({
           // 获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
           // 每隔5秒中搜索一次列表
           time++;
-          setInterval(() => {
+          timer = setInterval(() => {
             wx.getBluetoothDevices({
               success:(res)=>{
                 let tnDeviceList = res.devices.filter(item=>{
@@ -252,10 +252,7 @@ Page({
     const name = ds.name;
     const _this = this;
 
-    wx.setStorage({
-      data: deviceId ,
-      key: 'deviceId',
-    })
+  
     if (!getStorageByKey('location')){
       _this.getSetting();
     }else{
@@ -267,8 +264,8 @@ Page({
       const {latitude,longitude} = getStorageByKey('location');
       // 绑定当前的设备
       setTimeout(() => {
-        _this.bindBlueTooth(name,latitude,longitude,getStorageByKey('snCode')||"",_this);
-      }, 10000);
+        _this.bindBlueTooth(name,latitude,longitude,getStorageByKey('snCode')||"",_this,deviceId);
+      }, 20000);
     }  
   },
   // 获取到设备之后连接蓝牙设备
@@ -311,17 +308,19 @@ Page({
                       
                       let str="";
                       wx.onBLECharacteristicValueChange(function (res) {
+                      
                         if(str.length<242){
                           str+=ab2hex(res.value)
                           return false;
                         }
-                        console.log("str.length:",str.length)
+                        console.log("0000000000000999999:",str.substr(148,64));
                         // 获取设备信息
                         if(str.length == 242){
                           _this.getDeviceInfo(str)
                           //callback();
                         }
                       })
+                      
                     }
                 })
         
@@ -369,20 +368,20 @@ Page({
         // sn码
         let sncodeText = hexToStr(str.substr(148,64));
 
-        console.log("sn码",sncodeText);
-        console.log("电池状态",BatterySatusText);
-        console.log("电池温度",BatteryTempText);
-        console.log("mos温度", mosTempText);
-        console.log("充电器匹配检测电压",Voltage1Text);
-        console.log("放电电流:",dischargeText);
-        console.log("充电电流:",discharge1Text);
-        console.log("单体电压",Voltage2Text);
-        console.log('充电截至电压:',Voltage3Text)
-        console.log('电池总压:',Voltage4Text)
-        console.log('固件版本:',version1Text)
-        console.log('硬件版本:',version2Text)
-        console.log('电池规则:',typeText)
-        console.log('mac地址:',mac)
+        console.log("##########解析sn码",sncodeText);
+        // console.log("电池状态",BatterySatusText);
+        // console.log("电池温度",BatteryTempText);
+        // console.log("mos温度", mosTempText);
+        // console.log("充电器匹配检测电压",Voltage1Text);
+        // console.log("放电电流:",dischargeText);
+        // console.log("充电电流:",discharge1Text);
+        // console.log("单体电压",Voltage2Text);
+        // console.log('充电截至电压:',Voltage3Text)
+        // console.log('电池总压:',Voltage4Text)
+        // console.log('固件版本:',version1Text)
+        // console.log('硬件版本:',version2Text)
+        // console.log('电池规则:',typeText)
+        // console.log('mac地址:',mac)
 
         const _deviceInfo = {
           sncodeText,
@@ -411,13 +410,13 @@ Page({
 
   },
   // 绑定蓝牙设备
-  bindBlueTooth:(blueToothName,latitude,longitude,snCode,that)=>{
+  bindBlueTooth:(blueToothName,latitude,longitude,snCode,that,id)=>{
       const params = {
         bindType:1, //绑定类型(1:绑定 2:解绑)
         blueToothName,
         latitude,
         longitude,
-        snCode
+        snCode:blueToothName
       }
     
       that.setData({
@@ -431,6 +430,12 @@ Page({
             title:'绑定成功',
             duration:2000
           })
+          if(id){
+            wx.setStorage({
+              data: deviceId ,
+              key: id,
+            })
+          }
           setTimeout(() => {
             wx.switchTab({
               url:"/pages/index/index"
@@ -488,7 +493,7 @@ Page({
     const _this = this;
     wx.getSetting({
       success: (res) => {
-        console.log("fddd:",res)
+
         // res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
         // res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
         // res.authSetting['scope.userLocation'] == true    表示 地理位置授权

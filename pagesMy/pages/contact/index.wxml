@@ -16,7 +16,7 @@
       </view>
       <view class="contact-content-item">
          <text class="bold">网址</text>
-         <text>{{info.postalAddresse||""}}</text>
+         <text>{{info.postalAddress||""}}</text>
       </view>
       <view class="contact-content-item">
          <text class="bold">邮箱</text>
