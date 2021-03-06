@@ -19,7 +19,7 @@ Page({
       {
         imgUrl:"../../images/icon2.png",
         text:"说明书",
-        url:"/pagesMy/pages/article/index?articleId=111"
+        url:"/pagesMy/pages/article/index?articleId=1367696439408971778"
       },
       {
         imgUrl:"../../images/icon3.png",

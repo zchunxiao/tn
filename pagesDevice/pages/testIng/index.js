@@ -120,9 +120,13 @@ Page({
     const _this = this;
     for(let i = 0;i<8;i++){
       setTimeout(()=>{
-  //console.log("ddd:",_this.data.list[_this.data.itemList[i].index])
+
+        const num = _this.data.itemList[i].index;
+        const status = _this.data.list[num];
+
+        console.log("11:",num ,_this.data.list,status)
         _this.data.itemList[i].showLoading = false;
-        _this.data.itemList[i].status = _this.data.list[_this.data.itemList[i].index];
+        _this.data.itemList[i].status = status;
         _this.setData({
              itemList: _this.data.itemList
            })
@@ -131,7 +135,8 @@ Page({
     }
   },
   onLoad(option){
-    const {blueStr="0000"} = option;
+    const {blueStr} = option;
+    
     this.setData({
       list: hex_to_bin(blueStr).split("")
     })

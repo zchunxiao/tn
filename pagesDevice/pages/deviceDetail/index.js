@@ -1,6 +1,7 @@
 const { hexToStr,hexToDecimalism,ab2hex,hex_to_bin} = require("../../../utils/index.js")
 import {getProductById} from "../../../api/index.js"
 // pages/deviceDetail/index.js
+let timer;
 Page({
 
   /**
@@ -10,6 +11,7 @@ Page({
     deviceId:"", //设备id
     imgUrl:"" ,// 图片url
     snCode:"",
+    TnSnCode:"",
     blueToothName:"",
     serviceId:[],
     deviceInfo:{},
@@ -36,6 +38,7 @@ Page({
       const {snCode,blueToothName} = data;
       _this.setData({
         snCode,
+        TnSnCode: snCode.replace(/HG20/g, 'TN'),
         blueToothName
       })
     })
@@ -69,7 +72,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-   
+    wx.closeBluetoothAdapter()
   },
 
   /**
@@ -132,27 +135,101 @@ Page({
      wx.getBluetoothAdapterState({
       success: function (res) {
         if(!res.available) return false;
-        _this.getBlue()
+         // 搜索蓝牙设备（消耗大量资源，要及时结束）
+        wx.startBluetoothDevicesDiscovery({
+          services: [],
+          success: function (res) {
+            console.log("搜索蓝牙设备:",res)
+            // 获取蓝牙设备
+          // 获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
+          // 每隔5秒中搜索一次列表
+          timer = setInterval(() => {
+            wx.getBluetoothDevices({
+              success:function(res){
+                let tnDeviceList = res.devices.filter(item=>{
+                  return item.name.indexOf("TN") > -1
+                });
+                console.log("搜索蓝牙设备列表:",tnDeviceList,_this.data.TnSnCode)
+                let list;
+                tnDeviceList.map(item=>{
+                  if(item.name  == _this.data.TnSnCode){
+                    list=item
+                  }
+                })
+                if(!list){
+                  wx.showToast({
+                    title: '搜索不到该蓝牙设备',
+                  })
+                  _this.setData({
+                    visible:false
+                  })
+                  return false;
+                }else{
+                  console.log("list.deviceId:",list.deviceId);
+                  _this.setData({
+                    deviceId:list.deviceId
+                  })
+                  _this.getBlue(list.deviceId)
+                }
+                wx.stopBluetoothDevicesDiscovery({
+                  success (res) {
+                   clearInterval(timer)
+                   console.log("停止搜索：",res)
+                  }
+                })
+                
+              
+                
+              }
+
+                // if(tnDeviceList.length >0){
+                //   _this.setData({
+                //     // visible:false,
+                //      deviceList: tnDeviceList
+                //    },()=>{
+                //      wx.stopBluetoothDevicesDiscovery({
+                //        success (res) {
+                //         clearInterval(timer)
+                //         console.log("停止搜索：",res)
+                //        }
+                //      })
+                //    });
+                  
+                // }
+             
+              //}
+            })
+          },5000)
+           
+          
+          }
+        })
+       
+       
       },
       fail: function (res) {
         wx.showToast({
           title: '蓝牙不可用',
         })
-       _this.stopBluetoothDevicesDiscovery();
+      
       }
 
     })
   },
   // 获取搜索到的设备信息
-  getBlue(){
-    let id,i=0,_this = this;
+  getBlue(id){
+    let _this = this;
 
-    wx.getStorage({
-       key: 'deviceId',
-       success:res=>{
-         console.log("09090:",res.data)
-         id = res.data;
-            // 搜索蓝牙设备（消耗大量资源，要及时结束）
+    // wx.getStorage({
+    //    key: 'deviceId',
+    //    success:res=>{
+    //      console.log("09090:",res.data)
+    //      id = res.data;
+    //         // 搜索蓝牙设备（消耗大量资源，要及时结束）
+
+    //    }
+    //  });
+
     wx.startBluetoothDevicesDiscovery({
       success: function (res) {
         // 获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
@@ -160,29 +237,26 @@ Page({
           wx.getBluetoothDevices({
             success:(res)=>{
              _this.connetBlue(id)
-              wx.stopBluetoothDevicesDiscovery({
-                success (res) {
-                },
-                fail (res) {
-                  console.log(res,"关闭搜索失败")
-                }
-              });
+              // wx.stopBluetoothDevicesDiscovery({
+              //   success (res) {
+              //   },
+              //   fail (res) {
+              //     console.log(res,"关闭搜索失败")
+              //   }
+              // });
             }
           })
         }, 1000);
        
       }        
     })
-       }
-     });
-
-
 
  
   },
   // 获取到设备之后连接蓝牙设备
   connetBlue(deviceId){ 
     const _this = this;
+    console.log("deviceId:",deviceId)
     wx.createBLEConnection({
       // 这里的 deviceId 需要已经通过 createBLEConnection 与对应设备建立链接
       deviceId: deviceId,
@@ -193,17 +267,18 @@ Page({
         wx.getBLEDeviceServices({
             deviceId:deviceId,
             success: function(res) {
-
+               
                 const serviceId = res.services.map(item=>{
                     return item.uuid
                 })
+                console.log("蓝牙连接成功1:",res,serviceId);
 
                 // 针对一个特定服务查看这个服务所支持的操作
                 wx.getBLEDeviceCharacteristics({
                     deviceId: deviceId,
                     serviceId: serviceId[1],
                     success: function (res) {
-                      // console.log("dddhjfghjdsfghjd:",res)
+                     console.log("服务所支持的操作:",res)
            
                      let characteristicId=res.characteristics.map(item=>{
                        return item.uuid
@@ -221,7 +296,7 @@ Page({
                       
                       let str="";
                       wx.onBLECharacteristicValueChange(function (res) {
-      
+                         console.log("onBLECharacteristicValueChange:",res)
                         if(str.length<242){
                           str+=ab2hex(res.value)
                           return false;
@@ -238,7 +313,7 @@ Page({
                       wx.closeBLEConnection({
                         deviceId:deviceId
                       });
-                      wx.closeBluetoothAdapter()
+                      // wx.closeBluetoothAdapter()
                       })
                     }
                 })

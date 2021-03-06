@@ -16,7 +16,8 @@ Page({
     deviceInfo:{},
     saomaResult:"",
     visible:false,
-    text:"搜索中"
+    text:"搜索中",
+    snCode:""
   },
 
   /**
@@ -73,7 +74,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-   this.data.isConnect && wx.closeBluetoothAdapter();
+     wx.closeBluetoothAdapter();
   },
 
   /**
@@ -195,36 +196,43 @@ Page({
           // 获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
           // 每隔5秒中搜索一次列表
           time++;
-          timer = setInterval(() => {
+           timer = setInterval(() => {
             wx.getBluetoothDevices({
               success:(res)=>{
                 let tnDeviceList = res.devices.filter(item=>{
                   return item.name.indexOf("TN") > -1
                 });
-                console.log("3333:",tnDeviceList)
-              
-                if(time==1){
-                  console.log("3333time:",time)
-                 // wx.hideLoading();
-                }
-                if(tnDeviceList.length == 0){
-                  that.initBlue()
-                }else{
-                  that.setData({
-                   // visible:false,
-                    deviceList: tnDeviceList
-                  });
+                
+                // if(tnDeviceList.length == 0){
+                //   that.initBlue()
+                // }else{
+                  if(tnDeviceList.length >0){
+                    that.setData({
+                      // visible:false,
+                       deviceList: tnDeviceList
+                     },()=>{
+                       wx.stopBluetoothDevicesDiscovery({
+                         success (res) {
+                          clearInterval(timer)
+                          console.log("停止搜索：",res)
+                         }
+                       })
+                     });
+                    
+                  }
+               
                  // wx.hideLoading();
                 //  that.setData({
                 //     visible:false,
                 //     text:that.data.text
                 //   })
-                }
+               // }
+               
   
               }
             });
           
-          }, 5000);
+           }, 5000);
          
         }        
       })
@@ -252,6 +260,7 @@ Page({
     const name = ds.name;
     const _this = this;
 
+
   
     if (!getStorageByKey('location')){
       _this.getSetting();
@@ -260,16 +269,19 @@ Page({
         visible:true,
         text:"绑定中"
       })
-      _this.connetBlue(deviceId);
       const {latitude,longitude} = getStorageByKey('location');
+      _this.connetBlue(deviceId,name,latitude,longitude,_this.data.snCode,_this);
+     
       // 绑定当前的设备
-      setTimeout(() => {
-        _this.bindBlueTooth(name,latitude,longitude,getStorageByKey('snCode')||"",_this,deviceId);
-      }, 20000);
+      // setTimeout(() => {
+      //   console.log("绑定蓝牙1")
+      //   _this.bindBlueTooth(name,latitude,longitude,getStorageByKey('snCode')||"",_this,deviceId);
+      // }, 1000);
     }  
   },
   // 获取到设备之后连接蓝牙设备
-  connetBlue(deviceId){ 
+  connetBlue(deviceId,name,latitude,longitude,code,that){ 
+    console.log("连接蓝牙")
     const _this = this,finish = false;
     wx.createBLEConnection({
       // 这里的 deviceId 需要已经通过 createBLEConnection 与对应设备建立链接
@@ -308,16 +320,28 @@ Page({
                       
                       let str="";
                       wx.onBLECharacteristicValueChange(function (res) {
-                      
+                        console.log("0000000000000999999:",ab2hex(res.value));
                         if(str.length<242){
                           str+=ab2hex(res.value)
                           return false;
                         }
-                        console.log("0000000000000999999:",str.substr(148,64));
+                     
                         // 获取设备信息
                         if(str.length == 242){
                           _this.getDeviceInfo(str)
                           //callback();
+                          //_this.bindBlueTooth();
+                          _this.bindBlueTooth(name,latitude,longitude,code,that)
+                          name,latitude,longitude,code,that
+                          wx.closeBLEConnection({
+                            deviceId: deviceId,
+                            success:function(res){
+                              console.log("关闭设备连接成功",res)
+                            },
+                            fail:function(res){
+                              console.log("关闭设备连接失败",res)
+                            }
+                          })
                         }
                       })
                       
@@ -405,19 +429,22 @@ Page({
         })
         _this.setData({
           connectStatus:true,
+        //  snCode:sncodeText,
           deviceInfo:_deviceInfo
         })
 
   },
   // 绑定蓝牙设备
-  bindBlueTooth:(blueToothName,latitude,longitude,snCode,that,id)=>{
+  bindBlueTooth:(blueToothName,latitude,longitude,snCode,that)=>{
+  console.log("绑定蓝牙设备");
       const params = {
         bindType:1, //绑定类型(1:绑定 2:解绑)
         blueToothName,
         latitude,
         longitude,
-        snCode:blueToothName
+        snCode:getStorageByKey("snCode") || "",
       }
+   
     
       that.setData({
         visible:false
@@ -430,12 +457,12 @@ Page({
             title:'绑定成功',
             duration:2000
           })
-          if(id){
-            wx.setStorage({
-              data: deviceId ,
-              key: id,
-            })
-          }
+          // if(id){
+          //   wx.setStorage({
+          //     data: deviceId ,
+          //     key: id,
+          //   })
+          // }
           setTimeout(() => {
             wx.switchTab({
               url:"/pages/index/index"

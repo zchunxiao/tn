@@ -48,7 +48,6 @@ Page({
      const _this  = this;
     getUserInfo(getStorageByKey('phoneNumber')).then(data=>{
       const {realName,userId} = data;
-      console.log("ddd:",realName?1:2)
       _this.setData({
         realName,
         userId,

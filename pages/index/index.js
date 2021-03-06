@@ -83,7 +83,6 @@ Page({
   })
     wx.checkSession({
       success:function(res){
-        console.log("已登录:",res);
         if(isLogin()){
           _this.setData({
             isAuth:true
