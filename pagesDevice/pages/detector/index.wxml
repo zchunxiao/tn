@@ -26,14 +26,14 @@
     </view>
   </view>
   <view class="detector-btn-box">
-    <button class="detector-btn">
+    <button class="detector-btn" data-type="1" bindtap="goCheck">
       <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/47a31c5428784a68a0876701b1481732.png" mode="widthFix" class="detector-img"/>
     </button>
-    <button class="detector-btn">
+    <button class="detector-btn" data-type="2" bindtap="goCheck">
       <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/ce0267bd222d47a18aa6b06b6baf09d5.png" mode="widthFix" class="detector-img"/>
     </button>
   </view>
-  <button class="detector-all">
-    <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/8064dd1016e84770a79d975a4b483857.png" mode="widthFix" class="detector-img" bindtap="goMore"/>
+  <button class="detector-all" bindtap="goMore">
+    <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/8064dd1016e84770a79d975a4b483857.png" mode="widthFix" class="detector-img" />
   </button>
 </view>

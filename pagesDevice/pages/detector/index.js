@@ -1,11 +1,19 @@
 // pagesDevice/pages/Detector/index.js
+import {getConfigParams} from "../../../api/index.js"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    chargeCommand:"",
+    chargeTime:"",
+    dischargeCommand:"",
+    dischargeTime:"",
+    freezeCommand:"",
+    freezeTime:"",
+    intervalTime:""
   },
 
   /**
@@ -26,7 +34,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const _this = this;
+    getConfigParams().then(data=>{
+      console.log("获取配置参数:",data)
+      const {
+        chargeCommand,
+        chargeTime,
+        dischargeCommand,
+        dischargeTime,
+        freezeCommand,
+        freezeTime,
+        intervalTime
+      } = data;
+      _this.setData({
+        chargeCommand,
+        chargeTime,
+        dischargeCommand,
+        dischargeTime,
+        freezeCommand,
+        freezeTime,
+        intervalTime
+      })
+    })
   },
 
   /**
@@ -68,5 +97,10 @@ Page({
     wx.navigateTo({
       url:`/pagesDevice/pages/report/index`
     })
+  },
+  // 检测仪检测
+  goCheck:function(e){
+    const {type} =  e.currentTarget.dataset;
+    console.log("www:",type);
   }
 })

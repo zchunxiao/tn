@@ -38,6 +38,7 @@ const getFeedBack = data => fetch(`feedback/feedBack?feedBack=${data}`,{},{metho
 // 联系我们 get
 const getContactUs = data=> fetch('contact/page');
 
+// 修改客户信息
 const editUserInfo = data =>fetch('user',data,{method:"put"})
 
 // 查询用户
@@ -47,8 +48,15 @@ const getUserInfo = data=>fetch(`user/getUserByPhone?phoneNumber=${data}`)
 const testBind  = data =>{
   const {name,type} = data;
   return fetch(`detectorApi/binding?name=${name}&type=${type}`,{},{method:"post"})
+}
 
-} 
+// 获取配置参数 get
+const getConfigParams = ()=>fetch('configParamsApi/getConfigParams');
+
+
+// 检测仪检测 post
+const getTest = data=>fetch('/api​/test',data)
+
 module.exports= {
   getBannerList,
   wxLogin,
@@ -64,5 +72,7 @@ module.exports= {
   getContactUs,
   editUserInfo,
   getUserInfo,
-  testBind
+  testBind,
+  getConfigParams,
+  getTest
 }
