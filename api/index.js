@@ -20,7 +20,7 @@ const getListProductByUser = (data)=>fetch('product/listProductByUser',data,{loa
 // 通过id查询商品 get
 const getProductById  =({deviceId})=> fetch(`product/${deviceId}`) 
 
-// 产品绑定/解绑客户 post
+// 电池产品绑定/解绑客户 post
 const handleBindPDevice = data=> fetch('productApi/binding',data,{method:"post"})
 
 // 分页查询文章简要信息 get
@@ -30,19 +30,25 @@ const getArticleList =  data=> fetch('articleApi/briefPage',{size:pageSize,...da
 const getArticleDetail =  data=> fetch(`article/${data}`,data)
 
 // 通过产品码（激光码）查询产品信息 get
-const getBlueInfoByProductCode = data=>fetch('/product/getByProductCode',data,{loading:false})
+const getBlueInfoByProductCode = data=>fetch('product/getByProductCode',data,{loading:false})
 
 // 意见反馈 post 
 const getFeedBack = data => fetch(`feedback/feedBack?feedBack=${data}`,{},{method:"post"})
 
 // 联系我们 get
-const getContactUs = data=> fetch('/contact/page');
+const getContactUs = data=> fetch('contact/page');
 
-const editUserInfo = data =>fetch('/user',data,{method:"put"})
+const editUserInfo = data =>fetch('user',data,{method:"put"})
 
 // 查询用户
-const getUserInfo = data=>fetch(`/user/getUserByPhone?phoneNumber=${data}`)
+const getUserInfo = data=>fetch(`user/getUserByPhone?phoneNumber=${data}`)
 
+// 绑定检测仪 post 绑定/解绑检测仪(1:绑定 2:解绑)
+const testBind  = data =>{
+  const {name,type} = data;
+  return fetch(`detectorApi/binding?name=${name}&type=${type}`,{},{method:"post"})
+
+} 
 module.exports= {
   getBannerList,
   wxLogin,
@@ -57,5 +63,6 @@ module.exports= {
   getFeedBack,
   getContactUs,
   editUserInfo,
-  getUserInfo
+  getUserInfo,
+  testBind
 }

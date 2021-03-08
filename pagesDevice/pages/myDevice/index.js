@@ -1,5 +1,5 @@
 // device/pages/device/index.js
-import {getListProductByUser,handleBindPDevice} from '../../../api/index.js'
+import {getListProductByUser,handleBindPDevice,testBind} from '../../../api/index.js'
 import {replaceUrl} from '../../../utils/index.js'
 
 Page({
@@ -76,9 +76,16 @@ Page({
   onShareAppMessage: function () {
 
   },
-  // 电池详情
+  // 绑定设备详情
   goDetail:function(e){
-    const {deviceId, imgUrl } =  e.currentTarget.dataset
+    const {deviceId, imgUrl,type} =  e.currentTarget.dataset
+    console.log("ddd:",deviceId, imgUrl,type);
+    if(type==2){
+      wx.navigateTo({
+        url:`/pagesDevice/pages/detector/index`
+      })
+      return false;
+    }
     wx.navigateTo({
       url:`/pagesDevice/pages/deviceDetail/index?deviceId=${deviceId}&imgUrl=${imgUrl}`
     })
@@ -99,17 +106,37 @@ Page({
       success: function (res) {
         if (res.confirm) {
           const ds = e.currentTarget.dataset;
-          const {blueToothName,snCode} =  ds;
-          _this.handleDeleteDevice(blueToothName,snCode);
+          const {blueToothName,snCode,type} =  ds;
+          _this.handleDeleteDevice(blueToothName,snCode,type);
         }
       }
     })
   },
   // 删除设备
-  handleDeleteDevice:function(blueToothName,snCode){
+  handleDeleteDevice:function(name,snCode,type){
+
+    if(type ==2){
+      testBind({
+        name,
+        type:2,
+      }).then(data=>{
+        if(data && data == '操作成功'){
+          wx.showToast({
+            title:'删除成功',
+            duration:2000
+          })
+          setTimeout(() => {
+            wx.switchTab({
+              url:"/pages/index/index"
+            })
+          }, 2000);
+        }
+      })
+      return false;
+    }
       const params = {
         bindType:2, //绑定类型(1:绑定 2:解绑)
-        blueToothName,
+        blueToothName:name,
         snCode
       }
       const _this  = this;

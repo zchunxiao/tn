@@ -18,7 +18,8 @@ Page({
     connectStatus:false,
     visible:false,
     text:"获取中",
-    blueStr:""
+    blueStr:"",
+    isUseBlueTooth:false // 检测蓝牙是否可用
   },
 
   /**
@@ -72,7 +73,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    wx.closeBluetoothAdapter()
+    this.data.isUseBlueTooth && wx.closeBluetoothAdapter()
   },
 
   /**
@@ -116,7 +117,9 @@ Page({
       success: function (res) {
         that.findBlue();
         that.setData({
-          visible:true
+          visible:true,
+          isUseBlueTooth:true
+         
         })
       },
       fail: function (res) {//如果手机上的蓝牙没有打开，可以提醒用户
@@ -309,11 +312,9 @@ Page({
                         
                         // 获取设备信息
                       _this.getDeviceInfo(str)
-                    //  wx.hideLoading();
                       wx.closeBLEConnection({
                         deviceId:deviceId
                       });
-                      // wx.closeBluetoothAdapter()
                       })
                     }
                 })
@@ -325,13 +326,15 @@ Page({
           })
       },
       fail (err){
-        console.log("errr:",err);
+        const {errMsg} =err;
+        wx.showToast({
+          title:errMsg
+        })
       }
     })
   },
   // 获取设备信息
   getDeviceInfo(str){
-       console.log("djhhfhhgfd999:",str.substr(212,4));
        const _this = this;
        // 电池状态
        let  BatterySatusText = hexToDecimalism(str.substr(10,2));

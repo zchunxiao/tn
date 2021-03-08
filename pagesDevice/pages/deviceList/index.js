@@ -1,5 +1,5 @@
 // pages/deviceList/index.js
-import {handleBindPDevice,getListProductByUser,getBlueInfoByProductCode} from '../../../api/index.js'
+import {handleBindPDevice,getListProductByUser,getBlueInfoByProductCode,testBind} from '../../../api/index.js'
 import {getStorageByKey, hexToStr,hexToDecimalism,ab2hex} from '../../../utils/index.js'
 import {replaceUrl} from '../../../utils/index.js'
 let timer;
@@ -17,7 +17,8 @@ Page({
     saomaResult:"",
     visible:false,
     text:"搜索中",
-    snCode:""
+    snCode:"",
+    isUseBlueTooth:false // 检测蓝牙是否可用
   },
 
   /**
@@ -38,8 +39,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
-
     const _this = this;
     _this.getList();
     _this.getSetting();
@@ -74,7 +73,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-     wx.closeBluetoothAdapter();
+    this.data.isUseBlueTooth && wx.closeBluetoothAdapter();
   },
 
   /**
@@ -167,6 +166,9 @@ Page({
       //   text:this.data.text
       // })
       that.findBlue();
+      that.setData({
+        isUseBlueTooth:true
+      })
    
     },
     fail:(err)=>{
@@ -199,10 +201,12 @@ Page({
            timer = setInterval(() => {
             wx.getBluetoothDevices({
               success:(res)=>{
+              
                 let tnDeviceList = res.devices.filter(item=>{
                   return item.name.indexOf("TN") > -1
                 });
                 
+                console.log("设备列表:",tnDeviceList)
                 // if(tnDeviceList.length == 0){
                 //   that.initBlue()
                 // }else{
@@ -259,9 +263,31 @@ Page({
     const deviceId = ds.deviceId
     const name = ds.name;
     const _this = this;
-
-
-  
+    
+    // 检测仪
+    if(name.startsWith("TNTM")){
+      console.log("检测仪绑定:")
+      testBind({
+        name:name,
+        type:1
+      }).then(data=>{
+        if(data && data == '操作成功'){
+          wx.showToast({
+            title:'绑定成功',
+            duration:2000
+          })
+          setTimeout(() => {
+            wx.switchTab({
+              url:"/pages/index/index"
+            })
+          }, 2000);
+        }
+        
+      })
+      return false;
+     
+    }
+    console.log("电池绑定")
     if (!getStorageByKey('location')){
       _this.getSetting();
     }else{
@@ -271,13 +297,17 @@ Page({
       })
       const {latitude,longitude} = getStorageByKey('location');
       _this.connetBlue(deviceId,name,latitude,longitude,_this.data.snCode,_this);
-     
+      
       // 绑定当前的设备
       // setTimeout(() => {
       //   console.log("绑定蓝牙1")
       //   _this.bindBlueTooth(name,latitude,longitude,getStorageByKey('snCode')||"",_this,deviceId);
       // }, 1000);
-    }  
+    } 
+    
+  
+  
+   
   },
   // 获取到设备之后连接蓝牙设备
   connetBlue(deviceId,name,latitude,longitude,code,that){ 
@@ -356,6 +386,10 @@ Page({
       },
       fail (err){
         console.log(err);
+        const {errMsg} =err;
+        wx.showToast({
+          title:errMsg
+        })
       }
     })
   },
@@ -483,17 +517,37 @@ Page({
       success: function (res) {
         if (res.confirm) {
           const ds = e.currentTarget.dataset;
-          const {blueToothName,snCode} =  ds;
-          _this.handleDeleteDevice(blueToothName,snCode);
+          const {name,snCode,type} =  ds;
+          _this.handleDeleteDevice(name,snCode,type);
         }
       }
     })
   },
   // 删除设备
-  handleDeleteDevice:function(blueToothName,snCode){
+  handleDeleteDevice:function(name,snCode,type){
+    if(type ==2){
+      testBind({
+        name,
+        type:2,
+      }).then(data=>{
+        if(data && data == '操作成功'){
+          wx.showToast({
+            title:'删除成功',
+            duration:2000
+          })
+          setTimeout(() => {
+            wx.switchTab({
+              url:"/pages/index/index"
+            })
+          }, 2000);
+        }
+      })
+      return false;
+    }
+
       const params = {
         bindType:2, //绑定类型(1:绑定 2:解绑)
-        blueToothName,
+        blueToothName:name,
         snCode
       }
       const _this  = this;

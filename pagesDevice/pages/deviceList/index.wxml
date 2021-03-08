@@ -25,14 +25,15 @@
     <!-- 已配对的设备列表 -->
     <view  wx:for="{{deviceConnectList}}" wx:key="index">
         <view class="device-item"  
-              data-blue-tooth-name="{{item.blueToothName}}" 
+              data-name="{{item.blueToothName || item.detectorName}}" 
               data-sn-code="{{item.snCode}}" 
+              data-type="{{item.type}}"
               bindtap="deleteDevice">
           <!-- <image src="../../../images/device.svg" class="device-img"/> -->
           
           <image src="https://lidian.etianneng.cn/admin/sys-file/dosp/d9ca0b6c7120408795ca4446de576272.png" class="device-img"/>
           <view class="device-pair-item-detail">
-            <text>{{item.blueToothName}}</text>
+            <text>{{item.blueToothName|| item.detectorName}}</text>
             <image src="../../../images/device-delete.svg"  class="device-img-delete"/>
           </view>
         </view>
