@@ -1,0 +1,251 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pagesOther/pages/deviceList/index",
+          "pathName": "pagesOther/pages/deviceList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesOther/pages/bind/index",
+          "pathName": "pagesOther/pages/bind/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesOther/pages/fastTest/index",
+          "pathName": "pagesOther/pages/fastTest/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesOther/pages/deviceList/index",
+          "pathName": "pagesOther/pages/deviceList/index",
+          "query": "articleId=1",
+          "scene": null
+        },
+        {
+          "name": "pagesOther/pages/fastTest/index",
+          "pathName": "pagesOther/pages/fastTest/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/index",
+          "pathName": "pages/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesOther/pages/person/index",
+          "pathName": "pagesOther/pages/person/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "device/device/pages/index",
+          "pathName": "device/device/pages/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "device/pages/device/index",
+          "pathName": "device/pages/device/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "device/pages/myDevice/index",
+          "pathName": "device/pages/myDevice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "device/pages/myDevice/index",
+          "pathName": "device/pages/myDevice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/myDevice/index",
+          "pathName": "pagesDevice/pages/myDevice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/deviceDetail/index",
+          "pathName": "pagesDevice/pages/deviceDetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/deviceDetail/index",
+          "pathName": "pagesDevice/pages/deviceDetail/index",
+          "query": "deviceId=1357152509086830593",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/fastTest/index",
+          "pathName": "pagesMy/pages/fastTest/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/my/index",
+          "pathName": "pagesMy/pages/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/opinion/index",
+          "pathName": "pagesMy/pages/opinion/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/setting/index",
+          "pathName": "pagesMy/pages/setting/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/contact/index",
+          "pathName": "pagesMy/pages/contact/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/contactUs/index",
+          "pathName": "pagesMy/pages/contactUs/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/report/index",
+          "pathName": "pagesDevice/pages/report/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/fastTest/index",
+          "pathName": "pagesDevice/pages/fastTest/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/Detector/index",
+          "pathName": "pagesDevice/pages/Detector/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/detector/index",
+          "pathName": "pagesDevice/pages/detector/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/myDevice/index",
+          "pathName": "pagesDevice/pages/myDevice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/testIng/index",
+          "pathName": "pagesDevice/pages/testIng/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/detector/index",
+          "pathName": "pagesDevice/pages/detector/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/myDevice/index",
+          "pathName": "pagesDevice/pages/myDevice/index",
+          "query": "deviceId=1364097017127227393&imgUrl= http://192.168.33.148:9000/dosp/57fafed7e1124348a84d02998220ec43.png",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/testIng/index",
+          "pathName": "pagesDevice/pages/testIng/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/opinion/index",
+          "pathName": "pagesMy/pages/opinion/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/deviceList/index",
+          "pathName": "pagesDevice/pages/deviceList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/myDevice/index",
+          "pathName": "pagesDevice/pages/myDevice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/my/index",
+          "pathName": "pagesMy/pages/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/person/index",
+          "pathName": "pagesMy/pages/person/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/bind/index",
+          "pathName": "pages/bind/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/detector/index",
+          "pathName": "pagesDevice/pages/detector/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesDevice/pages/detector/index",
+          "pathName": "pagesDevice/pages/detector/index",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

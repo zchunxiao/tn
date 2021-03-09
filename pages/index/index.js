@@ -231,7 +231,7 @@ Page({
       success: (res) => {
         const {code=""} = res;
         console.log("code:",code);
-       // return false;
+        // return false;
         wxLogin({code}).then(data=>{
           if(!data) return false;
           const {openid,session_key} = data;
@@ -265,9 +265,11 @@ Page({
       const {flag,phoneNumber,token,qrCodeUrl} =  res;
       // 未绑定手机号跳转到绑定页面
       if(!flag){
-        wx.navigateTo({
-          url: '/pages/bind/index',
-        })
+        setTimeout(() => {
+          wx.navigateTo({
+            url: '/pages/bind/index',
+          })
+        }, 2000);
       }else{
         // 缓存手机号和token
         wx.setStorage({

@@ -55,7 +55,7 @@ const getConfigParams = ()=>fetch('configParamsApi/getConfigParams');
 
 
 // 检测仪检测 post
-const getTest = data=>fetch('/api​/test',data)
+const getTest = data=>fetch('api/test',data,{method:"post"})
 
 module.exports= {
   getBannerList,
@@ -71,7 +71,7 @@ module.exports= {
   getFeedBack,
   getContactUs,
   editUserInfo,
-  getUserInfo,
+  getUserInfo, 
   testBind,
   getConfigParams,
   getTest

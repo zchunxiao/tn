@@ -152,7 +152,7 @@ Page({
                 let tnDeviceList = res.devices.filter(item=>{
                   return item.name.indexOf("TN") > -1
                 });
-                console.log("搜索蓝牙设备列表:",tnDeviceList,_this.data.TnSnCode)
+
                 let list;
                 tnDeviceList.map(item=>{
                   if(item.name  == _this.data.TnSnCode){
@@ -264,8 +264,7 @@ Page({
       // 这里的 deviceId 需要已经通过 createBLEConnection 与对应设备建立链接
       deviceId: deviceId,
       success (res) {
-        console.log("蓝牙连接成功:",res)
-    
+     
            // 获取特定设备的所有服务
         wx.getBLEDeviceServices({
             deviceId:deviceId,
@@ -274,7 +273,7 @@ Page({
                 const serviceId = res.services.map(item=>{
                     return item.uuid
                 })
-                console.log("蓝牙连接成功1:",res,serviceId);
+           
 
                 // 针对一个特定服务查看这个服务所支持的操作
                 wx.getBLEDeviceCharacteristics({

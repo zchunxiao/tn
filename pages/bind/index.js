@@ -98,6 +98,7 @@ Page({
         encryptedData,
         iv
       }).then(res=>{
+        console.log("绑定手机号接口:",res)
         if(!res) return false;
         const { phoneNumber,token} = res;
         // app.globalData.phoneNumber = phoneNumber;

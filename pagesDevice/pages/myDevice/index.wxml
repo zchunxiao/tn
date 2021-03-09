@@ -1,8 +1,13 @@
 <!--device/pages/device/index.wxml-->
 <view>
  <view class="my-device-content">
-    <view class="my-device-item" wx:for="{{deviceList}}" wx:key="index" bindtap="goDetail"   data-device-id="{{item.productId}}" data-img-url="{{item.productImgUrl}}" data-type="{{item.type}}">
-        <view class="my-devide-box">
+    <view class="my-device-item" wx:for="{{deviceList}}" 
+          wx:key="index" bindtap="goDetail"   
+          data-device-id="{{item.productId}}" 
+          data-blue-tooth-name="{{item.blueToothName || item.detectorName}}"
+          data-img-url="{{item.productImgUrl}}" 
+          data-type="{{item.type}}">
+        <view class="my-devide-box">     
           <image src="{{item.productImgUrl}}" mode="widthFix" class="my-device-img"/>
           <text>{{item.productCategory ||  item.detectorName}}</text>
         </view>

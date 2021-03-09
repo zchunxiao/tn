@@ -185,9 +185,7 @@ Page({
  },
  // 开始
  findBlue:function(){
-   let that = this;
-   let id,time=0;
-
+  let that = this;
   wx.getBluetoothAdapterState({
     success: function (res) {
       if(!res.available) return false;
@@ -197,41 +195,28 @@ Page({
         success: function (res) {
           // 获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
           // 每隔5秒中搜索一次列表
-          time++;
            timer = setInterval(() => {
             wx.getBluetoothDevices({
               success:(res)=>{
-              
+
+
                 let tnDeviceList = res.devices.filter(item=>{
-                  return item.name.indexOf("TN") > -1
+                 return item.name.indexOf("TN") > -1
                 });
                 
                 console.log("设备列表:",tnDeviceList)
-                // if(tnDeviceList.length == 0){
-                //   that.initBlue()
-                // }else{
-                  if(tnDeviceList.length >0){
-                    that.setData({
-                      // visible:false,
-                       deviceList: tnDeviceList
-                     },()=>{
-                       wx.stopBluetoothDevicesDiscovery({
-                         success (res) {
-                          clearInterval(timer)
-                          console.log("停止搜索：",res)
-                         }
-                       })
-                     });
-                    
+       
+                
+                that.setData({
+                  // visible:false,
+                    deviceList: tnDeviceList
+                  });
+                  wx.stopBluetoothDevicesDiscovery({
+                  success (res) {
+                    clearInterval(timer)
+                    console.log("停止搜索：",res)
                   }
-               
-                 // wx.hideLoading();
-                //  that.setData({
-                //     visible:false,
-                //     text:that.data.text
-                //   })
-               // }
-               
+                })
   
               }
             });
@@ -263,7 +248,9 @@ Page({
     const deviceId = ds.deviceId
     const name = ds.name;
     const _this = this;
-    
+    _this.setData({
+      visible:true
+    })
     // 检测仪
     if(name.startsWith("TNTM")){
       console.log("检测仪绑定:")
@@ -271,18 +258,28 @@ Page({
         name:name,
         type:1
       }).then(data=>{
+   
         if(data && data == '操作成功'){
-          wx.showToast({
-            title:'绑定成功',
-            duration:2000
-          })
-          setTimeout(() => {
-            wx.switchTab({
-              url:"/pages/index/index"
+          _this.setData({
+            visible:false
+          },()=>{
+            wx.showToast({
+              title:'绑定成功',
+              duration:2000
             })
-          }, 2000);
+            setTimeout(() => {
+              wx.switchTab({
+                url:"/pages/index/index"
+              })
+            }, 2000);
+          })
+        
         }
         
+      },()=>{
+        _this.setData({
+          visible:true
+        })
       })
       return false;
      
@@ -350,6 +347,7 @@ Page({
                       
                       let str="";
                       wx.onBLECharacteristicValueChange(function (res) {
+                        console.log("0000000000000111:",res);
                         console.log("0000000000000999999:",ab2hex(res.value));
                         if(str.length<242){
                           str+=ab2hex(res.value)

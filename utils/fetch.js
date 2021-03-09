@@ -20,11 +20,10 @@ const fetch = (url="",data={},option={method:'get',all:false,loading:true}) => {
       title:"加载中"
     });
   }
-  
 
   return new Promise((resolve,reject)=>{
     wx.request({
-      url:`${baseUrl}/${url}`,
+      url:baseUrl+"/"+url,
       data,
       header:{
        "TENANT-ID": "2",

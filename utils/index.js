@@ -73,6 +73,33 @@ function ab2hex(buffer) {
 }
 
 
+//将字符串转为16进制
+function string2buffer (str) {
+  let val = ""
+  for (let i = 0; i < str.length; i++) {
+      if (val === '') {
+          val = str.charCodeAt(i).toString(16)
+      } else {
+          val += ',' + str.charCodeAt(i).toString(16)
+      }
+  }
+  return new Uint8Array(val.match(/[\da-f]{2}/gi).map(function (h) {
+      return parseInt(h, 16)
+  })).buffer;
+}
+
+/**
+ * 十六进制转 bytearray
+ */
+ function hex2ab(hex){
+  var typedArray = new Uint8Array(hex.match(/[\da-f]{2}/gi).map(function (h) {
+    return parseInt(h, 16)
+  }))
+
+  var buffer = typedArray.buffer
+  return buffer
+}
+
 
 // 图片地址替换
 function replaceUrl(url){
@@ -102,50 +129,7 @@ function getStorageByKey(key){
   }
 }
 
-//获取openid
-// function getOpenid (callback){
-//   wx.getStorage({
-//     key:'openid',
-//     success(res){
-//      console.log("opendid:",res)
-//      typeof callback  == 'function' &&  callback(res.data)
-//     },
-//     fail(err){
-//       console.log("opendid111:",err)
-//       typeof callback  == 'function' &&  callback('')
-//     }
-//   })
-// }
 
-// //  获取sessionKey
-// function getSessionKey(callback){
-//   wx.getStorage({
-//     key:'session_key',
-//     success(res){
-//      console.log("session_key:",res)
-//      typeof callback  == 'function' &&  callback(res.data)
-//     },
-//     fail(err){
-//       typeof callback  == 'function' &&  callback('')
-//     }
-//   })
-// }
-
-
-
-// // 获取手机号
-// function getPhoneNumber(){
-//   try {
-//     var value = wx.getStorageSync('phoneNumber')
-//     if (value) {
-//       return value
-//       // Do something with return value
-//     }
-//   } catch (e) {
-//     return ""
-//     // Do something when catch error
-//   }
-// }
 
 
 // 验证是否授权登录
@@ -179,13 +163,11 @@ module.exports={
   hexToStr,
   hexToDecimalism ,
   ab2hex,
+  hex2ab,
+  string2buffer,
   hex_to_bin,
   replaceUrl,
-  // getOpenid,
-  // getSessionKey,
   isLogin,
   getStorageByKey,
   test
 }
-
-

@@ -78,11 +78,12 @@ Page({
   },
   // 绑定设备详情
   goDetail:function(e){
-    const {deviceId, imgUrl,type} =  e.currentTarget.dataset
-    console.log("ddd:",deviceId, imgUrl,type);
+    const {deviceId, imgUrl,type,blueToothName} =  e.currentTarget.dataset
+    
+ 
     if(type==2){
       wx.navigateTo({
-        url:`/pagesDevice/pages/detector/index`
+        url:`/pagesDevice/pages/detector/index?name=${blueToothName}`
       })
       return false;
     }
