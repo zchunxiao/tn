@@ -243,6 +243,12 @@
         {
           "name": "pagesDevice/pages/detector/index",
           "pathName": "pagesDevice/pages/detector/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesMy/pages/opinion/index",
+          "pathName": "pagesMy/pages/opinion/index",
           "scene": null
         }
       ]

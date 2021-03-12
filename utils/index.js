@@ -61,16 +61,6 @@ function hexToDecimalism (hex)  {
     }, 0);
 }
 
-// ArrayBuffer转16进制
-function ab2hex(buffer) {
-    var hexArr = Array.prototype.map.call(
-    new Uint8Array(buffer),
-    function(bit) {
-    return ('00' + bit.toString(16)).slice(-2)
-    }
-    )
-    return hexArr.join('');
-}
 
 
 //将字符串转为16进制
@@ -91,7 +81,7 @@ function string2buffer (str) {
 /**
  * 十六进制转 bytearray
  */
- function hex2ab(hex){
+function hex2ab(hex){
   var typedArray = new Uint8Array(hex.match(/[\da-f]{2}/gi).map(function (h) {
     return parseInt(h, 16)
   }))
@@ -157,6 +147,34 @@ const test = (data)=>{
   })
 }
 
+ /**
+     * ArrayBuffer 转换为  Hex
+     */
+
+function buf2hex (buffer) { // buffer is an ArrayBuffer
+  return Array.prototype.map.call(new Uint8Array(buffer), x => ('00' + x.toString(16)).slice(-2)).join('');
+}
+
+
+// ArrayBuffer转16进制
+function ab2hex(buffer) {
+  var hexArr = Array.prototype.map.call(
+  new Uint8Array(buffer),
+  function(bit) {
+  return ('00' + bit.toString(16)).slice(-2)
+  }
+  )
+  return hexArr.join('');
+}
+
+
+  //字符串转字符串ArrayBuffer
+  function str2ab(s,f) {
+    var b = new Blob([s],{type:'text/plain'});
+    var r = new FileReader();
+    r.readAsArrayBuffer(b);
+    r.onload = function (){if(f)f.call(null,r.result)}
+}
 
 
 module.exports={
@@ -169,5 +187,7 @@ module.exports={
   replaceUrl,
   isLogin,
   getStorageByKey,
-  test
+  test,
+  buf2hex,
+  str2ab
 }

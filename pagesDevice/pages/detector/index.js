@@ -1,7 +1,7 @@
 // pagesDevice/pages/Detector/index.js
 import {getConfigParams,getTest} from "../../../api/index.js"
-import {string2buffer,ab2hex,hex2ab} from "../../../utils/index.js"
-let timer,timer1;
+import {string2buffer,ab2hex,hex2ab,buf2hex,hex_to_bin,str2ab} from "../../../utils/index.js"
+let timer;
 
 Page({
 
@@ -20,13 +20,14 @@ Page({
     name:"",
     deviceId:"",
     writeText:"" ,// 蓝牙写入数据
-    baseInfo:[],
+    baseInfo:[],// 数据包
     pid:"",
     blueToothCmd:"", // 发送蓝牙指令
     testType:1 ,//检测类型(1:快速检测,2:全程检测)
     stage:1,//检测仪目前状态(1:充电中,2：静止中,3:放电中)
     cd100:"",
-    serviceId:""
+    serviceId:"",
+    notifyCd100:""
   },
 
   
@@ -47,38 +48,10 @@ Page({
 
   },
 
-  // 修改数据
-  changeText:function(num1,num2,num3,callback1,callback2,callback3,time){
-
-    var timer,i=0,j=0,k=0;
-    timer=setInterval(()=>{
-      i++;
-      if(i<num1+1){
-    
-        callback1()
-      }else{
-        j++;
-        if(j<num2+1){
-        
-          callback2()
-          
-        }else{
-          k++;
-            if(k<num3+1){
-          
-              callback3()
-            
-            }else{
-              clearInterval(timer)
-            }
-        }
-      }
-    },time)
-  },
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
    
     const _this = this;
  
@@ -104,8 +77,9 @@ Page({
         blueToothCmd: chargeCommand
       })
     });
-    _this.initBlue();
-
+    setTimeout(() => {
+      _this.initBlue();
+    }, 1000);
   
 
   },
@@ -156,6 +130,7 @@ Page({
     var that = this;
     wx.openBluetoothAdapter({
       success:()=>{
+         console.log("初始化蓝牙");
         that.findBlue();
         that.setData({
           isUseBlueTooth:true
@@ -186,15 +161,16 @@ Page({
             // 获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
             // 每隔5秒中搜索一次列表
             time++;
-            timer = setInterval(() => {
+            // timer = setInterval(() => {
+            setTimeout(() => {
               wx.getBluetoothDevices({
                 success:(res)=>{
-
+                
                   let tnDeviceList = res.devices.filter(item=>{
                     return item.name.indexOf("TNTM") > -1
                   });
      
-
+                  console.log("蓝牙列表:",tnDeviceList);
                   let list;
                   tnDeviceList.map(item=>{
                     if(item.name == _this.data.name){
@@ -225,9 +201,8 @@ Page({
 
                 }
               });
-            
             }, 5000);
-          
+            // }, 5000);
           }        
         })
     
@@ -279,7 +254,7 @@ Page({
                   const serviceId = res.services.map(item=>{
                       return item.uuid
                   })
-                  console.log("蓝牙连城serviceId:",serviceId)
+                   console.log("蓝牙serviceId:",serviceId)
               
 
                   // 针对一个特定服务查看这个服务所支持的操作
@@ -287,48 +262,52 @@ Page({
                       deviceId: deviceId,
                       serviceId: serviceId[1],
                       success: function (res) {
-                        console.log("服务所支持的操作(读写操作):",res.characteristics)
+                        // console.log("服务所支持的操作(读写操作):",res.characteristics)
               
                         let characteristicId=res.characteristics.map(item=>{
                           return item.uuid
                         })
-                        console.log("characteristicId:",characteristicId)
-                        let cd100= characteristicId[1];//读取第二个特征值
-                
+                        // console.log("characteristicId:",characteristicId)
+                        let cd100= characteristicId[1];//读取第二个特征值写入数据 测试的时候可以取第三个数据测试
+                        let cd101 = characteristicId[0];//读取第已个特征值获取数据
+         
+
                         _this.setData({
                           cd100,
+                          notifyCd100:cd101,
                           serviceId: serviceId[1]
                         })
-                         setTimeout(() => {
-                          _this.writeCmd(cd100,serviceId[1]);//开始写命令到特征值
+              
+                        _this.writeCmd();//开始写命令到特征值
 
-                          wx.notifyBLECharacteristicValueChange({//监听特征值变化
-                              state: true,
-                              deviceId:  _this.data.deviceId,
-                              serviceId: serviceId[1],
-                              characteristicId: cd100,
-                              success(res) { 
-                                console.log("监听成功:",res.errMsg)
-                              },
-                              fail(err){
-                                console.log("监听失败:",err)
-                              }
-                          })
+                        // setTimeout(() => {
 
                           wx.onBLECharacteristicValueChange(function (res) {//获取蓝牙特征值变化
-                            console.log("获取蓝牙特征值变化:",res.value)
-                            var cmd = ab2hex(res.value);//获取到特征值
-                            console.log("数据包:",cmd);
+                            var cmd = buf2hex(res.value);//获取到特征值
+                            //console.log("数据包:",cmd);
+                            if(cmd.length <100){
+                              return false;
+                            }
+                           // console.log("_this.data.baseInfo:", _this.data.baseInfo.length)
                             _this.data.baseInfo.push(cmd);
-                            //_this.data.baseInfo.push("5A0A007900000B700B6A0000000000000F5E0F5D0F5D0F5E0F5E0F5E0F5C0F5B0F5E0F5F0F5D0F5E0F5C000000000000000000000000000013E10000C7BD0100010000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000B670B660BA20F5D0328000006500000C300000000E2C7000050000000000000000000000002");
-                            console.log("数据包数组",_this.data.baseInfo);
-                      
-                            _this.hanldeCheck(_this.data.baseInfo,_this.pid)
-           
-                        
+                           // console.log("_this.data.baseInfo:", _this.data.baseInfo.length)
                           })
-                       
-                        }, 2000);
+                          wx.notifyBLECharacteristicValueChange({//监听特征值变化
+                            state: true,
+                            deviceId:  _this.data.deviceId,
+                            serviceId: serviceId[1],
+                            characteristicId: _this.data.notifyCd100,
+                            success(res) { 
+                         
+                              console.log("监听成功:",res.errMsg)
+                            },
+                            fail(err){
+                              console.log("监听失败:",err)
+                            }
+                          })
+                      
+
+                        //  }, 2000);
 
 
                   
@@ -342,92 +321,83 @@ Page({
             })
         },
         fail (err){
-          console.log("err:",err)
+          const {errCode} = err;
+          if(errCode == "10003"){
+            wx.showToast({
+              title:"连接超时"
+            })
+          }
+         
         }
       })
   },
   // 蓝牙写入数据
-  writeCmd: function (cd100,serviceId) {
+  writeCmd: function () {
+     console.log("蓝牙写入数据入口")
       var _this = this;
-      let cmd = _this.data.chargeCommand;//写入蓝牙的指令 需转为buffer
-    
-      console.log("指令:",cmd.replace(/\s*/g,""));
-      console.log("ll:",_this.data.blueToothCmd)
-      console.log("122:",hex2ab(_this.data.blueToothCmd.replace(/\s*/g,"")))
-   
+      const {chargeTime,dischargeTime,freezeTime,intervalTime} = _this.data;
+      // 先充电
+      _this.handleCharge();
+      setTimeout(() => {
+        // 静止
+        _this.handleFreeze();
+        setTimeout(() => {
+          // 放电
+          _this.handleDischarge();
+          setTimeout(() => {
+            // 静止
+            _this.handleFreeze("last");
+          }, dischargeTime*1000);
+        }, freezeTime*1000);
+      },chargeTime*1000);
 
-      _this.changeText(
-        _this.getNum(_this.data.chargeTime),
-        _this.getNum(_this.data.freezeTime),
-        _this.getNum(_this.data.dischargeTime),
-         function(){
-           console.log("1")
-           _this.setData({
-             blueToothCmd:_this.data.chargeCommand,
-             stage:1, //检测仪目前状态(1:充电中,2：静止中,3:放电中)
-           })
-           console.log("0000蓝夜写入:",d100,serviceId,_this.data.chargeCommand);
-           _this.writeBlueToothCmd(cd100,serviceId,_this.data.chargeCommand)
-         },
-         function(){
-           console.log("2")
-           _this.setData({
-             blueToothCmd:_this.data.freezeCommand,
-             stage:2
-           })
-           console.log("0000蓝夜写入2:",cd100,serviceId,_this.data.freezeCommand)
-           _this.writeBlueToothCmd(cd100,serviceId,_this.data.freezeCommand)
-         },
-         function(){
-           console.log("3")
-           _this.setData({
-             blueToothCmd:_this.data.dischargeCommand,
-             stage:3
-           })
-           console.log("0000蓝夜写入3:",cd100,serviceId,_this.data.dischargeCommand)
-           _this.writeBlueToothCmd(cd100,serviceId,_this.data.dischargeCommand)
-           wx.closeBLEConnection({//断开连接
-              deviceId:_this.data.deviceId,
-              success(res) { }
-            })
-         },
-         //1000
-         _this.data.intervalTime*1000
-      )
-  
   },
-
   // 写入蓝牙命令
-  writeBlueToothCmd:function( cd100,serviceId,cmd){
+  writeBlueToothCmd:function(callback,cmd,last){
 
     const _this  = this;
+    const {cd100,serviceId,deviceId} = _this.data;
     console.log("cmd写入:",cmd)
-    setTimeout(function () {
-      wx.writeBLECharacteristicValue({
-        deviceId: _this.data.deviceId,
-        serviceId: serviceId,
-        characteristicId: cd100,
-        value:hex2ab(cmd.replace(/\s*/g,"")),
-        success(res) {
-          console.log("写入成功:",res)
-          wx.readBLECharacteristicValue({//写入成功后读取该特征值
-              deviceId:  _this.data.deviceId,
-              serviceId: serviceId,
-              characteristicId: cd100,
-              success(res) {
-                console.log("读取成功:",res)
-              },
-              fail(err) { 
-                console.log("读取失败:",err)
+    var hex = cmd.replace(/\s*/g,""); // 16进制去处空格
+    var buffer1 = hex2ab(hex);// 16进制转arrayBuffer
+    console.log("buffer1:",buffer1)
+    // setTimeout(function () {
+    wx.writeBLECharacteristicValue({
+      deviceId: deviceId,
+      serviceId: serviceId,
+      characteristicId: cd100,
+      // value:hex2ab(cmd.replace(/\s*/g,"")),
+      value:buffer1,
+      success(res) {
+        console.log("写入成功:",res,)
+        wx.readBLECharacteristicValue({//写入成功后读取该特征值
+            deviceId: deviceId,
+            serviceId: serviceId,
+            characteristicId: cd100,
+            success(res) {
+              console.log("读取成功:",res,_this.data.baseInfo);
+              typeof callback  == 'function' && callback();
+              //断开连接
+              if(last && last=="last"){
+                wx.closeBLEConnection({
+                  deviceId:deviceId,
+                  success(res) { 
+                    console.log("成功断开连接")
+                  }
+                })
               }
-          })
-        }, 
-        fail(err) {
-          console.log("写入失败:",err)
-        // _this.writeCmd(cd100,serviceId);
-        }
-      })
-    }, 2000)
+            },
+            fail(err) { 
+              console.log("读取失败:",err)
+            }
+        })
+      }, 
+      fail(err) {
+        console.log("写入失败:",err)
+      // _this.writeCmd(cd100,serviceId);
+      }
+    })
+    // }, 2000)
   },
   // 获取蓝牙操作次数
   getNum:function(type){
@@ -436,33 +406,141 @@ Page({
   // 检测仪按钮事件
   goCheck:function(e){
     const {type} =  e.currentTarget.dataset;
-
     const _this = this;
     _this.setData({
       testType:type
     })
-  
 
   },
   // 检测仪检测
-  hanldeCheck:function(baseInfo,pid){
+  hanldeCheck:function(baseInfo){
     const _this  = this;
+    const {pid,stage,testType} = _this;
+
     let param = {
       baseInfo,//检测数据包
       pid,//数据编号
-      stage:_this.data.stage,//检测仪目前状态(1:充电中,2：静止中,3:放电中)
-      testType:_this.data.testType     //       testType:1 //检测类型(1:快速检测,2:全程检测)
+      stage,//检测仪目前状态(1:充电中,2：静止中,3:放电中)
+      testType //检测类型(1:快速检测,2:全程检测)
     }
+   
     console.log("检测入参:",param)
+  
     getTest(param).then(data=>{
-      console.log("检测仪数据:",data)
+     console.log("*********检测仪数据*********:",data)
       const {pid} = data;
       _this.setData({
-        pid
+        pid,
+        baseInfo:[]
       })
-    
+    },err=>{
+      console.log('接口调用:',err)
     })
+  },
+  // 充电指令
+  handleCharge:function(){
+    console.log("开始充电")
+    const _this = this;
+    const {chargeCommand,intervalTime,chargeTime,baseInfo} = _this.data;
+    let timerBlue1,c=0;
+    _this.setData({
+      blueToothCmd:chargeCommand,
+      stage:1, //检测仪目前状态(1:充电中,2：静止中,3:放电中)
+    })
+   
+    // 充电指令回调
+    _this.writeBlueToothCmd(()=>{
+      _this.hanldeCheck(baseInfo)
+
+      timerBlue1 = setInterval(()=>{
+        // 充电次数
+        var num = _this.getNum(chargeTime)
+          c++;
+          console.log("i:",c);
+          console.log("ssdS:",baseInfo)
+          _this.hanldeCheck(baseInfo)
+
+          if(c>num-1){
+            clearInterval(timerBlue1)
+          }
+        },intervalTime*1000)
+
+    },chargeCommand)
+  },
+  //静止指令
+  handleFreeze:function(last){
+    console.log("开始静止")
+
+    const _this = this;
+    const {freezeCommand,freezeTime,intervalTime,baseInfo} =_this.data;
+    let timerBlue2,f=0;
+    _this.setData({
+      blueToothCmd:freezeCommand,
+      stage:2, //检测仪目前状态(1:充电中,2：静止中,3:放电中)
+    })
+
+    _this.writeBlueToothCmd(()=>{
+      timerBlue2 = setInterval(()=>{
+        _this.hanldeCheck(baseInfo)
+
+        // 充电次数
+        var num = _this.getNum(freezeTime)
+          f++;
+         
+          console.log("ssdS:",baseInfo)
+          if(f>num-1){
+            console.log("f:",f);
+            clearInterval(timerBlue2)
+          }
+        },intervalTime*1000)
+
+    },freezeCommand,last)
+  },
+  // 放电指令
+  handleDischarge:function(){
+    console.log("开始放电")
+    const _this = this;
+    const {dischargeCommand,dischargeTime,intervalTime,baseInfo} = _this.data;
+    let timerBlue3,d=0;
+    _this.setData({
+      blueToothCmd:dischargeCommand,
+      stage:3, //检测仪目前状态(1:充电中,2：静止中,3:放电中)
+    })
+
+    _this.writeBlueToothCmd(()=>{
+      _this.hanldeCheck(baseInfo)
+          timerBlue3 = setInterval(()=>{
+          // 充电次数
+            var num = _this.getNum(dischargeTime)
+            d++;
+            console.log("ssdS:",baseInfo)
+          
+            if(d>num-1){
+              console.log("d:",d);
+              clearInterval(timerBlue3)
+            }
+          },intervalTime*1000)
+    },dischargeCommand)
+  },
+  // 蓝牙写入数据
+  hanldeCheckTest:function(){
+    const _this = this;
+    const {chargeTime,dischargeTime,freezeTime} = _this.data;
+    // 先充电
+    _this.handleCharge();
+    // return false;
+    setTimeout(() => {
+      // 静止
+      _this.handleFreeze();
+      setTimeout(() => {
+        // 放电
+        _this.handleDischarge();
+        setTimeout(() => {
+          // 静止
+          _this.handleFreeze("last");
+        }, dischargeTime*1000);
+      }, freezeTime*1000);
+    },chargeTime*1000);
+
   }
 })
-
-

@@ -3,7 +3,6 @@ const baseUrl ="https://lidian.etianneng.cn/bms"
 
 
 /**
- * 
  * @param {all} 响应体全部返回 
  * @param {loading} 请求是否显示loading效果
  */
@@ -41,6 +40,8 @@ const fetch = (url="",data={},option={method:'get',all:false,loading:true}) => {
            duration:2000,
            mask:true
          })
+        console.log("接口异常:",msg);
+        reject(msg)
        }
         if(option.all){
           resolve(res.data)

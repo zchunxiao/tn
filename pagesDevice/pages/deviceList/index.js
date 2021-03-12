@@ -258,7 +258,7 @@ Page({
         name:name,
         type:1
       }).then(data=>{
-   
+        console.log("data:",data)
         if(data && data == '操作成功'){
           _this.setData({
             visible:false
@@ -273,16 +273,15 @@ Page({
               })
             }, 2000);
           })
-        
         }
-        
-      },()=>{
-        _this.setData({
-          visible:true
-        })
+      },(err)=>{
+        if(err){
+          _this.setData({
+            visible:false
+          })
+        }
       })
       return false;
-     
     }
     console.log("电池绑定")
     if (!getStorageByKey('location')){
@@ -501,9 +500,7 @@ Page({
             })
           }, 2000);
         }
-      })
-
-    
+      })    
   },
   // 是否删除设备弹窗
   deleteDevice:function(e){
